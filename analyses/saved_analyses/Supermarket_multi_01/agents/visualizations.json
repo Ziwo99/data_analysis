@@ -1,0 +1,505 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Performance Analysis",
+      "context": "Assessing the sales performance across different branches, cities, and product lines.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by Branch",
+          "why": "To identify which branches generate the most revenue.",
+          "answers": [
+            "Comparison of total sales among branches."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Branch",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total sales for each branch",
+            "result = supermarket_analysis.groupby('Branch').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for total sales by branch",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['Branch'], result['total_sales'], color='skyblue')",
+            "ax.set_title('Total Sales by Branch')",
+            "ax.set_xlabel('Branch')",
+            "ax.set_ylabel('Total Sales')",
+            "ax.yaxis.set_major_formatter('${x:,.0f}')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is appropriate for comparing the total sales between different branches, as it effectively shows variations in quantities across categorical data."
+        },
+        {
+          "id": "1.2",
+          "title": "Total Sales by City",
+          "why": "To determine the revenue distribution across cities where branches are located.",
+          "answers": [
+            "Aggregate sales figures for each city."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.City",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total sales for each city",
+            "result = supermarket_analysis.groupby('City').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for total sales by city",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['City'], result['total_sales'], color='lightcoral')",
+            "ax.set_title('Total Sales by City')",
+            "ax.set_xlabel('City')",
+            "ax.set_ylabel('Total Sales')",
+            "ax.yaxis.set_major_formatter('${x:,.0f}')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart allows for a clear comparison of sales across different cities, highlighting differences in performance."
+        },
+        {
+          "id": "1.3",
+          "title": "Sales by Product Line",
+          "why": "To analyze which product lines contribute most to revenue.",
+          "answers": [
+            "Revenue breakdown by product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total sales for each product line",
+            "result = supermarket_analysis.groupby('Product line').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for sales by product line",
+            "fig, ax = plt.subplots()",
+            "ax.barh(result['Product line'], result['total_sales'], color='lightgreen')",
+            "ax.set_title('Sales by Product Line')",
+            "ax.set_xlabel('Total Sales')",
+            "ax.set_ylabel('Product Line')",
+            "ax.xaxis.set_major_formatter('${x:,.0f}')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A horizontal bar chart is suitable for showing sales distribution across multiple product lines, facilitating a better comparison of different contributions."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Customer Analysis",
+      "context": "Understanding customer profiles and behaviors.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Sales by Customer Type",
+          "why": "To assess revenue contribution from different customer types.",
+          "answers": [
+            "Comparison of sales between 'Member' and 'Walk-in' customers."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Customer type",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total sales for each customer type",
+            "result = supermarket_analysis.groupby('Customer type').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a pie chart for sales by customer type",
+            "fig, ax = plt.subplots()",
+            "ax.pie(result['total_sales'], labels=result['Customer type'], autopct='%1.1f%%', startangle=90, colors=['lightblue', 'orange'])",
+            "ax.set_title('Sales by Customer Type')",
+            "ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.",
+            "result_plot = fig"
+          ],
+          "visualization_type": "pie",
+          "justification": "A pie chart effectively illustrates the proportion of sales contributed by each customer type, making it easy to see their relative impact on total sales."
+        },
+        {
+          "id": "2.2",
+          "title": "Average Quantity by Gender",
+          "why": "To explore purchasing patterns by gender.",
+          "answers": [
+            "Average product quantity purchased by each gender."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Gender",
+            "supermarket_analysis.Quantity"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average quantity purchased by each gender",
+            "result = supermarket_analysis.groupby('Gender').agg(avg_quantity=('Quantity', 'mean')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for average quantity by gender",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['Gender'], result['avg_quantity'], color=['lightpink', 'lightblue'])",
+            "ax.set_title('Average Quantity by Gender')",
+            "ax.set_xlabel('Gender')",
+            "ax.set_ylabel('Average Quantity')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart allows comparison of the average quantity of products purchased by each gender, highlighting any significant differences."
+        },
+        {
+          "id": "2.3",
+          "title": "Customer Ratings by Gender",
+          "why": "To understand customer satisfaction levels across genders.",
+          "answers": [
+            "Average rating score given by each gender."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Gender",
+            "supermarket_analysis.Rating"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average rating given by each gender",
+            "result = supermarket_analysis.groupby('Gender').agg(avg_rating=('Rating', 'mean')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for average customer ratings by gender",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['Gender'], result['avg_rating'], color=['lightgreen', 'salmon'])",
+            "ax.set_title('Customer Ratings by Gender')",
+            "ax.set_xlabel('Gender')",
+            "ax.set_ylabel('Average Rating')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively displays average customer ratings by gender, allowing easy comparison of satisfaction levels."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product and Pricing Insights",
+      "context": "Gaining insights into product pricing and sales volume.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Average Unit Price by Product Line",
+          "why": "To explore pricing strategies across product categories.",
+          "answers": [
+            "Mean unit price for each product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Unit price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average unit price for each product line",
+            "result = supermarket_analysis.groupby('Product line').agg(avg_unit_price=('Unit price', 'mean')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a horizontal bar plot for average unit price by product line",
+            "fig, ax = plt.subplots()",
+            "ax.barh(result['Product line'], result['avg_unit_price'], color='peachpuff')",
+            "ax.set_title('Average Unit Price by Product Line')",
+            "ax.set_xlabel('Average Unit Price')",
+            "ax.set_ylabel('Product Line')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A horizontal bar chart provides a clear visualization for comparing average unit prices across different product lines."
+        },
+        {
+          "id": "3.2",
+          "title": "Volume of Sales by Product Line",
+          "why": "To measure product demand across categories.",
+          "answers": [
+            "Total quantity sold for each product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Quantity"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total quantity sold for each product line",
+            "result = supermarket_analysis.groupby('Product line').agg(total_quantity=('Quantity', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for volume of sales by product line",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['Product line'], result['total_quantity'], color='plum')",
+            "ax.set_title('Volume of Sales by Product Line')",
+            "ax.set_xlabel('Product Line')",
+            "ax.set_ylabel('Total Quantity Sold')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively represents the sales volume across product lines, emphasizing the relative demand for each category."
+        },
+        {
+          "id": "3.3",
+          "title": "Total COGS by Product Line",
+          "why": "To analyze the cost associated with each product line.",
+          "answers": [
+            "Total cost of goods sold for each product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.cogs"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total COGS for each product line",
+            "result = supermarket_analysis.groupby('Product line').agg(total_cogs=('cogs', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for total COGS by product line",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['Product line'], result['total_cogs'], color='lightseagreen')",
+            "ax.set_title('Total COGS by Product Line')",
+            "ax.set_xlabel('Product Line')",
+            "ax.set_ylabel('Total COGS')",
+            "ax.yaxis.set_major_formatter('${x:,.0f}')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart allows visualization of the total costs associated with different product lines, assisting in expense analysis."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Financial Metrics Analysis",
+      "context": "Examining key financial performance indicators.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Gross Income Analysis",
+          "why": "To evaluate overall profitability from sales.",
+          "answers": [
+            "Summary of gross income figures."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.gross income"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Correct the aggregation for total gross income",
+            "result = pd.DataFrame([[supermarket_analysis['gross income'].sum()]], columns=['total_gross_income'])"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a single statistic display for total gross income",
+            "fig, ax = plt.subplots()",
+            "ax.text(0.5, 0.5, f'Total Gross Income: ${result['total_gross_income'][0]:,.2f}', ",
+            "        fontsize=14, ha='center', va='center', color='darkgreen')",
+            "ax.set_axis_off()",
+            "ax.set_title('Total Gross Income')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "text",
+          "justification": "A text annotation is ideal to display a single summary statistic like gross income, ensuring focus on the key result."
+        },
+        {
+          "id": "4.2",
+          "title": "Correlation between Sales and Gross Income",
+          "why": "To understand the relationship between these financial metrics.",
+          "answers": [
+            "Correlation coefficient between sales and gross income."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Sales",
+            "supermarket_analysis.gross income"
+          ],
+          "type": "correlation",
+          "code_lines": [
+            "# Calculate correlation between sales and gross income",
+            "result = supermarket_analysis[['Sales', 'gross income']].corr()"
+          ],
+          "visualization_code": [
+            "import seaborn as sns",
+            "import matplotlib.pyplot as plt",
+            "# Create a heatmap to show correlation between Sales and Gross Income",
+            "fig, ax = plt.subplots()",
+            "sns.heatmap(result, annot=True, fmt='.2f', cmap='coolwarm', ax=ax)",
+            "ax.set_title('Correlation between Sales and Gross Income')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "heatmap",
+          "justification": "A heatmap provides a clear visual representation of how strongly two variables correlate, with color intensity indicating the level of correlation."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Temporal Analysis",
+      "context": "Analyzing sales patterns over time.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Sales Trend Over Time",
+          "why": "To identify seasonal trends or patterns in sales.",
+          "answers": [
+            "Sales figures plotted against time."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Date",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "time_series",
+          "code_lines": [
+            "# Aggregate total sales by date",
+            "supermarket_analysis['Date'] = pd.to_datetime(supermarket_analysis['Date'])",
+            "result = supermarket_analysis.groupby('Date').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a line plot for sales trend over time",
+            "fig, ax = plt.subplots(figsize=(10, 5))",
+            "ax.plot(result['Date'], result['total_sales'], color='tab:blue')",
+            "ax.set_title('Sales Trend Over Time')",
+            "ax.set_xlabel('Date')",
+            "ax.set_ylabel('Total Sales')",
+            "ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: pd.to_datetime(x).date()))",
+            "ax.yaxis.set_major_formatter('${x:,.0f}')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "line",
+          "justification": "Line charts are suitable for time series data, effectively illustrating trends over a continuous time period."
+        },
+        {
+          "id": "5.2",
+          "title": "Peak Sales Hours",
+          "why": "To determine the time of day most transactions occur.",
+          "answers": [
+            "Histogram of sales volume by time of day."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Time",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "histogram",
+          "code_lines": [
+            "# Correctly parse time and group sales by the extracted hour",
+            "supermarket_analysis['hour'] = pd.to_datetime(supermarket_analysis['Time'], format='%I:%M:%S %p').dt.hour",
+            "result = supermarket_analysis.groupby('hour').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a histogram to show peak sales hours",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['hour'], result['total_sales'], width=0.7, color='lightsteelblue')",
+            "ax.set_title('Peak Sales Hours')",
+            "ax.set_xlabel('Hour of the Day')",
+            "ax.set_ylabel('Total Sales')",
+            "ax.set_xticks(result['hour'])",
+            "ax.yaxis.set_major_formatter('${x:,.0f}')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "histogram",
+          "justification": "A histogram clearly visualizes sales distribution across different times of the day, highlighting peak hours."
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Payment Method Analysis",
+      "context": "Examining the popularity and distribution of payment methods.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "6.1",
+          "title": "Sales by Payment Method",
+          "why": "To understand customer payment preferences.",
+          "answers": [
+            "Revenue breakdown by payment method."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Payment",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate sales for each payment method",
+            "result = supermarket_analysis.groupby('Payment').agg(total_sales=('Sales', 'sum')).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a pie chart for sales by payment method",
+            "fig, ax = plt.subplots()",
+            "ax.pie(result['total_sales'], labels=result['Payment'], autopct='%1.1f%%', startangle=140, colors=['cyan', 'magenta', 'yellow'])",
+            "ax.set_title('Sales by Payment Method')",
+            "ax.axis('equal')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "pie",
+          "justification": "Pie charts are ideal for showing the proportion of total sales accounted for by each payment method, providing a clear visual summary."
+        },
+        {
+          "id": "6.2",
+          "title": "Distribution of Payment Methods",
+          "why": "To analyze the distribution of payment types used.",
+          "answers": [
+            "Frequency count of different payment methods."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Payment"
+          ],
+          "type": "count",
+          "code_lines": [
+            "# Count frequency of each payment method",
+            "result = supermarket_analysis['Payment'].value_counts().reset_index()",
+            "result.columns = ['Payment', 'count']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for distribution of payment methods",
+            "fig, ax = plt.subplots()",
+            "ax.bar(result['Payment'], result['count'], color='teal')",
+            "ax.set_title('Distribution of Payment Methods')",
+            "ax.set_xlabel('Payment Method')",
+            "ax.set_ylabel('Frequency')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively displays the frequency distribution of different payment methods used by customers."
+        }
+      ]
+    }
+  ]
+}

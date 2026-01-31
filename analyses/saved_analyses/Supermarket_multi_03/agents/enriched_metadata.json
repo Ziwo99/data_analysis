@@ -1,0 +1,222 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "supermarket_analysis": {
+      "row_count": 1000,
+      "columns": {
+        "Invoice ID": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 1000,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "A unique identifier for each transaction or purchase made at the supermarket."
+        },
+        "Branch": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The specific branch of the supermarket where the transaction took place."
+        },
+        "City": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The city in which the supermarket branch is located."
+        },
+        "Customer type": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The classification of the customer, e.g., 'Member' or 'Normal'."
+        },
+        "Gender": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The gender of the customer making the purchase."
+        },
+        "Product line": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The category or group of the sold products, e.g., 'Health and beauty', 'Electronic accessories'."
+        },
+        "Unit price": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 943,
+          "min": 10.08,
+          "max": 99.96,
+          "mean": 55.67213,
+          "std": 26.494628347919768,
+          "semantic_description": "The price per individual item of a product line purchased."
+        },
+        "Quantity": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 10,
+          "min": 1.0,
+          "max": 10.0,
+          "mean": 5.51,
+          "std": 2.923430595455697,
+          "semantic_description": "The number of items purchased in a single transaction for a particular product line."
+        },
+        "Tax 5%": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 0.5085,
+          "max": 49.65,
+          "mean": 15.379368999999999,
+          "std": 11.708825480998659,
+          "semantic_description": "The calculated 5% tax on the total purchase value of a transaction."
+        },
+        "Sales": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 10.6785,
+          "max": 1042.65,
+          "mean": 322.966749,
+          "std": 245.88533510097204,
+          "semantic_description": "The total sales amount including tax for a particular transaction."
+        },
+        "Date": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 89,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The date on which the transaction occurred."
+        },
+        "Time": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 506,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The time at which the transaction was completed."
+        },
+        "Payment": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The method of payment used by the customer, such as 'Cash', 'Credit card', or 'Ewallet'."
+        },
+        "cogs": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 10.17,
+          "max": 993.0,
+          "mean": 307.58738,
+          "std": 234.17650961997307,
+          "semantic_description": "Cost of Goods Sold; the total cost of producing the goods sold in the transaction."
+        },
+        "gross margin percentage": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 1,
+          "min": 4.761904762,
+          "max": 4.761904762,
+          "mean": 4.761904762,
+          "std": 6.131497611557303e-14,
+          "semantic_description": "The gross margin percentage, consistently 4.76%, represents the profit ratio before other expenses."
+        },
+        "gross income": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 0.5085,
+          "max": 49.65,
+          "mean": 15.379368999999999,
+          "std": 11.708825480998659,
+          "semantic_description": "The gross income or profit earned from the transaction after subtracting the cost of goods sold from sales."
+        },
+        "Rating": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 61,
+          "min": 4.0,
+          "max": 10.0,
+          "mean": 6.9727,
+          "std": 1.718580294379123,
+          "semantic_description": "Customer satisfaction rating for the transaction, on a scale from 4 to 10."
+        }
+      },
+      "primary_key": "Invoice ID",
+      "foreign_keys": [],
+      "role": "Transaction Records",
+      "description": "This table contains detailed records of transactions made at various supermarket branches, capturing data such as the transaction's invoice ID, branch location, customer demographics, product details, total sales, and customer ratings. It is fundamental to analyzing sales performance and customer preferences."
+    }
+  },
+  "relationships": [],
+  "database_domain": "retail",
+  "database_description": "The database captures detailed transactional data from a supermarket chain, focusing on sales at various branches across different cities. It supports analysis of customer demographics, purchasing behavior, and product performance, aiding in operational and strategic decision-making."
+}

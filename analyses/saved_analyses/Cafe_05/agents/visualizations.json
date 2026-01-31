@@ -1,0 +1,310 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Volume Analysis",
+      "context": "Evaluate the overall sales activity within the cafe.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Transactions",
+          "why": "To understand the number of transactions processed.",
+          "answers": [
+            "Total number of transactions."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction ID"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total number of transactions by counting unique Transaction IDs",
+            "result = pd.DataFrame({'Total Transactions': [dirty_cafe_sales['Transaction ID'].nunique()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots()",
+            "ax.bar(['Total Transactions'], result['Total Transactions'], color='skyblue')",
+            "ax.set_title('Total Transactions in Cafe')",
+            "ax.set_ylabel('Number of Transactions')",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart provides a simple visual representation of the total number of transactions, emphasizing the singular, aggregate value effectively."
+        },
+        {
+          "id": "1.2",
+          "title": "Total Units Sold",
+          "why": "To measure the volume of items sold.",
+          "answers": [
+            "Total quantity of items sold."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Quantity"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total quantity of items sold while skipping NaN values and converting to numeric",
+            "result = pd.DataFrame({'Total Units Sold': [pd.to_numeric(dirty_cafe_sales['Quantity'], errors='coerce').sum()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots()",
+            "ax.bar(['Total Units Sold'], result['Total Units Sold'], color='lightgreen')",
+            "ax.set_title('Total Units Sold in Cafe')",
+            "ax.set_ylabel('Number of Units')",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively displays the total units sold, simplifying comprehension of the total volume via a clear, singular visual marker."
+        },
+        {
+          "id": "1.3",
+          "title": "Total Sales Revenue",
+          "why": "To calculate the revenue generated from sales.",
+          "answers": [
+            "Total revenue from all transactions."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales revenue while skipping NaN values and converting to numeric",
+            "result = pd.DataFrame({'Total Sales Revenue': [pd.to_numeric(dirty_cafe_sales['Total Spent'], errors='coerce').sum()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots()",
+            "ax.bar(['Total Sales Revenue'], result['Total Sales Revenue'], color='orange')",
+            "ax.set_title('Total Sales Revenue in Cafe')",
+            "ax.set_ylabel('Revenue ($)')",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "This bar chart illustrates overall sales revenue via a single, recognizable visual unit, efficiently communicating total revenue generated through simplification."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item Popularity Analysis",
+      "context": "Identify which items are sold most frequently.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Top Selling Items",
+          "why": "To determine the most frequently sold items.",
+          "answers": [
+            "List of top items by sales volume."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Quantity"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate quantities by item and sort descending to find top-selling items",
+            "result = dirty_cafe_sales.groupby('Item')['Quantity'].sum().sort_values(ascending=False).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "ax.bar(result['Item'], result['Quantity'], color='purple')",
+            "ax.set_title('Top Selling Items')",
+            "ax.set_xlabel('Item')",
+            "ax.set_ylabel('Quantity Sold')",
+            "plt.xticks(rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is ideal for comparing quantities across categorical data (items), effectively showcasing which items are sold the most by their sales volume."
+        },
+        {
+          "id": "2.2",
+          "title": "Item Revenue Contribution",
+          "why": "To assess which items contribute most to revenue.",
+          "answers": [
+            "Revenue contribution of top items."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate total spent by item and sort descending to find items with highest revenue contribution",
+            "result = dirty_cafe_sales.groupby('Item')['Total Spent'].sum().sort_values(ascending=False).reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "ax.bar(result['Item'], result['Total Spent'], color='teal')",
+            "ax.set_title('Item Revenue Contribution')",
+            "ax.set_xlabel('Item')",
+            "ax.set_ylabel('Total Revenue ($)')",
+            "plt.xticks(rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Using a bar chart allows for easy visualization of revenue contributions by different items, clearly highlighting items with the maximum financial impact."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Analysis",
+      "context": "Examine the preferred methods of payment utilized by customers.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Payment Method Distribution",
+          "why": "To understand the breakdown of payment methods used.",
+          "answers": [
+            "Percentage of each payment method used."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Payment Method"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the distribution of payment methods as a percentage",
+            "payment_counts = dirty_cafe_sales['Payment Method'].value_counts(normalize=True) * 100",
+            "result = payment_counts.reset_index().rename(columns={'index': 'Payment Method', 'Payment Method': 'Percentage'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots()",
+            "ax.pie(result['Percentage'], labels=result['Payment Method'], autopct='%1.1f%%', startangle=90, colors=['gold', 'lightcoral', 'lightskyblue', 'lightgreen', 'grey'])",
+            "ax.set_title('Payment Method Distribution')",
+            "result_plot = plt"
+          ],
+          "visualization_type": "pie",
+          "justification": "A pie chart provides an intuitive view of proportions, ideal for displaying the relative sizes of payment method usage within a whole."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Location-Based Sales Analysis",
+      "context": "Analyze sales performance across different cafe locations.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Sales by Location",
+          "why": "To compare sales performance between locations.",
+          "answers": [
+            "Total sales for each location."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Location",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales by location",
+            "result = dirty_cafe_sales.groupby('Location')['Total Spent'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "ax.bar(result['Location'], result['Total Spent'], color='cornflowerblue')",
+            "ax.set_title('Sales by Location')",
+            "ax.set_xlabel('Location')",
+            "ax.set_ylabel('Total Revenue ($)')",
+            "plt.xticks(rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "This bar chart allows for straightforward comparison of sales revenue across various locations, offering a clear view of location-based performance."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Temporal Sales Trends",
+      "context": "Detect sales patterns over time to aid future forecasting.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Daily Sales Volume",
+          "why": "To analyze how sales vary day-to-day.",
+          "answers": [
+            "Sales trends over days."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Convert Transaction Date to datetime and calculate daily sales",
+            "dirty_cafe_sales['Transaction Date'] = pd.to_datetime(dirty_cafe_sales['Transaction Date'], errors='coerce')",
+            "result = dirty_cafe_sales.groupby(dirty_cafe_sales['Transaction Date'].dt.date)['Total Spent'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "ax.plot(result['Transaction Date'], result['Total Spent'], color='darkorange')",
+            "ax.set_title('Daily Sales Volume')",
+            "ax.set_xlabel('Date')",
+            "ax.set_ylabel('Total Revenue ($)')",
+            "plt.xticks(rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "line",
+          "justification": "A line chart is ideal for identifying trends over time, effectively illustrating the fluctuations in daily sales volumes."
+        },
+        {
+          "id": "5.2",
+          "title": "Monthly Sales Trends",
+          "why": "To understand the trends in sales over various months.",
+          "answers": [
+            "Month-on-month sales performance."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by month and calculate sales trends",
+            "dirty_cafe_sales['Transaction Date'] = pd.to_datetime(dirty_cafe_sales['Transaction Date'], errors='coerce')",
+            "result = dirty_cafe_sales.groupby(dirty_cafe_sales['Transaction Date'].dt.to_period('M'))['Total Spent'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots()",
+            "ax.plot(result['Transaction Date'].dt.to_timestamp(), result['Total Spent'], marker='o', color='seagreen')",
+            "ax.set_title('Monthly Sales Trends')",
+            "ax.set_xlabel('Month')",
+            "ax.set_ylabel('Total Revenue ($)')",
+            "plt.xticks(rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "line",
+          "justification": "Line charts are effective for depicting changes over periods, with this chart providing insights into month-over-month sales dynamics."
+        }
+      ]
+    }
+  ]
+}

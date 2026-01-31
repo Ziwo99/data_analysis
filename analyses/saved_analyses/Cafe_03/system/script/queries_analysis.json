@@ -1,0 +1,313 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Transaction and Sales Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Total Number of Transactions",
+          "type": "count",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "TotalTransactions": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 10000.0,
+                "max": 10000.0,
+                "mean": 10000.0,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Total Revenue Generated",
+          "type": "sum",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "TotalRevenue": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 84763.5,
+                "max": 84763.5,
+                "mean": 84763.5,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Average Revenue Per Transaction",
+          "type": "average",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "AverageRevenue": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 8.47635,
+                "max": 8.47635,
+                "mean": 8.47635,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "1.4",
+          "title": "Transaction Frequency and Trends",
+          "type": "frequency by date",
+          "analysis": {
+            "row_count": 365,
+            "column_count": 2,
+            "columns": {
+              "Transaction Date": {
+                "type": "period[D]",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 365
+              },
+              "Transaction Count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "min": 14.0,
+                "max": 40.0,
+                "mean": 26.136986301369863,
+                "std": 5.084762489437205
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item-Specific Sales Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Top Selling Items",
+          "type": "top items",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Item": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "Total Quantity Sold": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 1117.0,
+                "max_length": 1356
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Revenue Contribution by Item",
+          "type": "item revenue",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Item": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "Total Revenue": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 3297.9,
+                "max_length": 4374
+              }
+            }
+          }
+        },
+        {
+          "id": "2.3",
+          "title": "Average Price Per Item Sold",
+          "type": "average price",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Item": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "Average Price": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 1.0,
+                "max": 5.0,
+                "mean": 2.932481254260395,
+                "std": 1.212060247926304
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Analysis",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Preferred Payment Methods",
+          "type": "payment distribution",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "Payment Method": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 8.2,
+                "max_length": 14
+              },
+              "Usage Count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 293.0,
+                "max": 2291.0,
+                "mean": 1484.2,
+                "std": 1081.5510621325282
+              }
+            }
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Payment Method Impact on Sales",
+          "type": "sales by payment method",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "Payment Method": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 8.2,
+                "max_length": 14
+              },
+              "Total Sales": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 5071.0,
+                "max_length": 7847
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Location-Based Sales Analysis",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Sales by Location",
+          "type": "location sales",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "Location": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 7.0,
+                "max_length": 8
+              },
+              "Total Sales": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 5744.5,
+                "max_length": 10314
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Average Spending per Location",
+          "type": "average spending",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "Location": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 7.0,
+                "max_length": 8
+              },
+              "Average Spending": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 8.25078369905956,
+                "max": 9.159356725146198,
+                "mean": 8.806103079688562,
+                "std": 0.40149353360873247
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

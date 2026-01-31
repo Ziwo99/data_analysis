@@ -1,0 +1,9 @@
+{
+  "name": "Supermarket_mono_03",
+  "folder_name": "Supermarket_mono_03",
+  "date": "2026-01-07T15:08:56.977552",
+  "dataset": "6-supermarket",
+  "source": "existing",
+  "pipeline_mode": "mono",
+  "openai_model": "gpt-4o"
+}

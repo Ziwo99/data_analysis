@@ -1,0 +1,114 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "dirty_cafe_sales": {
+      "row_count": 10000,
+      "columns": {
+        "Transaction ID": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 10000,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "A unique identifier for each transaction made in the cafe."
+        },
+        "Item": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 333,
+          "unique_count": 10,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The name of the item purchased in the transaction, such as coffee, sandwich, etc."
+        },
+        "Quantity": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 138,
+          "unique_count": 7,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The number of units of the item purchased in the transaction."
+        },
+        "Price Per Unit": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 179,
+          "unique_count": 8,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The price of a single unit of the item purchased in the transaction."
+        },
+        "Total Spent": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 173,
+          "unique_count": 19,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The total cost of the transaction, calculated as the Quantity multiplied by the Price Per Unit."
+        },
+        "Payment Method": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2579,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The payment method used in the transaction, e.g., cash, credit card, etc."
+        },
+        "Location": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 3265,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The location of the cafe where the transaction took place."
+        },
+        "Transaction Date": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 159,
+          "unique_count": 367,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The date when the transaction was executed."
+        }
+      },
+      "primary_key": "Transaction ID",
+      "foreign_keys": [],
+      "role": "Transaction Record",
+      "description": "This table holds data about each sales transaction at the cafe, including items purchased, quantities, prices, total amount spent, and the payment method."
+    }
+  },
+  "relationships": [],
+  "database_domain": "retail",
+  "database_description": "This database captures the sales transactions of a cafe, detailing individual purchases including item details, quantities, pricing, payment methods, and transactional information pertinent to retail operations."
+}

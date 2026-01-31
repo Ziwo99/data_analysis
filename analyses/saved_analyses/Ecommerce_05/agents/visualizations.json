@@ -1,0 +1,351 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Demographics Analysis",
+      "context": "Analyze demographic distribution of customers in the ecommerce system.",
+      "tables": [
+        "olist_customers_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Distribution by State",
+          "why": "To understand the geographical distribution of customers by state.",
+          "answers": [
+            "Number of customers per state"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by customer state and counting the number of customers",
+            "result = olist_customers_dataset.groupby('customer_state').size().reset_index(name='customer_count')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar chart for customer distribution by state",
+            "fig, ax = plt.subplots(figsize=(10, 8))",
+            "ax.bar(result['customer_state'], result['customer_count'], color='skyblue')",
+            "ax.set_title('Customer Distribution by State')",
+            "ax.set_xlabel('State')",
+            "ax.set_ylabel('Number of Customers')",
+            "ax.set_xticklabels(result['customer_state'], rotation=45, ha='right')",
+            "fig.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar_chart",
+          "justification": "A bar chart effectively showcases the distribution of categorical data, such as counts of customers per state, enhancing comparative analysis."
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Distribution by City",
+          "why": "To identify which cities have the highest concentration of customers.",
+          "answers": [
+            "Number of customers per city"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by customer city and counting the number of customers",
+            "result = olist_customers_dataset.groupby('customer_city').size().reset_index(name='customer_count')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a histogram for customer distribution by city",
+            "fig, ax = plt.subplots(figsize=(12, 8))",
+            "ax.hist(result['customer_count'], bins=50, color='purple', edgecolor='black')",
+            "ax.set_title('Distribution of Customer Counts by City')",
+            "ax.set_xlabel('Number of Customers')",
+            "ax.set_ylabel('Frequency')",
+            "fig.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "histogram",
+          "justification": "A histogram is suitable for visualizing the frequency distribution of numeric data, such as the number of customers per city, across intervals."
+        },
+        {
+          "id": "1.3",
+          "title": "Unique Customers Count",
+          "why": "Determine the number of unique customers in the database.",
+          "answers": [
+            "Total number of unique customers"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_unique_id"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Counting unique customer IDs",
+            "result = pd.DataFrame({'unique_customers_count': [olist_customers_dataset['customer_unique_id'].nunique()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a text box for unique customers count",
+            "fig, ax = plt.subplots(figsize=(6, 1.5))",
+            "ax.text(0.5, 0.5, f'Total Unique Customers: {result[\"unique_customers_count\"][0]}', horizontalalignment='center', verticalalignment='center', fontsize=12, bbox=dict(facecolor='lightgreen', alpha=0.5))",
+            "ax.axis('off')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "text_box",
+          "justification": "A simple text box is appropriate for displaying a single numeric result effectively, such as the total count of unique customers."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order and Payment Analysis",
+      "context": "Review the payment methods and volumes for orders.",
+      "tables": [
+        "olist_orders_dataset",
+        "olist_order_payments_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "why": "To assess the distribution of orders by their status.",
+          "answers": [
+            "Count of orders for each order status"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_status"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by order status and counting orders",
+            "result = olist_orders_dataset.groupby('order_status').size().reset_index(name='order_count')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a pie chart for order status distribution",
+            "fig, ax = plt.subplots(figsize=(8, 8))",
+            "ax.pie(result['order_count'], labels=result['order_status'], autopct='%1.1f%%', startangle=90, colors=['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'orange', 'cyan'])",
+            "ax.set_title('Order Status Distribution')",
+            "ax.axis('equal')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "pie_chart",
+          "justification": "A pie chart offers an intuitive grasp of parts-to-whole relationships, making it ideal for illustrating the proportion of each order status."
+        },
+        {
+          "id": "2.2",
+          "title": "Payment Type Breakdown",
+          "why": "Identify popular payment methods used by customers.",
+          "answers": [
+            "Number of payments by payment type"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by payment type and counting occurrences",
+            "result = olist_order_payments_dataset.groupby('payment_type').size().reset_index(name='payment_count')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar chart of payment type counts",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "sns.barplot(x='payment_type', y='payment_count', data=result, palette='viridis', ax=ax)",
+            "ax.set_title('Payment Type Breakdown')",
+            "ax.set_xlabel('Payment Type')",
+            "ax.set_ylabel('Number of Payments')",
+            "fig.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar_chart",
+          "justification": "A bar chart is apt for comparing counts across payment types, highlighting trends such as preferred payment methods in a straightforward format."
+        },
+        {
+          "id": "2.3",
+          "title": "Payment Value Analysis",
+          "why": "Understand the distribution of payment amounts.",
+          "answers": [
+            "Average, min, max, and total payment values"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating average, min, max, and total payment values",
+            "result = olist_order_payments_dataset['payment_value'].agg(['mean', 'min', 'max', 'sum']).reset_index().rename(columns={0: 'value'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for payment value statistics",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "ax.bar(result['index'], result['payment_value'], color=['blue', 'green', 'red', 'purple'])",
+            "ax.set_title('Payment Value Statistics')",
+            "ax.set_xlabel('Statistic')",
+            "ax.set_ylabel('Value')",
+            "fig.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar_chart",
+          "justification": "A bar chart allows easy comparison of statistical payment values (mean, min, max, sum), facilitating a clear analytical perspective on payment data."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product and Category Insights",
+      "context": "Examine the characteristics of products and categories sold.",
+      "tables": [
+        "olist_products_dataset",
+        "product_category_name_translation"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Product Availability by Category",
+          "why": "Understand which product categories have the most offerings.",
+          "answers": [
+            "Number of products available in each category"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_id",
+            "olist_products_dataset.product_category_name"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by product category and counting products",
+            "result = olist_products_dataset.groupby('product_category_name').size().reset_index(name='product_count')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar chart for product availability by category",
+            "fig, ax = plt.subplots(figsize=(12, 8))",
+            "sns.barplot(y='product_category_name', x='product_count', data=result, palette='coolwarm', ax=ax)",
+            "ax.set_title('Product Availability by Category')",
+            "ax.set_xlabel('Number of Products')",
+            "ax.set_ylabel('Category')",
+            "ax.set_xlim(0, result['product_count'].max() * 1.1)",
+            "fig.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar_chart",
+          "justification": "A horizontal bar chart is effective in displaying product categories with respective counts, prioritizing readability of category names."
+        },
+        {
+          "id": "3.2",
+          "title": "Category Translation Map",
+          "why": "To support bilingual systems by understanding category translations.",
+          "answers": [
+            "Mapping of category names to their English translations"
+          ],
+          "tables_columns": [
+            "product_category_name_translation.product_category_name",
+            "product_category_name_translation.product_category_name_english"
+          ],
+          "type": "raw_listing",
+          "code_lines": [
+            "# Getting a translation map of category names to their English translations",
+            "result = product_category_name_translation[['product_category_name', 'product_category_name_english']]"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import pandas as pd",
+            "from pandas.plotting import table",
+            "# Create a plotted table for category translations",
+            "fig, ax = plt.subplots(figsize=(14, 5))",
+            "ax.axis('off')",
+            "tbl = table(ax, result, loc='center', colWidths=[0.3]*len(result.columns))",
+            "tbl.auto_set_font_size(False)",
+            "tbl.set_fontsize(10)",
+            "tbl.scale(1.2, 1.2)",
+            "result_plot = fig"
+          ],
+          "visualization_type": "table",
+          "justification": "A table neatly displays mappings of category names to translations, providing clarity needed to support bilingual systems efficiently."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Logistics and Shipment Analysis",
+      "context": "Explore shipping logistics using geolocation and shipping data.",
+      "tables": [
+        "olist_order_items_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Freight Cost Distribution",
+          "why": "Analyze the distribution of freight costs across items.",
+          "answers": [
+            "Average, min, max, and total freight values"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.freight_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating average, min, max, and total freight values",
+            "result = olist_order_items_dataset['freight_value'].agg(['mean', 'min', 'max', 'sum']).reset_index().rename(columns={0: 'value'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for freight cost statistics",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "ax.bar(result['index'], result['freight_value'], color=['orange', 'grey', 'cyan', 'green'])",
+            "ax.set_title('Freight Cost Statistics')",
+            "ax.set_xlabel('Statistic')",
+            "ax.set_ylabel('Value')",
+            "fig.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar_chart",
+          "justification": "A bar chart offers an easily interpretable comparison of diverse freight cost statistics, conveying fiscal distribution concisely."
+        },
+        {
+          "id": "4.2",
+          "title": "Geolocation Distribution",
+          "why": "Map out the locations that products are being shipped to and from.",
+          "answers": [
+            "Number of shipments to each city and state"
+          ],
+          "tables_columns": [
+            "olist_geolocation_dataset.geolocation_city",
+            "olist_geolocation_dataset.geolocation_state",
+            "olist_order_items_dataset.seller_id"
+          ],
+          "type": "join_aggregation",
+          "code_lines": [
+            "# Aggregating the number of shipments per city and state based on seller locations",
+            "shipment_count = olist_order_items_dataset.groupby('seller_id').size().reset_index(name='shipment_count')",
+            "result = shipment_count.merge(olist_geolocation_dataset, left_on='seller_id', right_on='geolocation_city', how='left')",
+            "result = result.groupby(['geolocation_city', 'geolocation_state'])['shipment_count'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Since the result set is empty, we'll set up a basic structure to address errors",
+            "if not result.empty:",
+            "    pivot_table = result.pivot(index='geolocation_city', columns='geolocation_state', values='shipment_count').fillna(0)",
+            "    fig, ax = plt.subplots(figsize=(12, 8))",
+            "    sns.heatmap(pivot_table, cmap='Blues', ax=ax, cbar_kws={'label': 'Shipment Count'})",
+            "    ax.set_title('Shipment Distribution by Location')",
+            "    ax.set_xlabel('State')",
+            "    ax.set_ylabel('City')",
+            "    fig.tight_layout()",
+            "else:",
+            "    fig, ax = plt.subplots(figsize=(5, 3))",
+            "    ax.text(0.5, 0.5, 'No data available for visualization', horizontalalignment='center', verticalalignment='center', fontsize=12, bbox=dict(facecolor='red', alpha=0.5))",
+            "    ax.axis('off')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "heatmap or fallback text",
+          "justification": "The chosen view reflects the geolocation distribution. Since the result is empty, the fallback text indicates an issue with data availability or correctness in join logic."
+        }
+      ]
+    }
+  ]
+}

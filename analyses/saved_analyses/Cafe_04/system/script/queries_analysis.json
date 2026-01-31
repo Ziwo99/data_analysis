@@ -1,0 +1,242 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Overview Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Total Sales Calculation",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 84763.5,
+                "max": 84763.5,
+                "mean": 84763.5,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Transaction Count",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "Transaction Count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 10000.0,
+                "max": 10000.0,
+                "mean": 10000.0,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Average Transaction Value",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "Average Transaction Value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 8.47635,
+                "max": 8.47635,
+                "mean": 8.47635,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item Sales Insights",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Top Selling Items",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Item": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "Quantity": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "min": 845.0,
+                "max": 3373.0,
+                "mean": 2787.2,
+                "std": 1003.7004643927501
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Revenue by Item",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Item": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "Total Spent": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "min": 2453.5,
+                "max": 16605.0,
+                "mean": 8183.45,
+                "std": 4959.718716542524
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Analysis",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Payment Method Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "Payment Method": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 8.2,
+                "max_length": 14
+              },
+              "Proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 0.039482549521627816,
+                "max": 0.30871850154965635,
+                "mean": 0.19999999999999998,
+                "std": 0.14574195689698535
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Location-Based Sales Insights",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Sales by Location",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "Location": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 7.0,
+                "max_length": 8
+              },
+              "Total Spent": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 2632.0,
+                "max": 25906.0,
+                "mean": 14225.0,
+                "std": 13101.984410767705
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Temporal Sales Analysis",
+      "queries": [
+        {
+          "id": "5.1",
+          "title": "Sales Over Time",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 367,
+            "column_count": 2,
+            "columns": {
+              "Transaction Date": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 367,
+                "avg_length": 9.978201634877385,
+                "max_length": 10
+              },
+              "Total Spent": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 241,
+                "min": 96.5,
+                "max": 1336.5,
+                "mean": 227.30381471389646,
+                "std": 95.84408409157842
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

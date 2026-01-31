@@ -1,0 +1,249 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Location Analysis",
+      "context": "Analyzing customer distribution based on location data to understand geographic concentration and reach.",
+      "tables": [
+        "olist_customers_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Count by City",
+          "why": "Identify cities with the highest number of customers to allocate marketing resources efficiently.",
+          "answers": [
+            "Top cities by customer count."
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Count by State",
+          "why": "Determine which states have the most customers for regional analysis.",
+          "answers": [
+            "Top states by customer count."
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Geographical Distribution of Customers",
+          "why": "Visualize geographic spread of customers using ZIP code geographical data.",
+          "answers": [
+            "Geographic distribution of customers per ZIP code prefix with latitude and longitude."
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_zip_code_prefix",
+            "olist_geolocation_dataset.geolocation_lat",
+            "olist_geolocation_dataset.geolocation_lng"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order Analysis",
+      "context": "Examine order details to gain insights into sales performance and customer buying behavior.",
+      "tables": [
+        "olist_orders_dataset",
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "why": "Understand the proportion of orders by their current status to improve order management processes.",
+          "answers": [
+            "Frequency of different order statuses."
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_status"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Average Order Value",
+          "why": "Calculate and analyze the average value of orders for revenue assessments.",
+          "answers": [
+            "Average order value."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.order_id",
+            "olist_order_items_dataset.price"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Order Volume Over Time",
+          "why": "Track the volume of orders over time to identify trends and seasonal variations.",
+          "answers": [
+            "Order volume by month/year."
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_purchase_timestamp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Analysis",
+      "context": "Analyze payment methods and values to assess transaction patterns and customer preferences.",
+      "tables": [
+        "olist_order_payments_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Payment Method Distribution",
+          "why": "Learn which payment methods customers prefer to optimize payment processing strategies.",
+          "answers": [
+            "Proportion of different payment methods."
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Average Payment Installments",
+          "why": "Evaluate the average number of installments customers choose, impacting cash flow planning.",
+          "answers": [
+            "Average number of payment installments."
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_installments"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Payment Value Distribution",
+          "why": "Review distribution of payment values to understand the range and frequency of payments.",
+          "answers": [
+            "Distribution of payment values."
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Product Analysis",
+      "context": "Investigate product attributes and sales to boost product management and marketing tactics.",
+      "tables": [
+        "olist_products_dataset",
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Product Popularity by Sales Volume",
+          "why": "Identify top-selling products to focus sales and inventory efforts.",
+          "answers": [
+            "Top products by sales volume."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.product_id"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Average Product Price",
+          "why": "Calculate the average price of products sold for valuation and pricing strategy.",
+          "answers": [
+            "Average price of products."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.price"
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Product Category Distribution",
+          "why": "Examine product category distribution to determine the breadth of inventory.",
+          "answers": [
+            "Product count by category."
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_category_name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Seller Performance Analysis",
+      "context": "Analyze sellers' location and sales to improve seller engagement and distribution strategies.",
+      "tables": [
+        "olist_sellers_dataset",
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Seller Location Analysis",
+          "why": "Determine concentration of sellers by location to optimize logistics.",
+          "answers": [
+            "Distribution of sellers by city and state."
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_city",
+            "olist_sellers_dataset.seller_state"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Top Sellers by Sales Volume",
+          "why": "Identify and incentivize top performing sellers by volume of sales.",
+          "answers": [
+            "Top sellers based on sales volume."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.seller_id",
+            "olist_order_items_dataset.order_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Customer Feedback Analysis",
+      "context": "Study reviews and ratings to enhance customer satisfaction and service quality.",
+      "tables": [
+        "olist_order_reviews_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "6.1",
+          "title": "Average Review Score",
+          "why": "Evaluate overall customer satisfaction through average review scores.",
+          "answers": [
+            "Overall average review score."
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Review Count by Score",
+          "why": "Understand distribution of review scores for service improvement.",
+          "answers": [
+            "Count of reviews by score."
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Volume Analysis",
+      "context": "Evaluate the overall sales activity within the cafe.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Transactions",
+          "why": "To understand the number of transactions processed.",
+          "answers": [
+            "Total number of transactions."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction ID"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Total Units Sold",
+          "why": "To measure the volume of items sold.",
+          "answers": [
+            "Total quantity of items sold."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Quantity"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Total Sales Revenue",
+          "why": "To calculate the revenue generated from sales.",
+          "answers": [
+            "Total revenue from all transactions."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Total Spent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item Popularity Analysis",
+      "context": "Identify which items are sold most frequently.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Top Selling Items",
+          "why": "To determine the most frequently sold items.",
+          "answers": [
+            "List of top items by sales volume."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Quantity"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Item Revenue Contribution",
+          "why": "To assess which items contribute most to revenue.",
+          "answers": [
+            "Revenue contribution of top items."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Total Spent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Analysis",
+      "context": "Examine the preferred methods of payment utilized by customers.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Payment Method Distribution",
+          "why": "To understand the breakdown of payment methods used.",
+          "answers": [
+            "Percentage of each payment method used."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Payment Method"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Location-Based Sales Analysis",
+      "context": "Analyze sales performance across different cafe locations.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Sales by Location",
+          "why": "To compare sales performance between locations.",
+          "answers": [
+            "Total sales for each location."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Location",
+            "dirty_cafe_sales.Total Spent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Temporal Sales Trends",
+      "context": "Detect sales patterns over time to aid future forecasting.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Daily Sales Volume",
+          "why": "To analyze how sales vary day-to-day.",
+          "answers": [
+            "Sales trends over days."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date",
+            "dirty_cafe_sales.Total Spent"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Monthly Sales Trends",
+          "why": "To understand the trends in sales over various months.",
+          "answers": [
+            "Month-on-month sales performance."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date",
+            "dirty_cafe_sales.Total Spent"
+          ]
+        }
+      ]
+    }
+  ]
+}

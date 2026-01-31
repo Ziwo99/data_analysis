@@ -1,0 +1,520 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Distribution by Region",
+      "context": "Analyze the geographical distribution of customers based on their location data.",
+      "tables": [
+        "olist_customers_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Count by State",
+          "why": "To identify which states have the highest concentration of customers.",
+          "answers": [
+            "State-wise customer count"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping customers by state to count them",
+            "result = olist_customers_dataset.groupby('customer_state').size().reset_index(name='customer_count')",
+            "# Sorting the result by the count of customers in descending order",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Setting the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(12, 8))",
+            "# Create bar plot using seaborn",
+            "sns.barplot(x='customer_count', y='customer_state', data=result, palette='viridis', ax=ax)",
+            "# Add a title and labels",
+            "ax.set_title('Customer Count by State')",
+            "ax.set_xlabel('Number of Customers')",
+            "ax.set_ylabel('State')",
+            "# Adjust the layout to make room for the axes labels and title",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Bar Plot",
+          "justification": "A bar plot is ideal for comparing the customer count across different states, which is a categorical variable, and visually summarizing their distribution."
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Count by City",
+          "why": "To pinpoint specific cities with the most customers for targeted marketing efforts.",
+          "answers": [
+            "City-wise customer count"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city",
+            "olist_customers_dataset.customer_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Counting customers by city and state",
+            "result = olist_customers_dataset.groupby(['customer_city', 'customer_state']).size().reset_index(name='customer_count')",
+            "# Sort the results in descending order by customer count",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Setting the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(12, 8))",
+            "# Create horizontal bar plot using seaborn",
+            "sns.barplot(x='customer_count', y='customer_city', data=result.head(10), palette='coolwarm', ax=ax)",
+            "# Add a title and labels",
+            "ax.set_title('Top 10 Cities by Customer Count')",
+            "ax.set_xlabel('Number of Customers')",
+            "ax.set_ylabel('City')",
+            "# Adjust the layout to make room for the axes labels and title",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Horizontal Bar Plot",
+          "justification": "Horizontal bar plots are suitable for ranking and visualizing top categories, here it helps to easily show the top 10 cities with the most customers."
+        },
+        {
+          "id": "1.3",
+          "title": "Average Number of Customers per Zip Code",
+          "why": "To evaluate customer density per zip code region.",
+          "answers": [
+            "Average number of customers per zip code"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_zip_code_prefix"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating the average number of customers per zip code",
+            "result = olist_customers_dataset.groupby('customer_zip_code_prefix').size().reset_index(name='customer_count')",
+            "# Calculate the average customers per zip code",
+            "average_customers_per_zip = result['customer_count'].mean()",
+            "# Create a DataFrame that shows the resulting average",
+            "result = pd.DataFrame({'average_customers_per_zip': [average_customers_per_zip]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting the single average value",
+            "ax.barh(['Average Customers per Zip'], result['average_customers_per_zip'], color='steelblue')",
+            "# Add a title and labels",
+            "ax.set_title('Average Number of Customers per Zip Code')",
+            "ax.set_xlabel('Average Number of Customers')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Simple Horizontal Bar",
+          "justification": "For displaying a single aggregated value, a simple horizontal bar provides a clear visualization of the average number of customers per zip code."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Sales Analysis",
+      "context": "Evaluate the sales performance from order data, focusing on financials, quantities, and product success.",
+      "tables": [
+        "olist_order_items_dataset",
+        "olist_orders_dataset",
+        "olist_products_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Total Sales Revenue",
+          "why": "To understand the overall revenue generated by sales.",
+          "answers": [
+            "Total revenue from sales"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating the total sales revenue",
+            "total_revenue = olist_order_items_dataset['price'].sum()",
+            "# Creating a DataFrame with the total sales revenue",
+            "result = pd.DataFrame({'total_revenue': [total_revenue]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting total revenue as a text",
+            "ax.text(0.5, 0.5, f'Total Revenue: ${result['total_revenue'][0]:,.2f}', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=15, fontweight='bold')",
+            "# Removing axes",
+            "ax.axis('off')",
+            "# Add a title",
+            "ax.set_title('Total Sales Revenue')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Single Value Display",
+          "justification": "For a single value (total revenue), displaying it prominently using a large text format emphasizes its importance and makes it easily perceivable."
+        },
+        {
+          "id": "2.2",
+          "title": "Revenue by Product Category",
+          "why": "To identify which product categories generate the most revenue.",
+          "answers": [
+            "Revenue breakdown by product category"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.price",
+            "olist_products_dataset.product_category_name"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Merging order items and products to get category information",
+            "merged_data = olist_order_items_dataset.merge(olist_products_dataset, on='product_id', how='inner')",
+            "# Calculating revenue by product category",
+            "result = merged_data.groupby('product_category_name')['price'].sum().reset_index(name='total_revenue')",
+            "# Sorting by total revenue in descending order",
+            "result = result.sort_values(by='total_revenue', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Setting the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(14, 10))",
+            "# Create bar plot using seaborn",
+            "sns.barplot(x='total_revenue', y='product_category_name', data=result.head(10), palette='Spectral', ax=ax)",
+            "# Add a title and labels",
+            "ax.set_title('Top 10 Product Categories by Revenue')",
+            "ax.set_xlabel('Total Revenue ($)')",
+            "ax.set_ylabel('Product Category')",
+            "# Adjust the layout to make room for the axes labels and title",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Bar Plot",
+          "justification": "Using a bar plot effectively displays the revenue distribution across various product categories, allowing for easy comparison among the top categories."
+        },
+        {
+          "id": "2.3",
+          "title": "Average Order Value",
+          "why": "Determine the average value of orders placed by customers.",
+          "answers": [
+            "Average value per order"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.order_id",
+            "olist_order_items_dataset.price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating the total price per order first",
+            "order_totals = olist_order_items_dataset.groupby('order_id')['price'].sum().reset_index(name='order_total')",
+            "# Calculating the average order total",
+            "average_order_value = order_totals['order_total'].mean()",
+            "# Creating a DataFrame with the average order value",
+            "result = pd.DataFrame({'average_order_value': [average_order_value]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting the average order value as a text",
+            "ax.text(0.5, 0.5, f'Average Order Value: ${result['average_order_value'][0]:,.2f}', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=15, fontweight='bold')",
+            "# Removing axes",
+            "ax.axis('off')",
+            "# Add a title",
+            "ax.set_title('Average Order Value')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Single Value Display",
+          "justification": "Presenting the average order value in a clear, single value format allows direct emphasis on this key performance indicator without distraction."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Shipping and Delivery Performance",
+      "context": "Assess the efficiency and punctuality of order deliveries.",
+      "tables": [
+        "olist_order_items_dataset",
+        "olist_orders_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Average Delivery Time",
+          "why": "To understand the average time taken for an order to be delivered to the customer.",
+          "answers": [
+            "Average time from order approval to customer delivery"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_approved_at",
+            "olist_orders_dataset.order_delivered_customer_date"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating the average delivery time by getting the timedelta between approved and delivered dates",
+            "olist_orders_dataset['delivery_time'] = (pd.to_datetime(olist_orders_dataset['order_delivered_customer_date']) - pd.to_datetime(olist_orders_dataset['order_approved_at'])).dt.days",
+            "# Calculating and creating the result of the average delivery time",
+            "average_delivery_time = olist_orders_dataset['delivery_time'].mean()",
+            "result = pd.DataFrame({'average_delivery_time': [average_delivery_time]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting the average delivery time as a text",
+            "ax.text(0.5, 0.5, f'Avg. Delivery Time: {result['average_delivery_time'][0]:.2f} Days', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=15, fontweight='bold')",
+            "# Removing axes",
+            "ax.axis('off')",
+            "# Add a title",
+            "ax.set_title('Average Delivery Time')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Single Value Display",
+          "justification": "Presenting average delivery time as a single value provides a direct and clear assessment of delivery performance impact."
+        },
+        {
+          "id": "3.2",
+          "title": "Late Deliveries Count",
+          "why": "Identify how many deliveries exceeded the estimated delivery date.",
+          "answers": [
+            "Count of orders delivered after the estimated delivery date"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_delivered_customer_date",
+            "olist_orders_dataset.order_estimated_delivery_date"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Converting delivery and estimated delivery dates to datetime",
+            "olist_orders_dataset['order_delivered_customer_date'] = pd.to_datetime(olist_orders_dataset['order_delivered_customer_date'])",
+            "olist_orders_dataset['order_estimated_delivery_date'] = pd.to_datetime(olist_orders_dataset['order_estimated_delivery_date'])",
+            "# Counting the number of late deliveries",
+            "late_deliveries_count = (olist_orders_dataset['order_delivered_customer_date'] > olist_orders_dataset['order_estimated_delivery_date']).sum()",
+            "# Creating a DataFrame with the count of late deliveries",
+            "result = pd.DataFrame({'late_deliveries_count': [late_deliveries_count]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting late deliveries count as a text",
+            "ax.text(0.5, 0.5, f'Late Deliveries: {int(result['late_deliveries_count'][0])}', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=15, fontweight='bold')",
+            "# Removing axes",
+            "ax.axis('off')",
+            "# Add a title",
+            "ax.set_title('Late Deliveries Count')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Single Value Display",
+          "justification": "Highlighting the number of late deliveries in a single text display emphasizes the punctuality issues in delivery logistics."
+        },
+        {
+          "id": "3.3",
+          "title": "Freight Cost vs Delivery Performance",
+          "why": "Evaluate if higher freight costs correlate with faster or more reliable deliveries.",
+          "answers": [
+            "Correlation between freight cost and delivery times"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.freight_value",
+            "olist_orders_dataset.order_delivered_customer_date",
+            "olist_orders_dataset.order_approved_at"
+          ],
+          "type": "correlation",
+          "code_lines": [
+            "# Merging order items with orders to analyze relationship between freight and delivery performance",
+            "merged_data = olist_order_items_dataset.merge(olist_orders_dataset, on='order_id', how='inner')",
+            "# Calculating delivery time as timedelta between approval and delivery date",
+            "merged_data['delivery_time'] = (pd.to_datetime(merged_data['order_delivered_customer_date']) - pd.to_datetime(merged_data['order_approved_at'])).dt.days",
+            "# Calculating correlation between freight value and delivery time",
+            "correlation_value = merged_data['freight_value'].corr(merged_data['delivery_time'])",
+            "# Creating a DataFrame to store the result",
+            "result = pd.DataFrame({'freight_delivery_correlation': [correlation_value]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting the correlation value",
+            "ax.text(0.5, 0.5, f'Correlation: {result['freight_delivery_correlation'][0]:.2f}', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=15, fontweight='bold')",
+            "# Removing axes",
+            "ax.axis('off')",
+            "# Add a title",
+            "ax.set_title('Freight vs Delivery Performance')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Single Value Display",
+          "justification": "Displaying the correlation in a single text allows quick interpretation of the relationship between freight costs and delivery performance."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Customer Satisfaction Analysis",
+      "context": "Analyze customer feedback and satisfaction based on review scores and comments.",
+      "tables": [
+        "olist_order_reviews_dataset",
+        "olist_orders_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Average Review Score",
+          "why": "To understand the general customer satisfaction level with their purchases.",
+          "answers": [
+            "Average customer review score"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating the average review score",
+            "average_review_score = olist_order_reviews_dataset['review_score'].mean()",
+            "# Creating a result DataFrame with the average review score",
+            "result = pd.DataFrame({'average_review_score': [average_review_score]})"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "# Plotting the average review score",
+            "ax.text(0.5, 0.5, f'Average Review Score: {result['average_review_score'][0]:.2f}', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes, fontsize=15, fontweight='bold')",
+            "# Removing axes",
+            "ax.axis('off')",
+            "# Add a title",
+            "ax.set_title('Average Review Score')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Single Value Display",
+          "justification": "An average review score is effectively communicated using a single text display, providing immediate insight into customer satisfaction."
+        },
+        {
+          "id": "4.2",
+          "title": "Review Score Distribution",
+          "why": "To identify the distribution of satisfaction across different scores.",
+          "answers": [
+            "Rate of each review score from 1 to 5"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ],
+          "type": "distribution",
+          "code_lines": [
+            "# Calculating the distribution of review scores",
+            "review_distribution = olist_order_reviews_dataset['review_score'].value_counts(normalize=True).reset_index()",
+            "# Renaming columns for clarity",
+            "review_distribution.columns = ['review_score', 'distribution']",
+            "# Sorting review scores for better visualization",
+            "result = review_distribution.sort_values(by='review_score')"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Setting the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "# Create bar plot using seaborn",
+            "sns.barplot(x='review_score', y='distribution', data=result, palette='Accent', ax=ax)",
+            "# Add a title and labels",
+            "ax.set_title('Review Score Distribution')",
+            "ax.set_xlabel('Review Score')",
+            "ax.set_ylabel('Distribution')",
+            "# Adjust the layout to make room for the axes labels and title",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Bar Plot",
+          "justification": "A bar plot efficiently illustrates the distribution of categorical review scores, allowing for quick assessment of customer satisfaction levels."
+        },
+        {
+          "id": "4.3",
+          "title": "Detailed Review Analysis",
+          "why": "Extract patterns from customer comments to improve services.",
+          "answers": [
+            "Frequency of keywords in review comments"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_comment_message"
+          ],
+          "type": "text_analysis",
+          "code_lines": [
+            "# Importing necessary library for text processing",
+            "from collections import Counter",
+            "# Combining all review comments into a single text",
+            "all_comments = ' '.join(olist_order_reviews_dataset['review_comment_message'].dropna())",
+            "# Split text into words and count occurrences",
+            "word_freq = Counter(all_comments.split())",
+            "# Creating a DataFrame with the word frequencies",
+            "result = pd.DataFrame(word_freq.items(), columns=['word', 'frequency']).sort_values(by='frequency', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing necessary libraries",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Initialize the matplotlib figure",
+            "fig, ax = plt.subplots(figsize=(12, 8))",
+            "# Plotting the 20 most common words",
+            "sns.barplot(x='frequency', y='word', data=result.head(20), palette='inferno', ax=ax)",
+            "# Add a title and labels",
+            "ax.set_title('Top 20 Most Frequent Words in Reviews')",
+            "ax.set_xlabel('Frequency')",
+            "ax.set_ylabel('Word')",
+            "# Adjust the layout",
+            "plt.tight_layout()",
+            "# Assign the plot to result_plot for returning",
+            "result_plot = fig"
+          ],
+          "visualization_type": "Bar Plot",
+          "justification": "A bar plot visualizing word frequency draws attention to dominant themes and keywords, aiding in text pattern recognition for customer feedback."
+        }
+      ]
+    }
+  ]
+}

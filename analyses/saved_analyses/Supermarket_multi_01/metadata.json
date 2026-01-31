@@ -1,0 +1,9 @@
+{
+  "name": "Supermarket_multi_01",
+  "folder_name": "Supermarket_multi_01",
+  "date": "2026-01-07T00:52:37.966050",
+  "dataset": "6-supermarket",
+  "source": "existing",
+  "pipeline_mode": "multi",
+  "openai_model": "gpt-4o"
+}

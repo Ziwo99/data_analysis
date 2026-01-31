@@ -1,0 +1,365 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Location Analysis",
+      "context": "Analyzing customer distribution based on location data to understand geographic concentration and reach.",
+      "tables": [
+        "olist_customers_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Count by City",
+          "why": "Identify cities with the highest number of customers to allocate marketing resources efficiently.",
+          "answers": [
+            "Top cities by customer count."
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by customer city and count the number of customers in each city",
+            "result = olist_customers_dataset.groupby('customer_city').size().reset_index(name='customer_count')",
+            "# Sort the result by customer count in descending order",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Count by State",
+          "why": "Determine which states have the most customers for regional analysis.",
+          "answers": [
+            "Top states by customer count."
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by customer state and count the number of customers in each state",
+            "result = olist_customers_dataset.groupby('customer_state').size().reset_index(name='customer_count')",
+            "# Sort the result by customer count in descending order",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Geographical Distribution of Customers",
+          "why": "Visualize geographic spread of customers using ZIP code geographical data.",
+          "answers": [
+            "Geographic distribution of customers per ZIP code prefix with latitude and longitude."
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_zip_code_prefix",
+            "olist_geolocation_dataset.geolocation_lat",
+            "olist_geolocation_dataset.geolocation_lng"
+          ],
+          "type": "merge",
+          "code_lines": [
+            "# Merge customers with geolocation dataset on ZIP code prefix",
+            "result = pd.merge(",
+            "    olist_customers_dataset,",
+            "    olist_geolocation_dataset,",
+            "    left_on='customer_zip_code_prefix',",
+            "    right_on='geolocation_zip_code_prefix',",
+            "    how='left'",
+            ")",
+            "# Select relevant columns and drop duplicates",
+            "result = result[['customer_zip_code_prefix', 'geolocation_lat', 'geolocation_lng']].drop_duplicates()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order Analysis",
+      "context": "Examine order details to gain insights into sales performance and customer buying behavior.",
+      "tables": [
+        "olist_orders_dataset",
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "why": "Understand the proportion of orders by their current status to improve order management processes.",
+          "answers": [
+            "Frequency of different order statuses."
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_status"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the number of orders for each order status",
+            "result = olist_orders_dataset['order_status'].value_counts().reset_index()",
+            "# Rename the columns for clarity",
+            "result.columns = ['order_status', 'order_count']"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Average Order Value",
+          "why": "Calculate and analyze the average value of orders for revenue assessments.",
+          "answers": [
+            "Average order value."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.order_id",
+            "olist_order_items_dataset.price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the total price for each order",
+            "order_totals = olist_order_items_dataset.groupby('order_id')['price'].sum().reset_index(name='total_order_value')",
+            "# Calculate the average order value",
+            "result = pd.DataFrame({'average_order_value': [order_totals['total_order_value'].mean()]})"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Order Volume Over Time",
+          "why": "Track the volume of orders over time to identify trends and seasonal variations.",
+          "answers": [
+            "Order volume by month/year."
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_purchase_timestamp"
+          ],
+          "type": "time_series",
+          "code_lines": [
+            "# Convert order_purchase_timestamp to datetime",
+            "olist_orders_dataset['order_purchase_timestamp'] = pd.to_datetime(olist_orders_dataset['order_purchase_timestamp'])",
+            "# Extract month and year from order_purchase_timestamp",
+            "olist_orders_dataset['year_month'] = olist_orders_dataset['order_purchase_timestamp'].dt.to_period('M')",
+            "# Group by year and month, and count the number of orders",
+            "result = olist_orders_dataset.groupby('year_month').size().reset_index(name='order_count')"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Analysis",
+      "context": "Analyze payment methods and values to assess transaction patterns and customer preferences.",
+      "tables": [
+        "olist_order_payments_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Payment Method Distribution",
+          "why": "Learn which payment methods customers prefer to optimize payment processing strategies.",
+          "answers": [
+            "Proportion of different payment methods."
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the number of payments for each payment type",
+            "result = olist_order_payments_dataset['payment_type'].value_counts(normalize=True).reset_index()",
+            "# Rename the columns for clarity",
+            "result.columns = ['payment_type', 'payment_proportion']"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Average Payment Installments",
+          "why": "Evaluate the average number of installments customers choose, impacting cash flow planning.",
+          "answers": [
+            "Average number of payment installments."
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_installments"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average number of payment installments",
+            "result = pd.DataFrame({'average_installments': [olist_order_payments_dataset['payment_installments'].mean()]})"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Payment Value Distribution",
+          "why": "Review distribution of payment values to understand the range and frequency of payments.",
+          "answers": [
+            "Distribution of payment values."
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Use describe to summarize the distribution characteristics of payment values",
+            "result = olist_order_payments_dataset['payment_value'].describe().reset_index()",
+            "# Renaming columns for the output",
+            "result.columns = ['statistic', 'value']"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Product Analysis",
+      "context": "Investigate product attributes and sales to boost product management and marketing tactics.",
+      "tables": [
+        "olist_products_dataset",
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Product Popularity by Sales Volume",
+          "why": "Identify top-selling products to focus sales and inventory efforts.",
+          "answers": [
+            "Top products by sales volume."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.product_id"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the total sales for each product_id",
+            "result = olist_order_items_dataset['product_id'].value_counts().reset_index()",
+            "# Rename the columns for clarity",
+            "result.columns = ['product_id', 'sales_volume']",
+            "# Sort the result by sales volume in descending order",
+            "result = result.sort_values(by='sales_volume', ascending=False)"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Average Product Price",
+          "why": "Calculate the average price of products sold for valuation and pricing strategy.",
+          "answers": [
+            "Average price of products."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average product price",
+            "result = pd.DataFrame({'average_product_price': [olist_order_items_dataset['price'].mean()]})"
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Product Category Distribution",
+          "why": "Examine product category distribution to determine the breadth of inventory.",
+          "answers": [
+            "Product count by category."
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_category_name"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the number of products for each product category",
+            "result = olist_products_dataset['product_category_name'].value_counts().reset_index()",
+            "# Rename the columns for clarity",
+            "result.columns = ['product_category_name', 'product_count']"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Seller Performance Analysis",
+      "context": "Analyze sellers' location and sales to improve seller engagement and distribution strategies.",
+      "tables": [
+        "olist_sellers_dataset",
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Seller Location Analysis",
+          "why": "Determine concentration of sellers by location to optimize logistics.",
+          "answers": [
+            "Distribution of sellers by city and state."
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_city",
+            "olist_sellers_dataset.seller_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by seller city and state to count the number of sellers",
+            "result = olist_sellers_dataset.groupby(['seller_city', 'seller_state']).size().reset_index(name='seller_count')",
+            "# Sort the results by seller count",
+            "result = result.sort_values(by='seller_count', ascending=False)"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Top Sellers by Sales Volume",
+          "why": "Identify and incentivize top performing sellers by volume of sales.",
+          "answers": [
+            "Top sellers based on sales volume."
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.seller_id",
+            "olist_order_items_dataset.order_id"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by seller_id to count the sales volume",
+            "result = olist_order_items_dataset.groupby('seller_id').size().reset_index(name='sales_volume')",
+            "# Sort the result by sales volume in descending order",
+            "result = result.sort_values(by='sales_volume', ascending=False)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Customer Feedback Analysis",
+      "context": "Study reviews and ratings to enhance customer satisfaction and service quality.",
+      "tables": [
+        "olist_order_reviews_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "6.1",
+          "title": "Average Review Score",
+          "why": "Evaluate overall customer satisfaction through average review scores.",
+          "answers": [
+            "Overall average review score."
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average review score",
+            "result = pd.DataFrame({'average_review_score': [olist_order_reviews_dataset['review_score'].mean()]})"
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Review Count by Score",
+          "why": "Understand distribution of review scores for service improvement.",
+          "answers": [
+            "Count of reviews by score."
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the number of reviews for each score",
+            "result = olist_order_reviews_dataset['review_score'].value_counts().reset_index()",
+            "# Rename the columns for clarity",
+            "result.columns = ['review_score', 'review_count']"
+          ]
+        }
+      ]
+    }
+  ]
+}

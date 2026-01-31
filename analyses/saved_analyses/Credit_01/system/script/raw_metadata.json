@@ -1,0 +1,146 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "credit_risk_dataset": {
+      "row_count": 32581,
+      "columns": {
+        "person_age": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 58,
+          "min": 20.0,
+          "max": 144.0,
+          "mean": 27.73459992019889,
+          "std": 6.3480784192252475
+        },
+        "person_income": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 4295,
+          "min": 4000.0,
+          "max": 6000000.0,
+          "mean": 66074.84846996715,
+          "std": 61983.11916815906
+        },
+        "person_home_ownership": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "person_emp_length": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 895,
+          "unique_count": 36,
+          "min": 0.0,
+          "max": 123.0,
+          "mean": 4.789686296787225,
+          "std": 4.142630148887972
+        },
+        "loan_intent": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "loan_grade": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 7,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "loan_amnt": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 753,
+          "min": 500.0,
+          "max": 35000.0,
+          "mean": 9589.371105859243,
+          "std": 6322.086645792174
+        },
+        "loan_int_rate": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 3116,
+          "unique_count": 348,
+          "min": 5.42,
+          "max": 23.22,
+          "mean": 11.011694892245036,
+          "std": 3.2404594649559195
+        },
+        "loan_status": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.21816396059052823,
+          "std": 0.4130056685601785
+        },
+        "loan_percent_income": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 77,
+          "min": 0.0,
+          "max": 0.83,
+          "mean": 0.1702034928332464,
+          "std": 0.10678175634492885
+        },
+        "cb_person_default_on_file": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "cb_person_cred_hist_length": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 29,
+          "min": 2.0,
+          "max": 30.0,
+          "mean": 5.804211043246064,
+          "std": 4.0550011647128406
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": []
+    }
+  },
+  "relationships": []
+}

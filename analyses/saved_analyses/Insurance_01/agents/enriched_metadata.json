@@ -1,0 +1,102 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "insurance": {
+      "row_count": 1338,
+      "columns": {
+        "age": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 47,
+          "min": 18.0,
+          "max": 64.0,
+          "mean": 39.20702541106129,
+          "std": 14.049960379216172,
+          "semantic_description": "The age of the individual, representing the person's age in years."
+        },
+        "sex": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The gender of the individual, typically noted as male or female."
+        },
+        "bmi": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 548,
+          "min": 15.96,
+          "max": 53.13,
+          "mean": 30.66339686098655,
+          "std": 6.098186911679017,
+          "semantic_description": "Body Mass Index of the individual, a measure of body fat based on height and weight."
+        },
+        "children": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": 0.0,
+          "max": 5.0,
+          "mean": 1.0949177877429,
+          "std": 1.2054927397819095,
+          "semantic_description": "The number of dependents the individual has, such as children."
+        },
+        "smoker": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "A flag indicating if the individual is a smoker, with possible values such as yes or no."
+        },
+        "usa_region": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The geographic region in the United States where the individual resides."
+        },
+        "charges": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 1337,
+          "min": 1121.8739,
+          "max": 63770.42801,
+          "mean": 13270.422265141257,
+          "std": 12110.011236693996,
+          "semantic_description": "The medical insurance charges billed to the individual."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "insurance record",
+      "description": "This table contains data about insurance policyholders, including demographic details like age, sex, BMI, number of children, smoking status, residential region, and the insurance charges billed to them."
+    }
+  },
+  "relationships": [],
+  "database_domain": "insurance",
+  "database_description": "This database is focused on health insurance and contains data about policyholders, including their demographics, lifestyle choices, and the corresponding insurance charges. It is pivotal in analyzing health risks and premiums."
+}

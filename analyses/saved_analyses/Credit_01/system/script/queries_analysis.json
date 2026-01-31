@@ -1,0 +1,322 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Age Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 58,
+            "column_count": 2,
+            "columns": {
+              "age": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 58,
+                "min": 20.0,
+                "max": 144.0,
+                "mean": 51.36206896551724,
+                "std": 23.708535938476622
+              },
+              "count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 42,
+                "min": 1.0,
+                "max": 3889.0,
+                "mean": 561.7413793103449,
+                "std": 999.5119609149754
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Income Analysis by Age",
+          "type": "average_calculation",
+          "analysis": {
+            "row_count": 58,
+            "column_count": 2,
+            "columns": {
+              "age": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 58,
+                "min": 20.0,
+                "max": 144.0,
+                "mean": 51.36206896551724,
+                "std": 23.708535938476622
+              },
+              "average_income": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 58,
+                "min": 24000.0,
+                "max": 2150000.0,
+                "mean": 123398.07312275848,
+                "std": 282216.5645927541
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Home Ownership Status",
+          "type": "categorical_distribution",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "home_ownership_status": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 5.0,
+                "max_length": 8
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 0.0032841226481691785,
+                "max": 0.5047727202971056,
+                "mean": 0.24999999999999997,
+                "std": 0.24587426651860933
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Employment Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Employment Length Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 36,
+            "column_count": 2,
+            "columns": {
+              "employment_length": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 36,
+                "min": 0.0,
+                "max": 123.0,
+                "mean": 20.333333333333332,
+                "std": 20.66190421317178
+              },
+              "count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 31,
+                "min": 1.0,
+                "max": 4105.0,
+                "mean": 880.1666666666666,
+                "std": 1304.6854355415664
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Employment Length and Loan Approval",
+          "type": "correlation",
+          "analysis": {
+            "row_count": 36,
+            "column_count": 2,
+            "columns": {
+              "employment_length": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 36,
+                "min": 0.0,
+                "max": 123.0,
+                "mean": 20.333333333333332,
+                "std": 20.66190421317178
+              },
+              "approval_rate": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 29,
+                "min": 0.0,
+                "max": 1.0,
+                "mean": 0.2318458069258429,
+                "std": 0.221056633405639
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Loan Analysis",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Loan Amount Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 753,
+            "column_count": 2,
+            "columns": {
+              "loan_amount": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 753,
+                "min": 500.0,
+                "max": 35000.0,
+                "mean": 11976.99203187251,
+                "std": 7642.751355838449
+              },
+              "count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 109,
+                "min": 1.0,
+                "max": 2664.0,
+                "mean": 43.268260292164676,
+                "std": 197.35449060509353
+              }
+            }
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Interest Rate Analysis",
+          "type": "average_calculation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_interest_rate": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 13.0602073019802,
+                "max": 13.0602073019802,
+                "mean": 13.0602073019802,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "3.3",
+          "title": "Loan Purpose Analysis",
+          "type": "categorical_distribution",
+          "analysis": {
+            "row_count": 6,
+            "column_count": 2,
+            "columns": {
+              "loan_intent": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "avg_length": 10.5,
+                "max_length": 17
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 0.11064730978177466,
+                "max": 0.19806021914612812,
+                "mean": 0.16666666666666666,
+                "std": 0.030468969881044278
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Credit Risk Assessment",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Default History Impact",
+          "type": "correlation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 2,
+            "columns": {
+              "default_status": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 1.0,
+                "max_length": 1
+              },
+              "approval_rate": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 0.18393203159934415,
+                "max": 0.37806788511749345,
+                "mean": 0.2809999583584188,
+                "std": 0.13727477849412165
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Credit History Length",
+          "type": "correlation",
+          "analysis": {
+            "row_count": 29,
+            "column_count": 2,
+            "columns": {
+              "credit_hist_length": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 29,
+                "min": 2.0,
+                "max": 30.0,
+                "mean": 16.0,
+                "std": 8.514693182963201
+              },
+              "approval_rate": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 29,
+                "min": 0.0625,
+                "max": 0.42857142857142855,
+                "mean": 0.23103381184221947,
+                "std": 0.06736548358160083
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

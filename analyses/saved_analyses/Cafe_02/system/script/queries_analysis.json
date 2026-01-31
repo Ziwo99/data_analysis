@@ -1,0 +1,236 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Overview Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Total Revenue Calculation",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "Total Revenue": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "avg_length": 34115.0,
+                "max_length": 34115
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Average Spend Per Transaction",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "Average Spend": {
+                "type": "float64",
+                "nullable": true,
+                "null_count": 1,
+                "unique_count": 0,
+                "min": null,
+                "max": null,
+                "mean": null,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Revenue by Location",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "Location": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 7.0,
+                "max_length": 8
+              },
+              "Total Spent": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 5744.5,
+                "max_length": 10314
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item and Quantity Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Most Sold Items",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Transaction Count": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "min": 292.0,
+                "max": 1171.0,
+                "mean": 966.7,
+                "std": 343.3437053449502
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Total Quantity of Items Sold",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 10,
+            "column_count": 2,
+            "columns": {
+              "Item": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 5.7,
+                "max_length": 8
+              },
+              "Quantity": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 10,
+                "avg_length": 1117.0,
+                "max_length": 1356
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Preferences",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Payment Method Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "Transaction Count": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 8.2,
+                "max_length": 14
+              },
+              "count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 293.0,
+                "max": 2291.0,
+                "mean": 1484.2,
+                "std": 1081.5510621325282
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Temporal Sales Analysis",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Sales Over Time",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 367,
+            "column_count": 2,
+            "columns": {
+              "Transaction Date": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 367,
+                "avg_length": 9.978201634877385,
+                "max_length": 10
+              },
+              "Total Spent": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 367,
+                "avg_length": 91.51771117166213,
+                "max_length": 528
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Transaction Volume Over Time",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 367,
+            "column_count": 2,
+            "columns": {
+              "Transaction Date": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 367,
+                "avg_length": 9.978201634877385,
+                "max_length": 10
+              },
+              "Transaction Count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 29,
+                "min": 14.0,
+                "max": 159.0,
+                "mean": 26.814713896457764,
+                "std": 10.495822815335943
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

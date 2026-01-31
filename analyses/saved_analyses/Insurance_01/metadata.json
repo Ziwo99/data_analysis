@@ -1,0 +1,9 @@
+{
+  "name": "Insurance_01",
+  "folder_name": "Insurance_01",
+  "date": "2026-01-06T15:27:49.753503",
+  "dataset": "4-insurance",
+  "source": "existing",
+  "pipeline_mode": "multi",
+  "openai_model": "gpt-4o"
+}

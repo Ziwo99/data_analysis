@@ -1,0 +1,519 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Performance Analysis",
+      "context": "Analyze overall sales performance across different branches and cities.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by Branch",
+          "why": "To understand which branch is generating the highest sales revenue.",
+          "answers": [
+            "Branch with highest sales",
+            "Sales distribution among branches"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Branch",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'Branch' and sum the 'Sales' to determine total sales per branch",
+            "result = supermarket_analysis.groupby('Branch')['Sales'].sum().reset_index()",
+            "# Sort by total sales in descending order to find the branch with the highest sales",
+            "result = result.sort_values(by='Sales', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "# Bar plot for total sales by branch",
+            "sns.barplot(x='Branch', y='Sales', data=result, ax=ax, palette='viridis')",
+            "# Set the title and labels",
+            "ax.set_title('Total Sales by Branch')",
+            "ax.set_xlabel('Branch')",
+            "ax.set_ylabel('Total Sales')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar plots are ideal for comparing quantities across categories such as branches, providing clear visualization of sales distribution for non-numeric, categorical data."
+        },
+        {
+          "id": "1.2",
+          "title": "Total Sales by City",
+          "why": "To identify cities with the highest sales, aiding in location-based strategy.",
+          "answers": [
+            "City with highest sales",
+            "Sales distribution across cities"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.City",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'City' and sum the 'Sales' to determine total sales per city",
+            "result = supermarket_analysis.groupby('City')['Sales'].sum().reset_index()",
+            "# Sort by total sales in descending order to find the city with the highest sales",
+            "result = result.sort_values(by='Sales', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "# Bar plot for total sales by city",
+            "sns.barplot(x='City', y='Sales', data=result, ax=ax, palette='coolwarm')",
+            "# Set the title and labels",
+            "ax.set_title('Total Sales by City')",
+            "ax.set_xlabel('City')",
+            "ax.set_ylabel('Total Sales')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Cities are categorical variables and a bar chart effectively displays sales distribution across these categories, helping in location-based visual contrast."
+        },
+        {
+          "id": "1.3",
+          "title": "Average Sales Per Transaction",
+          "why": "To determine the average transaction size, useful for setting sales targets.",
+          "answers": [
+            "Average sales amount per transaction"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Invoice ID",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average sales per transaction",
+            "result = supermarket_analysis['Sales'].mean()",
+            "# Convert the result into a DataFrame for consistency",
+            "result = pd.DataFrame({'Average Sales Per Transaction': [result]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "# Display the average sales per transaction",
+            "ax.bar(['Average Sales'], result['Average Sales Per Transaction'], color='steelblue')",
+            "# Set the title and labels",
+            "ax.set_title('Average Sales Per Transaction')",
+            "ax.set_ylabel('Sales Amount')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "The data represents a single metric, where a bar chart provides a direct depiction of the average sales value."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Customer Demographics Analysis",
+      "context": "Evaluate demographic trends among customers to tailor marketing strategies.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Sales by Customer Type",
+          "why": "To distinguish sales patterns between different customer types.",
+          "answers": [
+            "Sales comparison between Member and Normal customers"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Customer type",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'Customer type' and sum the 'Sales' to analyze sales patterns",
+            "result = supermarket_analysis.groupby('Customer type')['Sales'].sum().reset_index()",
+            "# Sort by sales amount in descending order for better insight",
+            "result = result.sort_values(by='Sales', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "# Bar plot for sales by customer type",
+            "sns.barplot(x='Customer type', y='Sales', data=result, ax=ax, palette='muted')",
+            "# Set the title and labels",
+            "ax.set_title('Sales by Customer Type')",
+            "ax.set_xlabel('Customer Type')",
+            "ax.set_ylabel('Total Sales')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Sales data by customer type is categorical and suited for differentiation using a bar chart to emphasize contrasts between member and regular customers."
+        },
+        {
+          "id": "2.2",
+          "title": "Gender-based Sales Patterns",
+          "why": "To identify if there are significant sales differences based on customer gender.",
+          "answers": [
+            "Sales comparison between male and female customers"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Gender",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'Gender' and sum the 'Sales' to determine sales differences",
+            "result = supermarket_analysis.groupby('Gender')['Sales'].sum().reset_index()",
+            "# Sort by sales amount in descending order for enhanced clarity",
+            "result = result.sort_values(by='Sales', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "# Bar plot for sales by gender",
+            "sns.barplot(x='Gender', y='Sales', data=result, ax=ax, palette='pastel')",
+            "# Set the title and labels",
+            "ax.set_title('Sales by Gender')",
+            "ax.set_xlabel('Gender')",
+            "ax.set_ylabel('Total Sales')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Gender-based sales differences are best visualized using a bar chart, providing a categorical comparison of sales based on demographic factors."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product Line Performance Analysis",
+      "context": "Analyze performance across different product categories.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Total Sales by Product Line",
+          "why": "To understand which product lines are most profitable.",
+          "answers": [
+            "Most profitable product lines"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'Product line' and sum the 'Sales' to analyze profitability",
+            "result = supermarket_analysis.groupby('Product line')['Sales'].sum().reset_index()",
+            "# Sort by total sales in descending order to highlight top product lines",
+            "result = result.sort_values(by='Sales', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "# Bar plot for total sales by product line",
+            "sns.barplot(x='Product line', y='Sales', data=result, ax=ax, palette='Blues_d')",
+            "# Set the title and labels",
+            "ax.set_title('Total Sales by Product Line')",
+            "ax.set_xlabel('Product Line')",
+            "ax.set_ylabel('Total Sales')",
+            "plt.xticks(rotation=45)",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar charts effectively illustrate the sales distribution across multiple product lines, providing a clear comparison of sales volumes for each category."
+        },
+        {
+          "id": "3.2",
+          "title": "Average Sales Price per Product Line",
+          "why": "To evaluate pricing strategies for different product categories.",
+          "answers": [
+            "Average price per product line"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Unit price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'Product line' and calculate the average 'Unit price'",
+            "result = supermarket_analysis.groupby('Product line')['Unit price'].mean().reset_index()",
+            "# Sort by average unit price in descending order for strategic insights",
+            "result = result.sort_values(by='Unit price', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "# Bar plot for average unit price by product line",
+            "sns.barplot(x='Product line', y='Unit price', data=result, ax=ax, palette='Greens')",
+            "# Set the title and labels",
+            "ax.set_title('Average Unit Price by Product Line')",
+            "ax.set_xlabel('Product Line')",
+            "ax.set_ylabel('Average Unit Price')",
+            "plt.xticks(rotation=45)",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is suitable for presenting average unit prices, allowing clear visualization of price variations across product categories, highlighting pricing strategy effectiveness."
+        },
+        {
+          "id": "3.3",
+          "title": "Sales Volume per Product Line",
+          "why": "To identify product lines with the highest sales volumes.",
+          "answers": [
+            "Product line with highest sales volume"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Quantity"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by 'Product line' and sum the 'Quantity' for sales volume analysis",
+            "result = supermarket_analysis.groupby('Product line')['Quantity'].sum().reset_index()",
+            "# Sort by quantity in descending order to identify top-selling product lines",
+            "result = result.sort_values(by='Quantity', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "# Bar plot for sales volume by product line",
+            "sns.barplot(x='Product line', y='Quantity', data=result, ax=ax, palette='Reds')",
+            "# Set the title and labels",
+            "ax.set_title('Sales Volume by Product Line')",
+            "ax.set_xlabel('Product Line')",
+            "ax.set_ylabel('Total Quantity Sold')",
+            "plt.xticks(rotation=45)",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "The bar chart is ideal for visualizing the total quantity of items sold by product line, offering a straightforward comparison across categories."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Financial Metrics Analysis",
+      "context": "Examine key financial metrics like profit and cost efficiency.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Analysis of Taxes and Total Sales",
+          "why": "To assess the impact of tax on overall sales figures.",
+          "answers": [
+            "Tax contribution to sales figures"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Sales",
+            "supermarket_analysis.Tax 5%"
+          ],
+          "type": "calculation",
+          "code_lines": [
+            "# Calculate total tax contribution and its percentage with respect to sales",
+            "total_tax = supermarket_analysis['Tax 5%'].sum()",
+            "total_sales = supermarket_analysis['Sales'].sum()",
+            "tax_percentage = (total_tax / total_sales) * 100",
+            "result = pd.DataFrame({'Total Tax Contribution': [total_tax], 'Tax as Percentage of Sales': [tax_percentage]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "# Display the tax contribution",
+            "ax.bar(['Total Tax Contribution'], result['Total Tax Contribution'], color='coral')",
+            "# Set the title and labels",
+            "ax.set_title('Total Tax Contribution')",
+            "ax.set_ylabel('Amount')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Visualizing financial impacts such as total tax contribution to sales is effectively depicted using a bar chart to highlight proportions."
+        },
+        {
+          "id": "4.2",
+          "title": "Cost of Goods Sold Analysis",
+          "why": "To determine the cost efficiency related to sales.",
+          "answers": [
+            "Average and total COGS"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.cogs",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total and average COGS",
+            "total_cogs = supermarket_analysis['cogs'].sum()",
+            "average_cogs = supermarket_analysis['cogs'].mean()",
+            "result = pd.DataFrame({'Total COGS': [total_cogs], 'Average COGS': [average_cogs]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "# Display the COGS analysis",
+            "ax.bar(['Total COGS', 'Average COGS'], [result['Total COGS'][0], result['Average COGS'][0]], color=['darkcyan', 'lightseagreen'])",
+            "# Set the title and labels",
+            "ax.set_title('Cost of Goods Sold (COGS) Analysis')",
+            "ax.set_ylabel('Amount')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar charts maximize visualization of total and average COGS, illustrating cost efficiency through a straightforward relative comparison."
+        },
+        {
+          "id": "4.3",
+          "title": "Gross Income Analysis",
+          "why": "To calculate the profitability from gross income figures.",
+          "answers": [
+            "Overall gross income",
+            "Net profitability"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.gross income",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total gross income and net profitability percentage",
+            "total_gross_income = supermarket_analysis['gross income'].sum()",
+            "net_profitability_percentage = (total_gross_income / supermarket_analysis['Sales'].sum()) * 100",
+            "result = pd.DataFrame({'Total Gross Income': [total_gross_income], 'Net Profitability %': [net_profitability_percentage]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "# Display gross income analysis",
+            "ax.bar(['Total Gross Income', 'Net Profitability %'], [result['Total Gross Income'][0], result['Net Profitability %'][0]], color=['purple', 'violet'])",
+            "# Set the title and labels",
+            "ax.set_title('Gross Income Analysis')",
+            "ax.set_ylabel('Amount / Percentage')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Visualizing gross income alongside net profitability percentage in a comparative way, the bar chart highlights fiscal health and profit margins effectively."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Customer Feedback Analysis",
+      "context": "Evaluate customer satisfaction through ratings analysis.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Average Customer Rating",
+          "why": "To determine the overall customer satisfaction levels.",
+          "answers": [
+            "Overall average rating of transactions"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Rating"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average customer rating",
+            "average_rating = supermarket_analysis['Rating'].mean()",
+            "result = pd.DataFrame({'Average Rating': [average_rating]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a figure and display the average customer rating in a bar",
+            "fig, ax = plt.subplots(figsize=(5, 3))",
+            "ax.bar(['Average Rating'], result['Average Rating'], color='orange')",
+            "# Set the title and labels",
+            "ax.set_title('Average Customer Rating')",
+            "ax.set_ylabel('Rating')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A single metric like average rating is neatly encapsulated using a single bar, providing an immediate understanding of overall customer satisfaction."
+        },
+        {
+          "id": "5.2",
+          "title": "Distribution of Customer Ratings",
+          "why": "To identify common satisfaction trends among customers.",
+          "answers": [
+            "Rating distribution frequency"
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Rating"
+          ],
+          "type": "distribution",
+          "code_lines": [
+            "# Determine the distribution of ratings",
+            "result = supermarket_analysis['Rating'].value_counts().reset_index()",
+            "result.columns = ['Rating', 'Frequency']",
+            "# Sort by rating for a clear distribution overview",
+            "result = result.sort_values(by='Rating')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Set the aesthetic style of the plots",
+            "sns.set_style('whitegrid')",
+            "# Create a figure and axis",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "# Bar plot for distribution of customer ratings",
+            "sns.barplot(x='Rating', y='Frequency', data=result, ax=ax, palette='Oranges')",
+            "# Set the title and labels",
+            "ax.set_title('Distribution of Customer Ratings')",
+            "ax.set_xlabel('Rating')",
+            "ax.set_ylabel('Frequency')",
+            "# Save the plot to result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Distribution histograms provide a clear view of rating frequencies across a range, highlighting concentration trends in customer satisfaction ratings."
+        }
+      ]
+    }
+  ]
+}

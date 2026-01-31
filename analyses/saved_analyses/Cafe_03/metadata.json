@@ -1,0 +1,9 @@
+{
+  "name": "Cafe_03",
+  "folder_name": "Cafe_03",
+  "date": "2026-01-05T23:40:35.505533",
+  "dataset": "3-cafe",
+  "source": "existing",
+  "pipeline_mode": "multi",
+  "openai_model": "gpt-4o"
+}

@@ -1,0 +1,142 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Branch Performance Analysis",
+      "context": "Assessing the performance of different branches to understand sales contributions.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by Branch",
+          "why": "To identify which branch generates the most sales revenue.",
+          "answers": [
+            "Provides insight into the sales performance of each branch."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Branch",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales for each branch",
+            "result = supermarket_analysis.groupby('Branch')['Sales'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "# Bar plot for total sales by branch",
+            "import matplotlib.pyplot as plt",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Branch'], result['Sales'])",
+            "plt.title('Total Sales by Branch')",
+            "plt.xlabel('Branch')",
+            "plt.ylabel('Total Sales')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively compares total sales among branches."
+        },
+        {
+          "id": "1.2",
+          "title": "Average Sales per Transaction by Branch",
+          "why": "To understand the average transaction value at each branch.",
+          "answers": [
+            "Identifies branches with higher or lower average transaction values."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Branch",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average sales per transaction for each branch",
+            "result = supermarket_analysis.groupby('Branch')['Sales'].mean().reset_index()"
+          ],
+          "visualization_code": [
+            "# Bar plot for average sales per transaction by branch",
+            "import matplotlib.pyplot as plt",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Branch'], result['Sales'])",
+            "plt.title('Average Sales per Transaction by Branch')",
+            "plt.xlabel('Branch')",
+            "plt.ylabel('Average Sales')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar charts provide a clear comparison of average sales across branches."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Customer Demographics and Preferences",
+      "context": "Understanding customer demographics to tailor marketing and service efforts.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Sales Distribution by Customer Type",
+          "why": "To determine the proportion of sales from different customer types.",
+          "answers": [
+            "Shows which customer type contributes more to sales revenue."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Customer type",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Calculate sales distribution by customer type",
+            "result = supermarket_analysis.groupby('Customer type')['Sales'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "# Pie chart for sales distribution by customer type",
+            "import matplotlib.pyplot as plt",
+            "result_plot = plt.figure()",
+            "plt.pie(result['Sales'], labels=result['Customer type'], autopct='%1.1f%%')",
+            "plt.title('Sales Distribution by Customer Type')",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "pie",
+          "justification": "A pie chart visualizes the proportional contribution to sales by each customer type."
+        },
+        {
+          "id": "2.2",
+          "title": "Sales by Product Line and Gender",
+          "why": "To explore product preferences based on gender.",
+          "answers": [
+            "Highlights product lines that are popular among different genders."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Gender",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Calculate sales by product line and gender",
+            "result = supermarket_analysis.groupby(['Product line', 'Gender'])['Sales'].sum().unstack().fillna(0)"
+          ],
+          "visualization_code": [
+            "# Stacked bar chart for sales by product line and gender",
+            "import matplotlib.pyplot as plt",
+            "result_plot = plt.figure()",
+            "result.plot(kind='bar', stacked=True)",
+            "plt.title('Sales by Product Line and Gender')",
+            "plt.xlabel('Product Line')",
+            "plt.ylabel('Total Sales')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "Stacked bar chart shows the gender distribution within product lines."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,573 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Gender-Based Performance Analysis",
+      "context": "Understand performance differences across genders.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Average Math Score by Gender",
+          "why": "Identify if there are performance disparities in math based on gender.",
+          "answers": [
+            "Average math score for males",
+            "Average math score for females"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.math score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by gender and calculate the average math score",
+            "result = students_performance.groupby('gender')['math score'].mean().reset_index()",
+            "# Rename the columns for clarity",
+            "result = result.rename(columns={'math score': 'average_math_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average math scores by gender",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='gender', y='average_math_score', data=result, palette='coolwarm')",
+            "result_plot.set_title('Average Math Score by Gender')",
+            "result_plot.set_xlabel('Gender')",
+            "result_plot.set_ylabel('Average Math Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot effectively compares the average math scores for the two gender categories."
+        },
+        {
+          "id": "1.2",
+          "title": "Average Reading Score by Gender",
+          "why": "Determine if gender affects reading scores.",
+          "answers": [
+            "Average reading score for males",
+            "Average reading score for females"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.reading score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by gender and calculate the average reading score",
+            "result = students_performance.groupby('gender')['reading score'].mean().reset_index()",
+            "# Rename the columns for clarity",
+            "result = result.rename(columns={'reading score': 'average_reading_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average reading scores by gender",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='gender', y='average_reading_score', data=result, palette='coolwarm')",
+            "result_plot.set_title('Average Reading Score by Gender')",
+            "result_plot.set_xlabel('Gender')",
+            "result_plot.set_ylabel('Average Reading Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot effectively compares the average reading scores for the two gender categories."
+        },
+        {
+          "id": "1.3",
+          "title": "Average Writing Score by Gender",
+          "why": "Investigate writing score differences between genders.",
+          "answers": [
+            "Average writing score for males",
+            "Average writing score for females"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by gender and calculate the average writing score",
+            "result = students_performance.groupby('gender')['writing score'].mean().reset_index()",
+            "# Rename the columns for clarity",
+            "result = result.rename(columns={'writing score': 'average_writing_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average writing scores by gender",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='gender', y='average_writing_score', data=result, palette='coolwarm')",
+            "result_plot.set_title('Average Writing Score by Gender')",
+            "result_plot.set_xlabel('Gender')",
+            "result_plot.set_ylabel('Average Writing Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot effectively compares the average writing scores for the two gender categories."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Ethnicity-Based Performance Analysis",
+      "context": "Evaluate performance across different ethnic groups.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Average Math Score by Ethnicity",
+          "why": "Understand how ethnicity impacts math performance.",
+          "answers": [
+            "Average math score for each ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.math score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by race/ethnicity and calculate the average math score",
+            "result = students_performance.groupby('race/ethnicity')['math score'].mean().reset_index()",
+            "# Rename the columns for clarity",
+            "result = result.rename(columns={'math score': 'average_math_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average math scores by ethnicity",
+            "plt.figure(figsize=(10, 6))",
+            "result_plot = sns.barplot(x='race/ethnicity', y='average_math_score', data=result, palette='colorblind')",
+            "result_plot.set_title('Average Math Score by Ethnicity')",
+            "result_plot.set_xlabel('Ethnicity')",
+            "result_plot.set_ylabel('Average Math Score')",
+            "result_plot.set_xticklabels(result_plot.get_xticklabels(), rotation=45, horizontalalignment='right')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot allows straightforward comparison of average math scores across multiple ethnic groups."
+        },
+        {
+          "id": "2.2",
+          "title": "Average Reading Score by Ethnicity",
+          "why": "Identify reading score trends across ethnic groups.",
+          "answers": [
+            "Average reading score for each ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.reading score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by race/ethnicity and calculate the average reading score",
+            "result = students_performance.groupby('race/ethnicity')['reading score'].mean().reset_index()",
+            "# Rename the columns for clarity",
+            "result = result.rename(columns={'reading score': 'average_reading_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average reading scores by ethnicity",
+            "plt.figure(figsize=(10, 6))",
+            "result_plot = sns.barplot(x='race/ethnicity', y='average_reading_score', data=result, palette='colorblind')",
+            "result_plot.set_title('Average Reading Score by Ethnicity')",
+            "result_plot.set_xlabel('Ethnicity')",
+            "result_plot.set_ylabel('Average Reading Score')",
+            "result_plot.set_xticklabels(result_plot.get_xticklabels(), rotation=45, horizontalalignment='right')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot allows straightforward comparison of average reading scores across multiple ethnic groups."
+        },
+        {
+          "id": "2.3",
+          "title": "Average Writing Score by Ethnicity",
+          "why": "Assess writing performance differences based on ethnicity.",
+          "answers": [
+            "Average writing score for each ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by race/ethnicity and calculate the average writing score",
+            "result = students_performance.groupby('race/ethnicity')['writing score'].mean().reset_index()",
+            "# Rename the columns for clarity",
+            "result = result.rename(columns={'writing score': 'average_writing_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average writing scores by ethnicity",
+            "plt.figure(figsize=(10, 6))",
+            "result_plot = sns.barplot(x='race/ethnicity', y='average_writing_score', data=result, palette='colorblind')",
+            "result_plot.set_title('Average Writing Score by Ethnicity')",
+            "result_plot.set_xlabel('Ethnicity')",
+            "result_plot.set_ylabel('Average Writing Score')",
+            "result_plot.set_xticklabels(result_plot.get_xticklabels(), rotation=45, horizontalalignment='right')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot allows straightforward comparison of average writing scores across multiple ethnic groups."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Parental Education Impact Analysis",
+      "context": "Analyze how parental education levels affect student performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Math Score by Parental Education Level",
+          "why": "Determine the correlation between parents' education level and students' math scores.",
+          "answers": [
+            "Math scores by each parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.math score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by parental level of education and calculate average math score",
+            "result = students_performance.groupby('parental level of education')['math score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'math score': 'average_math_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average math scores by parental education level",
+            "plt.figure(figsize=(12, 6))",
+            "result_plot = sns.barplot(x='parental level of education', y='average_math_score', data=result, palette='husl')",
+            "result_plot.set_title('Average Math Score by Parental Education Level')",
+            "result_plot.set_xlabel('Parental Education Level')",
+            "result_plot.set_ylabel('Average Math Score')",
+            "result_plot.set_xticklabels(result_plot.get_xticklabels(), rotation=45, horizontalalignment='right')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "By using a bar plot, we can clearly compare math scores across different levels of parental education."
+        },
+        {
+          "id": "3.2",
+          "title": "Reading Score by Parental Education Level",
+          "why": "Examine if reading scores vary with parental education level.",
+          "answers": [
+            "Reading scores by each parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.reading score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by parental level of education and calculate average reading score",
+            "result = students_performance.groupby('parental level of education')['reading score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'reading score': 'average_reading_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average reading scores by parental education level",
+            "plt.figure(figsize=(12, 6))",
+            "result_plot = sns.barplot(x='parental level of education', y='average_reading_score', data=result, palette='husl')",
+            "result_plot.set_title('Average Reading Score by Parental Education Level')",
+            "result_plot.set_xlabel('Parental Education Level')",
+            "result_plot.set_ylabel('Average Reading Score')",
+            "result_plot.set_xticklabels(result_plot.get_xticklabels(), rotation=45, horizontalalignment='right')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Using a bar plot provides a clear visual comparison of reading scores across various parental education levels."
+        },
+        {
+          "id": "3.3",
+          "title": "Writing Score by Parental Education Level",
+          "why": "Assess how parental education impacts writing scores.",
+          "answers": [
+            "Writing scores by each parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by parental level of education and calculate average writing score",
+            "result = students_performance.groupby('parental level of education')['writing score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'writing score': 'average_writing_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average writing scores by parental education level",
+            "plt.figure(figsize=(12, 6))",
+            "result_plot = sns.barplot(x='parental level of education', y='average_writing_score', data=result, palette='husl')",
+            "result_plot.set_title('Average Writing Score by Parental Education Level')",
+            "result_plot.set_xlabel('Parental Education Level')",
+            "result_plot.set_ylabel('Average Writing Score')",
+            "result_plot.set_xticklabels(result_plot.get_xticklabels(), rotation=45, horizontalalignment='right')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot enables easy comparison of writing scores according to the different parental education levels."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Lunch Program Performance Analysis",
+      "context": "Observe the impact of lunch program types on student performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Math Score by Lunch Type",
+          "why": "Analyze if lunch type correlates with math performance.",
+          "answers": [
+            "Average math score for each lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.math score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by lunch type and calculate average math score",
+            "result = students_performance.groupby('lunch')['math score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'math score': 'average_math_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average math scores by lunch type",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='lunch', y='average_math_score', data=result, palette='Set2')",
+            "result_plot.set_title('Average Math Score by Lunch Type')",
+            "result_plot.set_xlabel('Lunch Type')",
+            "result_plot.set_ylabel('Average Math Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot is appropriate for comparing math scores between the two categories of lunch types."
+        },
+        {
+          "id": "4.2",
+          "title": "Reading Score by Lunch Type",
+          "why": "Examine the effect of lunch type on reading scores.",
+          "answers": [
+            "Average reading score for each lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.reading score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by lunch type and calculate average reading score",
+            "result = students_performance.groupby('lunch')['reading score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'reading score': 'average_reading_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average reading scores by lunch type",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='lunch', y='average_reading_score', data=result, palette='Set2')",
+            "result_plot.set_title('Average Reading Score by Lunch Type')",
+            "result_plot.set_xlabel('Lunch Type')",
+            "result_plot.set_ylabel('Average Reading Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot effectively contrasts reading scores between different lunch types."
+        },
+        {
+          "id": "4.3",
+          "title": "Writing Score by Lunch Type",
+          "why": "Explore the writing score differences by lunch provision type.",
+          "answers": [
+            "Average writing score for each lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by lunch type and calculate average writing score",
+            "result = students_performance.groupby('lunch')['writing score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'writing score': 'average_writing_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average writing scores by lunch type",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='lunch', y='average_writing_score', data=result, palette='Set2')",
+            "result_plot.set_title('Average Writing Score by Lunch Type')",
+            "result_plot.set_xlabel('Lunch Type')",
+            "result_plot.set_ylabel('Average Writing Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "Using a bar plot allows for straightforward comparison of writing scores with respect to lunch type."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Test Preparation Course Effectiveness",
+      "context": "Evaluate the impact of test preparation courses on test scores.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Math Score Improvement with Test Preparation",
+          "why": "Assess whether students who took preparation courses scored better in math.",
+          "answers": [
+            "Difference in math scores with/without test preparation"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.math score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by test preparation course and calculate average math score",
+            "result = students_performance.groupby('test preparation course')['math score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'math score': 'average_math_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average math scores with/without test preparation",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='test preparation course', y='average_math_score', data=result, palette='muted')",
+            "result_plot.set_title('Average Math Score with Test Preparation')",
+            "result_plot.set_xlabel('Test Preparation Course')",
+            "result_plot.set_ylabel('Average Math Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot provides a clear visual representation of differences in math scores with respect to test preparation courses."
+        },
+        {
+          "id": "5.2",
+          "title": "Reading Score Improvement with Test Preparation",
+          "why": "Determine if reading scores improve with test preparation courses.",
+          "answers": [
+            "Difference in reading scores with/without test preparation"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.reading score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by test preparation course and calculate average reading score",
+            "result = students_performance.groupby('test preparation course')['reading score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'reading score': 'average_reading_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average reading scores with/without test preparation",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='test preparation course', y='average_reading_score', data=result, palette='muted')",
+            "result_plot.set_title('Average Reading Score with Test Preparation')",
+            "result_plot.set_xlabel('Test Preparation Course')",
+            "result_plot.set_ylabel('Average Reading Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "With only two categories, a bar plot enables clear comparison of reading scores related to test preparation."
+        },
+        {
+          "id": "5.3",
+          "title": "Writing Score Improvement with Test Preparation",
+          "why": "Explore the effect of test preparation courses on writing scores.",
+          "answers": [
+            "Difference in writing scores with/without test preparation"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by test preparation course and calculate average writing score",
+            "result = students_performance.groupby('test preparation course')['writing score'].mean().reset_index()",
+            "# Rename columns for clarity",
+            "result = result.rename(columns={'writing score': 'average_writing_score'})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "# Create a bar plot to visualize average writing scores with/without test preparation",
+            "plt.figure(figsize=(8, 6))",
+            "result_plot = sns.barplot(x='test preparation course', y='average_writing_score', data=result, palette='muted')",
+            "result_plot.set_title('Average Writing Score with Test Preparation')",
+            "result_plot.set_xlabel('Test Preparation Course')",
+            "result_plot.set_ylabel('Average Writing Score')",
+            "plt.tight_layout()",
+            "# Store final plot in result_plot",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar plot allows easy comparison of writing scores with the presence or absence of test preparation."
+        }
+      ]
+    }
+  ]
+}

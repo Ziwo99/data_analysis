@@ -1,0 +1,102 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "students_performance": {
+      "row_count": 1000,
+      "columns": {
+        "gender": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "race/ethnicity": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "parental level of education": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "lunch": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "test preparation course": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "math score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 81,
+          "min": 0.0,
+          "max": 100.0,
+          "mean": 66.089,
+          "std": 15.163080096009468
+        },
+        "reading score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 72,
+          "min": 17.0,
+          "max": 100.0,
+          "mean": 69.169,
+          "std": 14.60019193725222
+        },
+        "writing score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 77,
+          "min": 10.0,
+          "max": 100.0,
+          "mean": 68.054,
+          "std": 15.195657010869642
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": []
+    }
+  },
+  "relationships": []
+}

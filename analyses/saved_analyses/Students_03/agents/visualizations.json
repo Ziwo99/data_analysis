@@ -1,0 +1,339 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Analysis of Student Performance",
+      "context": "Analyze student performance based on demographic factors such as gender and race/ethnicity.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Gender-based Performance Comparison",
+          "why": "To determine if there are performance differences between male and female students.",
+          "answers": [
+            "Average math scores for male and female students",
+            "Average reading scores for male and female students",
+            "Average writing scores for male and female students"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "Aggregation",
+          "code_lines": [
+            "# Group by gender and calculate the average scores",
+            "result = students_performance.groupby('gender').agg({",
+            "    'math score': 'mean',",
+            "    'reading score': 'mean',",
+            "    'writing score': 'mean'",
+            "}).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['gender', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "result.plot(x='gender', y=['avg_math_score', 'avg_reading_score', 'avg_writing_score'], kind='bar', ax=ax)",
+            "ax.set_title('Average Scores by Gender')",
+            "ax.set_xlabel('Gender')",
+            "ax.set_ylabel('Average Score')",
+            "ax.legend(['Math', 'Reading', 'Writing'], title='Subjects')",
+            "plt.xticks(rotation=0)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Grouped Bar Chart",
+          "justification": "A grouped bar chart is used to compare average scores across different subjects grouped by gender. This allows a clear visual comparison of performance between male and female students."
+        },
+        {
+          "id": "1.2",
+          "title": "Race/Ethnicity-based Performance Analysis",
+          "why": "To examine how student performance varies across different race/ethnicity groups.",
+          "answers": [
+            "Average math scores for each race/ethnicity group",
+            "Average reading scores for each race/ethnicity group",
+            "Average writing scores for each race/ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "Aggregation",
+          "code_lines": [
+            "# Group by race/ethnicity and calculate the average scores",
+            "result = students_performance.groupby('race/ethnicity').agg({",
+            "    'math score': 'mean',",
+            "    'reading score': 'mean',",
+            "    'writing score': 'mean'",
+            "}).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['race_ethnicity', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "result.plot(x='race_ethnicity', y=['avg_math_score', 'avg_reading_score', 'avg_writing_score'], kind='bar', ax=ax)",
+            "ax.set_title('Average Scores by Race/Ethnicity')",
+            "ax.set_xlabel('Race/Ethnicity')",
+            "ax.set_ylabel('Average Score')",
+            "ax.legend(['Math', 'Reading', 'Writing'], title='Subjects')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Grouped Bar Chart",
+          "justification": "A grouped bar chart effectively displays comparisons of average subject scores among various race/ethnicity groups, providing insight into demographic performance differences."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Impact of Socioeconomic Factors on Performance",
+      "context": "Investigate how socioeconomic factors like lunch benefits and parental education affect student performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Lunch Benefits and Performance",
+          "why": "To assess the correlation between receiving lunch benefits and academic performance.",
+          "answers": [
+            "Average math scores for students with and without lunch benefits",
+            "Average reading scores for students with and without lunch benefits",
+            "Average writing scores for students with and without lunch benefits"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "Aggregation",
+          "code_lines": [
+            "# Group by lunch and calculate the average scores",
+            "result = students_performance.groupby('lunch').agg({",
+            "    'math score': 'mean',",
+            "    'reading score': 'mean',",
+            "    'writing score': 'mean'",
+            "}).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['lunch', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "result.plot(x='lunch', y=['avg_math_score', 'avg_reading_score', 'avg_writing_score'], kind='bar', ax=ax)",
+            "ax.set_title('Average Scores by Lunch Benefits')",
+            "ax.set_xlabel('Lunch Benefits')",
+            "ax.set_ylabel('Average Score')",
+            "ax.legend(['Math', 'Reading', 'Writing'], title='Subjects')",
+            "plt.xticks(rotation=0)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Grouped Bar Chart",
+          "justification": "A grouped bar chart is chosen to visualize the effect of lunch benefits on student performance in different subjects, making it easy to compare scores with and without benefits."
+        },
+        {
+          "id": "2.2",
+          "title": "Parental Education Level and Student Performance",
+          "why": "To analyze the influence of parental education on student scores across subjects.",
+          "answers": [
+            "Average math scores based on parental education level",
+            "Average reading scores based on parental education level",
+            "Average writing scores based on parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "Aggregation",
+          "code_lines": [
+            "# Group by parental level of education and calculate the average scores",
+            "result = students_performance.groupby('parental level of education').agg({",
+            "    'math score': 'mean',",
+            "    'reading score': 'mean',",
+            "    'writing score': 'mean'",
+            "}).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['parental_education', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "result.plot(x='parental_education', y=['avg_math_score', 'avg_reading_score', 'avg_writing_score'], kind='bar', ax=ax)",
+            "ax.set_title('Average Scores by Parental Education Level')",
+            "ax.set_xlabel('Parental Education Level')",
+            "ax.set_ylabel('Average Score')",
+            "ax.legend(['Math', 'Reading', 'Writing'], title='Subjects')",
+            "plt.xticks(rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Grouped Bar Chart",
+          "justification": "A grouped bar chart is suitable for comparing average scores across different parental education levels, clearly showing the impact of education level on performance."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Effect of Test Preparation on Performance",
+      "context": "Examine the impact of completing a test preparation course on student scores.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Test Preparation Course Completion and Scores",
+          "why": "To evaluate if students who completed a preparation course scored higher on tests.",
+          "answers": [
+            "Average math scores for students who completed and did not complete the preparation course",
+            "Average reading scores for students who completed and did not complete the preparation course",
+            "Average writing scores for students who completed and did not complete the preparation course"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "Aggregation",
+          "code_lines": [
+            "# Group by test preparation course completion and calculate the average scores",
+            "result = students_performance.groupby('test preparation course').agg({",
+            "    'math score': 'mean',",
+            "    'reading score': 'mean',",
+            "    'writing score': 'mean'",
+            "}).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['test_prep_course', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "result.plot(x='test_prep_course', y=['avg_math_score', 'avg_reading_score', 'avg_writing_score'], kind='bar', ax=ax)",
+            "ax.set_title('Average Scores by Test Preparation Course Completion')",
+            "ax.set_xlabel('Test Preparation Course')",
+            "ax.set_ylabel('Average Score')",
+            "ax.legend(['Math', 'Reading', 'Writing'], title='Subjects')",
+            "plt.xticks(rotation=0)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Grouped Bar Chart",
+          "justification": "A grouped bar chart highlights the impact of completing a test preparation course on different test scores, enabling a straightforward comparison between groups."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Overall Performance Metrics",
+      "context": "Provide general statistics on student performance across all subjects.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Overall Math Performance Statistics",
+          "why": "To get a summary of math scores including min, max, mean, and standard deviation.",
+          "answers": [
+            "Min, max, mean, and standard deviation of math scores"
+          ],
+          "tables_columns": [
+            "students_performance.math score"
+          ],
+          "type": "DescriptiveStatistics",
+          "code_lines": [
+            "# Calculate min, max, mean, and standard deviation for math scores",
+            "result = students_performance['math score'].agg(['min', 'max', 'mean', 'std']).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['metric', 'value']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "ax.bar(result['metric'], result['value'], color='cornflowerblue')",
+            "ax.set_title('Overall Math Performance Statistics')",
+            "ax.set_xlabel('Metric')",
+            "ax.set_ylabel('Value')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Bar Chart",
+          "justification": "A simple bar chart effectively summarizes key statistical metrics of math scores, providing a clear overview of basic performance statistics."
+        },
+        {
+          "id": "4.2",
+          "title": "Overall Reading Performance Statistics",
+          "why": "To get a summary of reading scores including min, max, mean, and standard deviation.",
+          "answers": [
+            "Min, max, mean, and standard deviation of reading scores"
+          ],
+          "tables_columns": [
+            "students_performance.reading score"
+          ],
+          "type": "DescriptiveStatistics",
+          "code_lines": [
+            "# Calculate min, max, mean, and standard deviation for reading scores",
+            "result = students_performance['reading score'].agg(['min', 'max', 'mean', 'std']).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['metric', 'value']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "ax.bar(result['metric'], result['value'], color='lightcoral')",
+            "ax.set_title('Overall Reading Performance Statistics')",
+            "ax.set_xlabel('Metric')",
+            "ax.set_ylabel('Value')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Bar Chart",
+          "justification": "Using a bar chart to show overall reading performance statistics reveals the distribution of key metrics such as minimum, maximum, mean, and standard deviation."
+        },
+        {
+          "id": "4.3",
+          "title": "Overall Writing Performance Statistics",
+          "why": "To get a summary of writing scores including min, max, mean, and standard deviation.",
+          "answers": [
+            "Min, max, mean, and standard deviation of writing scores"
+          ],
+          "tables_columns": [
+            "students_performance.writing score"
+          ],
+          "type": "DescriptiveStatistics",
+          "code_lines": [
+            "# Calculate min, max, mean, and standard deviation for writing scores",
+            "result = students_performance['writing score'].agg(['min', 'max', 'mean', 'std']).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['metric', 'value']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "fig, ax = plt.subplots(figsize=(8, 5))",
+            "ax.bar(result['metric'], result['value'], color='mediumseagreen')",
+            "ax.set_title('Overall Writing Performance Statistics')",
+            "ax.set_xlabel('Metric')",
+            "ax.set_ylabel('Value')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "Bar Chart",
+          "justification": "The use of a bar chart simplifies the representation of overall writing performance statistics, offering an at-a-glance view of variability in writing assessments."
+        }
+      ]
+    }
+  ]
+}

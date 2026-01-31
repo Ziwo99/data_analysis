@@ -1,0 +1,215 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Demographics Analysis",
+      "context": "Analyze demographic distribution of customers in the ecommerce system.",
+      "tables": [
+        "olist_customers_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Distribution by State",
+          "why": "To understand the geographical distribution of customers by state.",
+          "answers": [
+            "Number of customers per state"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by customer state and counting the number of customers",
+            "result = olist_customers_dataset.groupby('customer_state').size().reset_index(name='customer_count')"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Distribution by City",
+          "why": "To identify which cities have the highest concentration of customers.",
+          "answers": [
+            "Number of customers per city"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by customer city and counting the number of customers",
+            "result = olist_customers_dataset.groupby('customer_city').size().reset_index(name='customer_count')"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Unique Customers Count",
+          "why": "Determine the number of unique customers in the database.",
+          "answers": [
+            "Total number of unique customers"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_unique_id"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Counting unique customer IDs",
+            "result = pd.DataFrame({'unique_customers_count': [olist_customers_dataset['customer_unique_id'].nunique()]})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order and Payment Analysis",
+      "context": "Review the payment methods and volumes for orders.",
+      "tables": [
+        "olist_orders_dataset",
+        "olist_order_payments_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "why": "To assess the distribution of orders by their status.",
+          "answers": [
+            "Count of orders for each order status"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_status"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by order status and counting orders",
+            "result = olist_orders_dataset.groupby('order_status').size().reset_index(name='order_count')"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Payment Type Breakdown",
+          "why": "Identify popular payment methods used by customers.",
+          "answers": [
+            "Number of payments by payment type"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by payment type and counting occurrences",
+            "result = olist_order_payments_dataset.groupby('payment_type').size().reset_index(name='payment_count')"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Payment Value Analysis",
+          "why": "Understand the distribution of payment amounts.",
+          "answers": [
+            "Average, min, max, and total payment values"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating average, min, max, and total payment values",
+            "result = olist_order_payments_dataset['payment_value'].agg(['mean', 'min', 'max', 'sum']).reset_index().rename(columns={0: 'value'})"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product and Category Insights",
+      "context": "Examine the characteristics of products and categories sold.",
+      "tables": [
+        "olist_products_dataset",
+        "product_category_name_translation"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Product Availability by Category",
+          "why": "Understand which product categories have the most offerings.",
+          "answers": [
+            "Number of products available in each category"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_id",
+            "olist_products_dataset.product_category_name"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Grouping by product category and counting products",
+            "result = olist_products_dataset.groupby('product_category_name').size().reset_index(name='product_count')"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Category Translation Map",
+          "why": "To support bilingual systems by understanding category translations.",
+          "answers": [
+            "Mapping of category names to their English translations"
+          ],
+          "tables_columns": [
+            "product_category_name_translation.product_category_name",
+            "product_category_name_translation.product_category_name_english"
+          ],
+          "type": "raw_listing",
+          "code_lines": [
+            "# Getting a translation map of category names to their English translations",
+            "result = product_category_name_translation[['product_category_name', 'product_category_name_english']]"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Logistics and Shipment Analysis",
+      "context": "Explore shipping logistics using geolocation and shipping data.",
+      "tables": [
+        "olist_order_items_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Freight Cost Distribution",
+          "why": "Analyze the distribution of freight costs across items.",
+          "answers": [
+            "Average, min, max, and total freight values"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.freight_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculating average, min, max, and total freight values",
+            "result = olist_order_items_dataset['freight_value'].agg(['mean', 'min', 'max', 'sum']).reset_index().rename(columns={0: 'value'})"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Geolocation Distribution",
+          "why": "Map out the locations that products are being shipped to and from.",
+          "answers": [
+            "Number of shipments to each city and state"
+          ],
+          "tables_columns": [
+            "olist_geolocation_dataset.geolocation_city",
+            "olist_geolocation_dataset.geolocation_state",
+            "olist_order_items_dataset.seller_id"
+          ],
+          "type": "join_aggregation",
+          "code_lines": [
+            "# Aggregating the number of shipments per city and state based on seller locations",
+            "shipment_count = olist_order_items_dataset.groupby('seller_id').size().reset_index(name='shipment_count')",
+            "# Corrected join operation to use the correct column that associates seller_id with geolocation",
+            "result = shipment_count.merge(olist_geolocation_dataset, left_on='seller_id', right_on='geolocation_city', how='left')",
+            "# Grouping by city and state to sum up the shipment counts",
+            "result = result.groupby(['geolocation_city', 'geolocation_state'])['shipment_count'].sum().reset_index()"
+          ]
+        }
+      ]
+    }
+  ]
+}

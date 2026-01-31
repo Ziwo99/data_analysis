@@ -1,0 +1,714 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 9,
+  "tables": {
+    "olist_customers_dataset": {
+      "row_count": 99441,
+      "columns": {
+        "customer_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 99441,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for each customer in the system."
+        },
+        "customer_unique_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 96096,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "ID used to uniquely identify customers across multiple orders."
+        },
+        "customer_zip_code_prefix": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 14994,
+          "min": 1003.0,
+          "max": 99990.0,
+          "mean": 35137.47458291851,
+          "std": 29797.938996206536,
+          "semantic_description": "The prefix of the customer's ZIP code, used for delivery purposes."
+        },
+        "customer_city": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 4119,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "City where the customer resides."
+        },
+        "customer_state": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 27,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "State where the customer resides."
+        }
+      },
+      "primary_key": "customer_id",
+      "foreign_keys": [],
+      "role": "Customer Information",
+      "description": "This table holds information about customers including their unique identifiers and location details."
+    },
+    "olist_geolocation_dataset": {
+      "row_count": 1000163,
+      "columns": {
+        "geolocation_zip_code_prefix": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 19015,
+          "min": 1001.0,
+          "max": 99990.0,
+          "mean": 36574.16646586607,
+          "std": 30549.33571032424,
+          "semantic_description": "Prefix of ZIP codes used to map geographical locations of customers or orders."
+        },
+        "geolocation_lat": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 717360,
+          "min": -36.6053744107061,
+          "max": 45.06593318269697,
+          "mean": -21.176152910383966,
+          "std": 5.715866308822976,
+          "semantic_description": "Latitude coordinate corresponding to the geolocation ZIP code."
+        },
+        "geolocation_lng": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 717613,
+          "min": -101.46676644931476,
+          "max": 121.10539381057764,
+          "mean": -46.39054132093579,
+          "std": 4.26974830661962,
+          "semantic_description": "Longitude coordinate corresponding to the geolocation ZIP code."
+        },
+        "geolocation_city": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 8011,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "City related to the geolocation ZIP code."
+        },
+        "geolocation_state": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 27,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "State related to the geolocation ZIP code."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Geolocation Data",
+      "description": "This table provides geographic location coordinates associated with ZIP codes, which can be used to map customer or order locations."
+    },
+    "olist_order_items_dataset": {
+      "row_count": 112650,
+      "columns": {
+        "order_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 98666,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Identifier for the order related to the items."
+        },
+        "order_item_id": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 21,
+          "min": 1.0,
+          "max": 21.0,
+          "mean": 1.1978339991122948,
+          "std": 0.7051240313956294,
+          "semantic_description": "Identifier for each item in an order."
+        },
+        "product_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 32951,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for the product included in the order."
+        },
+        "seller_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3095,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for the seller providing the item."
+        },
+        "shipping_limit_date": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 93318,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The date limit for the shipment of order items."
+        },
+        "price": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5968,
+          "min": 0.85,
+          "max": 6735.0,
+          "mean": 120.65373901464716,
+          "std": 183.633928050254,
+          "semantic_description": "Price of the individual order item."
+        },
+        "freight_value": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6999,
+          "min": 0.0,
+          "max": 409.68,
+          "mean": 19.990319928983578,
+          "std": 15.806405412296852,
+          "semantic_description": "The cost of shipping the order item."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Order Items",
+      "description": "This table contains details about specific items included in customer orders, including product information and shipping details."
+    },
+    "olist_order_payments_dataset": {
+      "row_count": 103886,
+      "columns": {
+        "order_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 99440,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Reference to the order that the payment is associated with."
+        },
+        "payment_sequential": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 29,
+          "min": 1.0,
+          "max": 29.0,
+          "mean": 1.0926785129853878,
+          "std": 0.7065837791945014,
+          "semantic_description": "Sequence number for payments within the same order."
+        },
+        "payment_type": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Type of payment (e.g., credit card, boleto)."
+        },
+        "payment_installments": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 24,
+          "min": 0.0,
+          "max": 24.0,
+          "mean": 2.853348863176944,
+          "std": 2.6870506738557367,
+          "semantic_description": "Number of installments the payment was split into."
+        },
+        "payment_value": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 29077,
+          "min": 0.0,
+          "max": 13664.08,
+          "mean": 154.10038041699553,
+          "std": 217.49406386472577,
+          "semantic_description": "Total value of the payment made for an order."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Order Payments",
+      "description": "This table records payment details for customer orders, including payment method and installment information."
+    },
+    "olist_order_reviews_dataset": {
+      "row_count": 99224,
+      "columns": {
+        "review_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 98410,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for a review."
+        },
+        "order_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 98673,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Reference to the order the review is associated with."
+        },
+        "review_score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5,
+          "min": 1.0,
+          "max": 5.0,
+          "mean": 4.08642062404257,
+          "std": 1.3475791311148884,
+          "semantic_description": "A score representing the customer's rating of the order experience."
+        },
+        "review_comment_title": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 87656,
+          "unique_count": 4527,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Title of the review comment."
+        },
+        "review_comment_message": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 58247,
+          "unique_count": 36159,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Full message content of the review."
+        },
+        "review_creation_date": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 636,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Date when the customer created the review."
+        },
+        "review_answer_timestamp": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 98248,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Timestamp when the review was answered or acknowledged."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Order Reviews",
+      "description": "This table contains customer reviews and ratings regarding their order experiences. Includes textual comments and quantitative ratings."
+    },
+    "olist_orders_dataset": {
+      "row_count": 99441,
+      "columns": {
+        "order_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 99441,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for each order placed."
+        },
+        "customer_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 99441,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Identifier linking orders to customers."
+        },
+        "order_status": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 8,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Current status of the order (e.g., delivered, canceled)."
+        },
+        "order_purchase_timestamp": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 98875,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Timestamp when the order was purchased."
+        },
+        "order_approved_at": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 160,
+          "unique_count": 90733,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Timestamp when the order was approved."
+        },
+        "order_delivered_carrier_date": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 1783,
+          "unique_count": 81018,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Date when the order was delivered to the carrier."
+        },
+        "order_delivered_customer_date": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2965,
+          "unique_count": 95664,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Date when the order was delivered to the customer."
+        },
+        "order_estimated_delivery_date": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 459,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Estimated delivery date provided at the time of purchase."
+        }
+      },
+      "primary_key": "order_id",
+      "foreign_keys": [],
+      "role": "Orders",
+      "description": "The central table for capturing customer orders, includes information on order status, dates, and linked customer details."
+    },
+    "olist_products_dataset": {
+      "row_count": 32951,
+      "columns": {
+        "product_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 32951,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for each product available for sale."
+        },
+        "product_category_name": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 610,
+          "unique_count": 73,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Native language category name of the product."
+        },
+        "product_name_lenght": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 610,
+          "unique_count": 66,
+          "min": 5.0,
+          "max": 76.0,
+          "mean": 48.47694876472589,
+          "std": 10.245740725237479,
+          "semantic_description": "Length of the product name measured in characters."
+        },
+        "product_description_lenght": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 610,
+          "unique_count": 2960,
+          "min": 4.0,
+          "max": 3992.0,
+          "mean": 771.4952846232337,
+          "std": 635.1152246349546,
+          "semantic_description": "Length of the product description measured in characters."
+        },
+        "product_photos_qty": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 610,
+          "unique_count": 19,
+          "min": 1.0,
+          "max": 20.0,
+          "mean": 2.1889861166939797,
+          "std": 1.7367656379315015,
+          "semantic_description": "Number of photos available for the product."
+        },
+        "product_weight_g": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2,
+          "unique_count": 2204,
+          "min": 0.0,
+          "max": 40425.0,
+          "mean": 2276.4724877841513,
+          "std": 4282.038730977634,
+          "semantic_description": "Weight of the product in grams."
+        },
+        "product_length_cm": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2,
+          "unique_count": 99,
+          "min": 7.0,
+          "max": 105.0,
+          "mean": 30.81507784758263,
+          "std": 16.91445805406699,
+          "semantic_description": "Length of the product measured in centimeters."
+        },
+        "product_height_cm": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2,
+          "unique_count": 102,
+          "min": 2.0,
+          "max": 105.0,
+          "mean": 16.937661234028347,
+          "std": 13.637554061749832,
+          "semantic_description": "Height of the product measured in centimeters."
+        },
+        "product_width_cm": {
+          "type": "float64",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2,
+          "unique_count": 95,
+          "min": 6.0,
+          "max": 118.0,
+          "mean": 23.196728277034204,
+          "std": 12.07904745322808,
+          "semantic_description": "Width of the product measured in centimeters."
+        }
+      },
+      "primary_key": "product_id",
+      "foreign_keys": [],
+      "role": "Product Catalog",
+      "description": "Provides detailed information on products available in the catalogue, including physical attributes and category classifications."
+    },
+    "olist_sellers_dataset": {
+      "row_count": 3095,
+      "columns": {
+        "seller_id": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 3095,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Unique identifier for each seller."
+        },
+        "seller_zip_code_prefix": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2246,
+          "min": 1001.0,
+          "max": 99730.0,
+          "mean": 32291.059450726978,
+          "std": 32713.45382950907,
+          "semantic_description": "ZIP code prefix where the seller is located."
+        },
+        "seller_city": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 611,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "City where the seller is located."
+        },
+        "seller_state": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 23,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "State where the seller is located."
+        }
+      },
+      "primary_key": "seller_id",
+      "foreign_keys": [],
+      "role": "Seller Information",
+      "description": "Contains information about sellers registered on the platform, including their location details."
+    },
+    "product_category_name_translation": {
+      "row_count": 71,
+      "columns": {
+        "product_category_name": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 71,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Product category name in the original language used in the dataset."
+        },
+        "product_category_name_english": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 71,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Translation of product category name to English."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Category Translation",
+      "description": "Provides the English translation of product category names to assist international users."
+    }
+  },
+  "relationships": [],
+  "database_domain": "e-commerce",
+  "database_description": "This database is structured around an online e-commerce platform, capturing various aspects such as customer details, geographic information, order and payment transactions, product information, and seller data. It supports the analysis of customer purchasing behaviors, transaction processing, and business analytics."
+}

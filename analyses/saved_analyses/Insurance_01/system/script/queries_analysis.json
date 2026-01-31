@@ -1,0 +1,440 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Analysis of Policyholders",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Age Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 3.375,
+                "max_length": 5
+              },
+              "age": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 14.049960379216172,
+                "max": 1338.0,
+                "mean": 198.78212322378468,
+                "std": 460.6106090399993
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Sex Ratio",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 2,
+            "columns": {
+              "sex": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 5.0,
+                "max_length": 6
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 0.4947683109118087,
+                "max": 0.5052316890881914,
+                "mean": 0.5,
+                "std": 0.007398725662639545
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Children Count Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 3.375,
+                "max_length": 5
+              },
+              "children": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 7,
+                "min": 0.0,
+                "max": 1338.0,
+                "mean": 168.5375513159406,
+                "std": 472.5368318870757
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Lifestyle and Health Profile",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "BMI Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 3.375,
+                "max_length": 5
+              },
+              "bmi": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 6.098186911679017,
+                "max": 1338.0,
+                "mean": 191.9051979715832,
+                "std": 463.29524977918294
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Smoking Status Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 2,
+            "columns": {
+              "smoker": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 2.5,
+                "max_length": 3
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 0.20478325859491778,
+                "max": 0.7952167414050823,
+                "mean": 0.5,
+                "std": 0.41749951953465814
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Geographical Analysis",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Region Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "usa_region": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 9.0,
+                "max_length": 9
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 0.242152466367713,
+                "max": 0.27204783258594917,
+                "mean": 0.25,
+                "std": 0.014702776960318385
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Insurance Charges Analysis",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Charges Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 3.375,
+                "max_length": 5
+              },
+              "charges": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 1121.8739,
+                "max": 63770.42801,
+                "mean": 15296.621009604407,
+                "std": 20381.922846226596
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Charges by Age Group",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "age_group": {
+                "type": "category",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5
+              },
+              "average_charges": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 9098.192247953039,
+                "max": 18513.276226900827,
+                "mean": 13639.982262643747,
+                "std": 3768.8771949932616
+              }
+            }
+          }
+        },
+        {
+          "id": "4.3",
+          "title": "Charges by Smoking Status",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 2,
+            "columns": {
+              "smoker": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 2.5,
+                "max_length": 3
+              },
+              "average_charges": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 8434.268297856202,
+                "max": 32050.23183153285,
+                "mean": 20242.250064694526,
+                "std": 16699.007958916976
+              }
+            }
+          }
+        },
+        {
+          "id": "4.4",
+          "title": "Charges by Region",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "usa_region": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 9.0,
+                "max_length": 9
+              },
+              "average_charges": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 12346.937377292308,
+                "max": 14735.41143760989,
+                "mean": 13226.577176314308,
+                "std": 1116.1185121996104
+              }
+            }
+          }
+        },
+        {
+          "id": "4.5",
+          "title": "Charges by BMI",
+          "type": "correlation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 3,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 5.0,
+                "max_length": 7
+              },
+              "bmi": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 0.19834096883362912,
+                "max": 1.0,
+                "mean": 0.5991704844168145,
+                "std": 0.5668585371371787
+              },
+              "charges": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 0.19834096883362912,
+                "max": 1.0,
+                "mean": 0.5991704844168145,
+                "std": 0.5668585371371787
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Integrated Insights Analysis",
+      "queries": [
+        {
+          "id": "5.1",
+          "title": "Multi-Factor Charges Analysis",
+          "type": "multivariate",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 7,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 15.375,
+                "max_length": 26
+              },
+              "Coef.": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": -11556.957344441866,
+                "max": 23862.906341611986,
+                "mean": 1316.703843571187,
+                "std": 9937.945878729546
+              },
+              "Std.Err.": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 11.937490292158978,
+                "max": 985.6261886658593,
+                "mean": 401.7177913601225,
+                "std": 305.8635525023476
+              },
+              "t": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": -11.725497432333173,
+                "max": 57.52554255067426,
+                "mean": 9.284035027474625,
+                "std": 21.95974903666601
+              },
+              "P>|t|": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 0.0,
+                "max": 0.7385953795632756,
+                "mean": 0.16880668434784848,
+                "std": 0.2920508262428967
+              },
+              "[0.025": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": -13490.50877475589,
+                "max": 23049.12803730483,
+                "mean": 528.6342701375188,
+                "std": 10146.545169532603
+              },
+              "0.975]": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": -9623.405914127841,
+                "max": 24676.684645919144,
+                "mean": 2104.773417004855,
+                "std": 9761.824825517011
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+id,name,price,category,brand,stock_quantity,description
+1,Printer Lite,155.21,Electronics,LiteBrand,163,A lite quality printer.
+2,Laptop Ultra,1558.16,Electronics,UltraBrand,46,A ultra quality laptop.
+3,Headphones Premium,102.77,Electronics,PremiumBrand,452,A premium quality headphones.
+4,Smart Watch Classic,307.56,Electronics,ClassicBrand,56,A classic quality smart watch.
+5,Tablet Max,671.64,Electronics,MaxBrand,416,A max quality tablet.
+6,Smartphone Basic,801.18,Electronics,BasicBrand,160,A basic quality smartphone.
+7,Laptop Max,1730.79,Electronics,MaxBrand,169,A max quality laptop.
+8,Smart Watch Max,476.47,Electronics,MaxBrand,426,A max quality smart watch.
+9,Tablet Modern,623.13,Electronics,ModernBrand,282,A modern quality tablet.
+10,Camera Pro,597.31,Electronics,ProBrand,34,A pro quality camera.
+11,Headphones Ultra,237.65,Electronics,UltraBrand,73,A ultra quality headphones.
+12,Smartphone Vintage,903.12,Electronics,VintageBrand,409,A vintage quality smartphone.
+13,Tablet Classic,692.36,Electronics,ClassicBrand,41,A classic quality tablet.
+14,Tablet Vintage,732.82,Electronics,VintageBrand,146,A vintage quality tablet.
+15,Smart Watch Modern,317.27,Electronics,ModernBrand,120,A modern quality smart watch.
+16,Printer Premium,119.31,Electronics,PremiumBrand,259,A premium quality printer.
+17,Printer Max,211.84,Electronics,MaxBrand,472,A max quality printer.
+18,Tablet Eco,688.79,Electronics,EcoBrand,399,A eco quality tablet.
+19,Headphones Lite,199.36,Electronics,LiteBrand,16,A lite quality headphones.
+20,Camera Classic,613.58,Electronics,ClassicBrand,467,A classic quality camera.
+21,Camera Premium,1285.0,Electronics,PremiumBrand,140,A premium quality camera.
+22,Smartphone Vintage,659.99,Electronics,VintageBrand,459,A vintage quality smartphone.
+23,Toaster Classic,62.64,Home,ClassicBrand,304,A classic quality toaster.
+24,Microwave Pro,109.31,Home,ProBrand,331,A pro quality microwave.
+25,Microwave Vintage,135.59,Home,VintageBrand,218,A vintage quality microwave.
+26,Iron Max,26.71,Home,MaxBrand,361,A max quality iron.
+27,Air Purifier Eco,185.02,Home,EcoBrand,0,A eco quality air purifier.
+28,Blender Premium,76.09,Home,PremiumBrand,128,A premium quality blender.
+29,Microwave Vintage,149.74,Home,VintageBrand,353,A vintage quality microwave.
+30,Iron Basic,78.29,Home,BasicBrand,228,A basic quality iron.
+31,Microwave Eco,71.87,Home,EcoBrand,460,A eco quality microwave.
+32,Blender Lite,54.44,Home,LiteBrand,196,A lite quality blender.
+33,Coffee Maker Lite,141.19,Home,LiteBrand,22,A lite quality coffee maker.
+34,Toaster Premium,58.42,Home,PremiumBrand,375,A premium quality toaster.
+35,Iron Max,74.57,Home,MaxBrand,116,A max quality iron.
+36,Coffee Maker Vintage,138.3,Home,VintageBrand,317,A vintage quality coffee maker.
+37,Coffee Maker Vintage,108.22,Home,VintageBrand,388,A vintage quality coffee maker.
+38,Iron Classic,22.75,Home,ClassicBrand,446,A classic quality iron.
+39,Toaster Basic,24.64,Home,BasicBrand,30,A basic quality toaster.
+40,Iron Vintage,62.3,Home,VintageBrand,356,A vintage quality iron.
+41,Air Purifier Vintage,163.81,Home,VintageBrand,387,A vintage quality air purifier.
+42,Toaster Vintage,69.6,Home,VintageBrand,428,A vintage quality toaster.
+43,Microwave Vintage,155.23,Home,VintageBrand,91,A vintage quality microwave.
+44,Vacuum Cleaner Basic,304.17,Home,BasicBrand,262,A basic quality vacuum cleaner.
+45,Desk Basic,259.25,Furniture,BasicBrand,190,A basic quality desk.
+46,Bed Frame Classic,956.75,Furniture,ClassicBrand,401,A classic quality bed frame.
+47,Dining Table Max,468.66,Furniture,MaxBrand,247,A max quality dining table.
+48,Sofa Ultra,811.99,Furniture,UltraBrand,331,A ultra quality sofa.
+49,Bed Frame Vintage,561.79,Furniture,VintageBrand,427,A vintage quality bed frame.
+50,Desk Eco,408.56,Furniture,EcoBrand,78,A eco quality desk.
+51,Office Chair Modern,464.81,Furniture,ModernBrand,419,A modern quality office chair.
+52,Bed Frame Ultra,429.61,Furniture,UltraBrand,165,A ultra quality bed frame.
+53,Sofa Classic,680.63,Furniture,ClassicBrand,228,A classic quality sofa.
+54,Dining Table Basic,294.91,Furniture,BasicBrand,300,A basic quality dining table.
+55,Office Chair Modern,414.86,Furniture,ModernBrand,38,A modern quality office chair.
+56,Sofa Ultra,1424.66,Furniture,UltraBrand,324,A ultra quality sofa.
+57,Dining Table Max,304.48,Furniture,MaxBrand,137,A max quality dining table.
+58,Bed Frame Max,354.47,Furniture,MaxBrand,307,A max quality bed frame.
+59,Bookshelf Vintage,52.71,Furniture,VintageBrand,357,A vintage quality bookshelf.
+60,Bed Frame Premium,830.84,Furniture,PremiumBrand,34,A premium quality bed frame.
+61,Sofa Ultra,1128.29,Furniture,UltraBrand,207,A ultra quality sofa.
+62,Desk Ultra,517.22,Furniture,UltraBrand,164,A ultra quality desk.
+63,Bookshelf Premium,164.95,Furniture,PremiumBrand,448,A premium quality bookshelf.
+64,Desk Vintage,150.99,Furniture,VintageBrand,56,A vintage quality desk.
+65,Bookshelf Eco,166.44,Furniture,EcoBrand,142,A eco quality bookshelf.
+66,Dining Table Lite,638.33,Furniture,LiteBrand,30,A lite quality dining table.
+67,Sneakers Premium,106.09,Clothing,PremiumBrand,222,A premium quality sneakers.
+68,Dress Vintage,49.18,Clothing,VintageBrand,52,A vintage quality dress.
+69,Jacket Lite,65.79,Clothing,LiteBrand,128,A lite quality jacket.
+70,Sweater Modern,40.42,Clothing,ModernBrand,22,A modern quality sweater.
+71,Sneakers Eco,129.91,Clothing,EcoBrand,216,A eco quality sneakers.
+72,Sweater Pro,74.56,Clothing,ProBrand,112,A pro quality sweater.
+73,Sneakers Ultra,97.0,Clothing,UltraBrand,100,A ultra quality sneakers.
+74,Jacket Lite,196.1,Clothing,LiteBrand,83,A lite quality jacket.
+75,T-Shirt Premium,40.66,Clothing,PremiumBrand,439,A premium quality t-shirt.
+76,Jeans Basic,81.27,Clothing,BasicBrand,321,A basic quality jeans.
+77,Jeans Eco,63.44,Clothing,EcoBrand,384,A eco quality jeans.
+78,Jacket Eco,221.44,Clothing,EcoBrand,217,A eco quality jacket.
+79,Jeans Lite,46.45,Clothing,LiteBrand,366,A lite quality jeans.
+80,Jeans Vintage,43.84,Clothing,VintageBrand,387,A vintage quality jeans.
+81,Dress Max,44.3,Clothing,MaxBrand,210,A max quality dress.
+82,Dress Pro,120.52,Clothing,ProBrand,237,A pro quality dress.
+83,Jeans Max,105.08,Clothing,MaxBrand,38,A max quality jeans.
+84,Dress Vintage,47.26,Clothing,VintageBrand,298,A vintage quality dress.
+85,Jacket Eco,122.34,Clothing,EcoBrand,64,A eco quality jacket.
+86,Sneakers Max,138.41,Clothing,MaxBrand,333,A max quality sneakers.
+87,Jacket Ultra,113.3,Clothing,UltraBrand,375,A ultra quality jacket.
+88,Sneakers Classic,145.06,Clothing,ClassicBrand,446,A classic quality sneakers.
+89,Technical Book Premium,52.14,Books,PremiumBrand,48,A premium quality technical book.
+90,Art Book Modern,93.13,Books,ModernBrand,372,A modern quality art book.
+91,Novel Vintage,10.09,Books,VintageBrand,458,A vintage quality novel.
+92,Novel Modern,29.18,Books,ModernBrand,343,A modern quality novel.
+93,Biography Basic,36.66,Books,BasicBrand,351,A basic quality biography.
+94,Technical Book Classic,89.11,Books,ClassicBrand,359,A classic quality technical book.
+95,Technical Book Premium,69.94,Books,PremiumBrand,356,A premium quality technical book.
+96,Biography Pro,22.7,Books,ProBrand,244,A pro quality biography.
+97,Novel Premium,21.63,Books,PremiumBrand,100,A premium quality novel.
+98,Novel Ultra,19.27,Books,UltraBrand,192,A ultra quality novel.
+99,Cookbook Ultra,42.42,Books,UltraBrand,199,A ultra quality cookbook.
+100,Cookbook Vintage,45.84,Books,VintageBrand,151,A vintage quality cookbook.

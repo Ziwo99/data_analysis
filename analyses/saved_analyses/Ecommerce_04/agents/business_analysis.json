@@ -1,0 +1,294 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Demographics Analysis",
+      "context": "Understanding distribution and geographic information of customers.",
+      "tables": [
+        "olist_customers_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Distribution by City",
+          "why": "To identify the concentration of customers in various cities.",
+          "answers": [
+            "Number of customers in each city"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Distribution by State",
+          "why": "To understand which states have the highest number of customers.",
+          "answers": [
+            "Number of customers in each state"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Customer Geolocation Mapping",
+          "why": "To map customers' geographic locations using zip codes.",
+          "answers": [
+            "Geographic coordinates for customer zip codes"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_zip_code_prefix",
+            "olist_geolocation_dataset.geolocation_lat",
+            "olist_geolocation_dataset.geolocation_lng"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order Analysis",
+      "context": "Analyze data regarding the orders placed, their statuses, and timelines.",
+      "tables": [
+        "olist_orders_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "why": "To examine the distribution of order statuses to assess fulfillment dynamics.",
+          "answers": [
+            "Count of each order status"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_status"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Order Purchase Trends",
+          "why": "To understand order volume patterns over time.",
+          "answers": [
+            "Orders per month/year"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_purchase_timestamp"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Delivery Times vs. Estimated",
+          "why": "To identify any discrepancies between estimated and actual delivery times.",
+          "answers": [
+            "Difference between actual and estimated delivery dates"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_delivered_customer_date",
+            "olist_orders_dataset.order_estimated_delivery_date"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Order Item Analysis",
+      "context": "Examine specific items within each order to understand product-level details in transactions.",
+      "tables": [
+        "olist_order_items_dataset",
+        "olist_products_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Average Order Item Price",
+          "why": "To calculate the average price per item ordered.",
+          "answers": [
+            "Average price of order items"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.price"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Freight Cost Analysis",
+          "why": "To determine the impact of freight costs on order item transactions.",
+          "answers": [
+            "Aggregate freight value for ordered items"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.freight_value"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Product Popularity by Orders",
+          "why": "To assess which products are most frequently ordered.",
+          "answers": [
+            "Frequency of each product ordered"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.product_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Payment Analysis",
+      "context": "Analyze payment methods and behaviors to understand customer financial behaviors.",
+      "tables": [
+        "olist_order_payments_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Payment Method Distribution",
+          "why": "To analyze the preferences for different payment methods.",
+          "answers": [
+            "Proportion of orders by payment type"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Installments Analysis",
+          "why": "To investigate the prevalence and patterns of installment payments.",
+          "answers": [
+            "Average number of installments per order"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_installments"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Review Analysis",
+      "context": "Analyze customer feedback and satisfaction through order reviews.",
+      "tables": [
+        "olist_order_reviews_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Review Score Summary",
+          "why": "To evaluate overall customer satisfaction trends.",
+          "answers": [
+            "Average review score"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Review Volume Over Time",
+          "why": "To monitor the volume of reviews submitted over time, indicating engagement.",
+          "answers": [
+            "Number of reviews per month/year"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_creation_date"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Product Analysis",
+      "context": "Explore product details to understand inventory characteristics and organization.",
+      "tables": [
+        "olist_products_dataset",
+        "product_category_name_translation"
+      ],
+      "sub_analyses": [
+        {
+          "id": "6.1",
+          "title": "Product Category Presence",
+          "why": "To summarize the distribution of products across different categories.",
+          "answers": [
+            "Count of products per category"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_category_name"
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Product Dimension Statistics",
+          "why": "To gather insights on the physical properties of the inventory, identifying size/weight distribution.",
+          "answers": [
+            "Average dimensions of products (length, width, height)"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_length_cm",
+            "olist_products_dataset.product_width_cm",
+            "olist_products_dataset.product_height_cm"
+          ]
+        },
+        {
+          "id": "6.3",
+          "title": "Translation Check of Product Categories",
+          "why": "To ensure product category names are accurately translated for user clarity.",
+          "answers": [
+            "Translating product category names to English"
+          ],
+          "tables_columns": [
+            "product_category_name_translation.product_category_name",
+            "product_category_name_translation.product_category_name_english"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Seller Analysis",
+      "context": "Investigate seller data to understand geographic and operational distribution of sellers.",
+      "tables": [
+        "olist_sellers_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "7.1",
+          "title": "Seller Distribution by City",
+          "why": "To identify which cities have the highest concentration of sellers.",
+          "answers": [
+            "Number of sellers in each city"
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_city"
+          ]
+        },
+        {
+          "id": "7.2",
+          "title": "Seller Distribution by State",
+          "why": "To understand the spread of seller operations across different states.",
+          "answers": [
+            "Number of sellers in each state"
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_state"
+          ]
+        },
+        {
+          "id": "7.3",
+          "title": "Seller Geolocation Analysis",
+          "why": "To align seller locations with geographic coordinates, aiding in logistics mapping.",
+          "answers": [
+            "Geographic coordinates for seller zip codes"
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_zip_code_prefix",
+            "olist_geolocation_dataset.geolocation_lat",
+            "olist_geolocation_dataset.geolocation_lng"
+          ]
+        }
+      ]
+    }
+  ]
+}

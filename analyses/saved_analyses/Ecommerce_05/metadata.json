@@ -1,0 +1,9 @@
+{
+  "name": "Ecommerce_05",
+  "folder_name": "Ecommerce_05",
+  "date": "2026-01-04T23:01:31.748915",
+  "dataset": "2-ecommerce",
+  "source": "existing",
+  "pipeline_mode": "multi",
+  "openai_model": "gpt-4o"
+}

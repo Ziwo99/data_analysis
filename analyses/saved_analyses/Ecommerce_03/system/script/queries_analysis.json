@@ -1,0 +1,330 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Distribution by Region",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Customer Count by State",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 27,
+            "column_count": 2,
+            "columns": {
+              "customer_state": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "avg_length": 2.0,
+                "max_length": 2
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "min": 46.0,
+                "max": 41746.0,
+                "mean": 3683.0,
+                "std": 8270.437663984063
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Count by City",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4310,
+            "column_count": 3,
+            "columns": {
+              "customer_city": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4119,
+                "avg_length": 11.226218097447795,
+                "max_length": 32
+              },
+              "customer_state": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "avg_length": 2.0,
+                "max_length": 2
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 213,
+                "min": 1.0,
+                "max": 15540.0,
+                "mean": 23.07215777262181,
+                "std": 273.04430079568675
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Average Number of Customers per Zip Code",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_customers_per_zip": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 6.632052821128451,
+                "max": 6.632052821128451,
+                "mean": 6.632052821128451,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Sales Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Total Sales Revenue",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "total_revenue": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 13591643.700000003,
+                "max": 13591643.700000003,
+                "mean": 13591643.700000003,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Revenue by Product Category",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 73,
+            "column_count": 2,
+            "columns": {
+              "product_category_name": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 73,
+                "avg_length": 17.232876712328768,
+                "max_length": 46
+              },
+              "total_revenue": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 73,
+                "min": 283.28999999999996,
+                "max": 1258681.34,
+                "mean": 183727.51260273973,
+                "std": 301015.1347272055
+              }
+            }
+          }
+        },
+        {
+          "id": "2.3",
+          "title": "Average Order Value",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_order_value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 137.7540763788945,
+                "max": 137.7540763788945,
+                "mean": 137.7540763788945,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Shipping and Delivery Performance",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Average Delivery Time",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_delivery_time": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 11.642968215463084,
+                "max": 11.642968215463084,
+                "mean": 11.642968215463084,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Late Deliveries Count",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "late_deliveries_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 7827.0,
+                "max": 7827.0,
+                "mean": 7827.0,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "3.3",
+          "title": "Freight Cost vs Delivery Performance",
+          "type": "correlation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "freight_delivery_correlation": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 0.21264337662389057,
+                "max": 0.21264337662389057,
+                "mean": 0.21264337662389057,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Customer Satisfaction Analysis",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Average Review Score",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_review_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 4.08642062404257,
+                "max": 4.08642062404257,
+                "mean": 4.08642062404257,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Review Score Distribution",
+          "type": "distribution",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "review_score": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 1.0,
+                "max": 5.0,
+                "mean": 3.0,
+                "std": 1.5811388300841898
+              },
+              "distribution": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 0.03175642989599291,
+                "max": 0.5777634443279852,
+                "mean": 0.2,
+                "std": 0.21913831655847263
+              }
+            }
+          }
+        },
+        {
+          "id": "4.3",
+          "title": "Detailed Review Analysis",
+          "type": "text_analysis",
+          "analysis": {
+            "row_count": 35098,
+            "column_count": 2,
+            "columns": {
+              "word": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 35098,
+                "avg_length": 8.101572739187418,
+                "max_length": 200
+              },
+              "frequency": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 434,
+                "min": 1.0,
+                "max": 14802.0,
+                "mean": 13.63550629665508,
+                "std": 205.1349890577818
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

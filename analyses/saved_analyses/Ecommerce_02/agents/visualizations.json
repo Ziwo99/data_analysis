@@ -1,0 +1,610 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Geographic Distribution Analysis",
+      "context": "Understanding the distribution of customers across different regions is crucial for logistics and marketing strategies.",
+      "tables": [
+        "olist_customers_dataset",
+        "olist_geolocation_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Customer Distribution by State",
+          "why": "Identify which states have the highest concentration of customers.",
+          "answers": [
+            "State with maximum customers"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group customers by state and count them",
+            "result = olist_customers_dataset.groupby('customer_state').size().reset_index(name='customer_count')",
+            "# Sort states based on the number of customers",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot for customer distribution by state",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "ax.bar(result['customer_state'], result['customer_count'], color='skyblue')",
+            "ax.set_xlabel('State')",
+            "ax.set_ylabel('Number of Customers')",
+            "ax.set_title('Customer Distribution by State')",
+            "ax.set_xticklabels(result['customer_state'], rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is ideal for comparing the discrete categories of states against the number of customers, clearly showing which states have the highest customer counts."
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Distribution by City",
+          "why": "Determine the cities with the highest number of customers for targeted geographic marketing.",
+          "answers": [
+            "City with maximum customers"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_city"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group customers by city and count them",
+            "result = olist_customers_dataset.groupby('customer_city').size().reset_index(name='customer_count')",
+            "# Sort cities based on the number of customers",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Plot the top 10 cities with the most customers",
+            "top_cities = result.head(10)",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "ax.bar(top_cities['customer_city'], top_cities['customer_count'], color='lightcoral')",
+            "ax.set_xlabel('City')",
+            "ax.set_ylabel('Number of Customers')",
+            "ax.set_title('Top 10 Cities by Number of Customers')",
+            "ax.set_xticklabels(top_cities['customer_city'], rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "Due to the large number of cities, a bar chart focusing on the top 10 cities helps in easily identifying cities with the highest customer concentration."
+        },
+        {
+          "id": "1.3",
+          "title": "Distribution of Customers based on Zip Code",
+          "why": "Analyze the finer distribution trends within states by zip code.",
+          "answers": [
+            "Zip code with maximum customers"
+          ],
+          "tables_columns": [
+            "olist_customers_dataset.customer_zip_code_prefix"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group customers by zip code and count them",
+            "result = olist_customers_dataset.groupby('customer_zip_code_prefix').size().reset_index(name='customer_count')",
+            "# Sort zip codes based on the number of customers",
+            "result = result.sort_values(by='customer_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Plot the top 10 zip codes with the most customers",
+            "top_zip_codes = result.head(10)",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "ax.bar(top_zip_codes['customer_zip_code_prefix'].astype(str), top_zip_codes['customer_count'], color='forestgreen')",
+            "ax.set_xlabel('Zip Code Prefix')",
+            "ax.set_ylabel('Number of Customers')",
+            "ax.set_title('Top 10 Zip Codes by Number of Customers')",
+            "ax.set_xticklabels(top_zip_codes['customer_zip_code_prefix'], rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart allows for direct comparison of customer counts among different zip codes, ideal for this discrete data."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order Analysis",
+      "context": "Provide insights into order volumes, statuses, and processing timelines.",
+      "tables": [
+        "olist_orders_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "why": "Ascertain the breakdown of orders by their current status.",
+          "answers": [
+            "Proportion of orders by status"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_status"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the number of orders by status",
+            "result = olist_orders_dataset['order_status'].value_counts(normalize=True).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['order_status', 'proportion']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a pie chart for order status distribution",
+            "fig, ax = plt.subplots(figsize=(8, 8))",
+            "ax.pie(result['proportion'], labels=result['order_status'], autopct='%1.1f%%', startangle=90, colors=plt.cm.tab20.colors)",
+            "ax.set_title('Order Status Distribution')",
+            "plt.axis('equal')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "pie",
+          "justification": "A pie chart effectively shows the proportional distribution of different order statuses, highlighting the most and least common statuses."
+        },
+        {
+          "id": "2.2",
+          "title": "Order Volume Over Time",
+          "why": "Identify trends in order placements over time.",
+          "answers": [
+            "Monthly trend of order placements"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_purchase_timestamp"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Convert the purchase timestamp to datetime",
+            "olist_orders_dataset['order_purchase_timestamp'] = pd.to_datetime(olist_orders_dataset['order_purchase_timestamp'])",
+            "# Extract month and year from the purchase timestamp",
+            "olist_orders_dataset['month_year'] = olist_orders_dataset['order_purchase_timestamp'].dt.to_period('M')",
+            "# Count the number of orders by month",
+            "result = olist_orders_dataset.groupby('month_year').size().reset_index(name='order_count')",
+            "# Sort by month_year",
+            "result = result.sort_values(by='month_year')"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a line plot for order volume over time",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "ax.plot(result['month_year'].astype(str), result['order_count'], marker='o', color='navy')",
+            "ax.set_xlabel('Month/Year')",
+            "ax.set_ylabel('Order Count')",
+            "ax.set_title('Order Volume Over Time')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "line",
+          "justification": "A line chart is chosen to display monthly trends over time, making it easy to observe fluctuations and identify any seasonal patterns."
+        },
+        {
+          "id": "2.3",
+          "title": "Order Approval Timeliness",
+          "why": "Evaluate how quickly orders are being approved post-purchase.",
+          "answers": [
+            "Average time taken for order approval"
+          ],
+          "tables_columns": [
+            "olist_orders_dataset.order_purchase_timestamp",
+            "olist_orders_dataset.order_approved_at"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Convert the necessary columns to datetime",
+            "olist_orders_dataset['order_purchase_timestamp'] = pd.to_datetime(olist_orders_dataset['order_purchase_timestamp'])",
+            "olist_orders_dataset['order_approved_at'] = pd.to_datetime(olist_orders_dataset['order_approved_at'])",
+            "# Calculate the time taken for order approval",
+            "olist_orders_dataset['approval_time'] = (olist_orders_dataset['order_approved_at'] - olist_orders_dataset['order_purchase_timestamp']).dt.total_seconds() / 3600",
+            "# Compute the average approval time and store it in a DataFrame",
+            "result = pd.DataFrame({'average_approval_time': [olist_orders_dataset['approval_time'].mean()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Create a bar plot to show average approval time",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "ax.bar(['Average Approval Time'], result['average_approval_time'].iloc[0], color='darkorange')",
+            "ax.set_ylabel('Average Hours')",
+            "ax.set_title('Average Order Approval Time')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "Since this analysis resulted in a singular average value, a simple bar plot visually highlights the average approval time in an easily interpretable manner."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product Analysis",
+      "context": "Understand product characteristics and their impact on sales.",
+      "tables": [
+        "olist_products_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Product Category Distribution",
+          "why": "Assess the diversity of products by category name.",
+          "answers": [
+            "Proportion of products by category"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_category_name"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Count the number of products by category",
+            "result = olist_products_dataset['product_category_name'].value_counts(normalize=True).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['product_category_name', 'proportion']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Pie chart of top 10 product categories by proportion",
+            "top_categories = result.head(10)",
+            "fig, ax = plt.subplots(figsize=(10, 10))",
+            "ax.pie(top_categories['proportion'], labels=top_categories['product_category_name'], autopct='%1.1f%%', startangle=140, colors=plt.cm.tab20.colors)",
+            "ax.set_title('Top 10 Product Category Distribution')",
+            "plt.axis('equal')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "pie",
+          "justification": "A pie chart provides a clear visual of the proportion each category contributes to the top product categories, useful for a quick comparative overview."
+        },
+        {
+          "id": "3.2",
+          "title": "Average Product Dimensions",
+          "why": "Determine the average size characteristics of products in the catalog.",
+          "answers": [
+            "Average product dimensions (length, height, width)"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_length_cm",
+            "olist_products_dataset.product_height_cm",
+            "olist_products_dataset.product_width_cm"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average dimensions of products",
+            "result = olist_products_dataset[['product_length_cm', 'product_height_cm', 'product_width_cm']].mean().reset_index()",
+            "# Rename columns for better understanding",
+            "result.columns = ['dimension', 'average_value']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot for average product dimensions",
+            "fig, ax = plt.subplots(figsize=(8, 6))",
+            "ax.bar(result['dimension'], result['average_value'], color=['skyblue', 'coral', 'lime'])",
+            "ax.set_ylabel('Average Value (cm)')",
+            "ax.set_title('Average Product Dimensions')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively compares the average dimensions for each measurement type (length, height, width), providing a straightforward comparison."
+        },
+        {
+          "id": "3.3",
+          "title": "Product Weight Analysis",
+          "why": "Analyze the weight distribution to understand shipping costs.",
+          "answers": [
+            "Average and distribution of product weight"
+          ],
+          "tables_columns": [
+            "olist_products_dataset.product_weight_g"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the descriptive statistics for product weight",
+            "result = olist_products_dataset['product_weight_g'].describe().reset_index()",
+            "# Calculate the average weight separately and concatenate it to the result",
+            "avg_weight = olist_products_dataset['product_weight_g'].mean()",
+            "# Create a DataFrame for average weight",
+            "avg_weight_df = pd.DataFrame({'index': ['average_weight'], 'product_weight_g': [avg_weight]})",
+            "# Concatenate the descriptive statistics with the average weight",
+            "result = pd.concat([result, avg_weight_df], ignore_index=True)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Histogram of product weights",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "ax.hist(olist_products_dataset['product_weight_g'], bins=30, color='mediumseagreen', edgecolor='black')",
+            "ax.set_xlabel('Product Weight (g)')",
+            "ax.set_ylabel('Frequency')",
+            "ax.set_title('Distribution of Product Weights')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "histogram",
+          "justification": "A histogram is suitable for illustrating the distribution of product weights, which can uncover patterns and outliers in the weight data."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Seller Distribution Analysis",
+      "context": "Understand the geographic distribution and concentration of sellers.",
+      "tables": [
+        "olist_sellers_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Seller Distribution by State",
+          "why": "Identify which states have the highest concentration of sellers.",
+          "answers": [
+            "State with maximum sellers"
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_state"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group sellers by state and count them",
+            "result = olist_sellers_dataset.groupby('seller_state').size().reset_index(name='seller_count')",
+            "# Sort states based on the number of sellers",
+            "result = result.sort_values(by='seller_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot of sellers by state",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "ax.bar(result['seller_state'], result['seller_count'], color='gold')",
+            "ax.set_xlabel('State')",
+            "ax.set_ylabel('Number of Sellers')",
+            "ax.set_title('Seller Distribution by State')",
+            "ax.set_xticklabels(result['seller_state'], rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is used to allow clear comparison of seller counts across states, identifying regions with the highest seller concentration."
+        },
+        {
+          "id": "4.2",
+          "title": "Seller Distribution by City",
+          "why": "Determine cities with the highest number of sellers for targeted relationship management.",
+          "answers": [
+            "City with maximum sellers"
+          ],
+          "tables_columns": [
+            "olist_sellers_dataset.seller_city"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group sellers by city and count them",
+            "result = olist_sellers_dataset.groupby('seller_city').size().reset_index(name='seller_count')",
+            "# Sort cities based on the number of sellers",
+            "result = result.sort_values(by='seller_count', ascending=False)"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Plot the top 10 cities with the most sellers",
+            "top_cities = result.head(10)",
+            "fig, ax = plt.subplots(figsize=(12, 6))",
+            "ax.bar(top_cities['seller_city'], top_cities['seller_count'], color='mediumvioletred')",
+            "ax.set_xlabel('City')",
+            "ax.set_ylabel('Number of Sellers')",
+            "ax.set_title('Top 10 Cities by Number of Sellers')",
+            "ax.set_xticklabels(top_cities['seller_city'], rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar charts focus on the top 10 cities, effectively visualizing which cities have the most seller activity for better geographic insight."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Order Item Financial Analysis",
+      "context": "Evaluate the financial aspects related to order items.",
+      "tables": [
+        "olist_order_items_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Average Price of Order Items",
+          "why": "Calculate the average selling price of order items.",
+          "answers": [
+            "Average price per order item"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average price of order items",
+            "result = pd.DataFrame({'average_price': [olist_order_items_dataset['price'].mean()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot for average price of order items",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "ax.bar(['Average Price'], result['average_price'].iloc[0], color='dodgerblue')",
+            "ax.set_ylabel('Price (BRL)')",
+            "ax.set_title('Average Price of Order Items')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "Given the singular value resulting from this analysis, a bar plot is appropriate to clearly present the average price in a straightforward manner."
+        },
+        {
+          "id": "5.2",
+          "title": "Shipping Cost Analysis",
+          "why": "Understand the shipping expense trends for different order items.",
+          "answers": [
+            "Average shipping cost per order item"
+          ],
+          "tables_columns": [
+            "olist_order_items_dataset.freight_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average freight value of order items",
+            "result = pd.DataFrame({'average_freight_value': [olist_order_items_dataset['freight_value'].mean()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot for average freight value of order items",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "ax.bar(['Average Freight Value'], result['average_freight_value'].iloc[0], color='firebrick')",
+            "ax.set_ylabel('Freight Value (BRL)')",
+            "ax.set_title('Average Freight Value of Order Items')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "The use of a singular value bar plot suits this analysis well, offering a direct view of average shipping costs in a simplified format."
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Payment Method Analysis",
+      "context": "Insight into customer payment preferences and behaviors.",
+      "tables": [
+        "olist_order_payments_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "6.1",
+          "title": "Payment Type Distribution",
+          "why": "Understand which payment methods are most preferred by customers.",
+          "answers": [
+            "Proportion of payment methods used"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the proportion of each payment type used",
+            "result = olist_order_payments_dataset['payment_type'].value_counts(normalize=True).reset_index()",
+            "# Rename columns for clarity",
+            "result.columns = ['payment_type', 'proportion']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Pie chart of payment method distribution",
+            "fig, ax = plt.subplots(figsize=(8, 8))",
+            "ax.pie(result['proportion'], labels=result['payment_type'], autopct='%1.1f%%', startangle=90, colors=['gold', 'lightblue', 'lightgreen', 'lightpink', 'lightgrey'])",
+            "ax.set_title('Payment Method Distribution')",
+            "plt.axis('equal')",
+            "result_plot = fig"
+          ],
+          "visualization_type": "pie",
+          "justification": "Pie charts are effective for visualizing parts of a whole, making them ideal for representing the distribution of payment methods proportionally."
+        },
+        {
+          "id": "6.2",
+          "title": "Average Payment Value by Type",
+          "why": "Analyze if certain payment methods involve higher transaction values.",
+          "answers": [
+            "Average payment value for each payment type"
+          ],
+          "tables_columns": [
+            "olist_order_payments_dataset.payment_type",
+            "olist_order_payments_dataset.payment_value"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average payment value for each payment type",
+            "result = olist_order_payments_dataset.groupby('payment_type')['payment_value'].mean().reset_index()",
+            "# Rename columns for better understanding",
+            "result.columns = ['payment_type', 'average_payment_value']"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot of average payment values by type",
+            "fig, ax = plt.subplots(figsize=(10, 6))",
+            "ax.bar(result['payment_type'], result['average_payment_value'], color=['salmon', 'mediumorchid', 'cyan', 'gray', 'lime'])",
+            "ax.set_xlabel('Payment Type')",
+            "ax.set_ylabel('Average Payment Value (BRL)')",
+            "ax.set_title('Average Payment Value by Payment Type')",
+            "ax.set_xticklabels(result['payment_type'], rotation=45, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar charts are chosen to facilitate direct comparison of averages across payment types, allowing for easy visualization of differences in transaction values."
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Order Review Analysis",
+      "context": "Assess customer feedback to improve service and product offerings.",
+      "tables": [
+        "olist_order_reviews_dataset"
+      ],
+      "sub_analyses": [
+        {
+          "id": "7.1",
+          "title": "Average Review Score",
+          "why": "Calculate the overall satisfaction score as indicated by customers.",
+          "answers": [
+            "Average customer review score"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the average review score",
+            "result = pd.DataFrame({'average_review_score': [olist_order_reviews_dataset['review_score'].mean()]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot for average review score",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "ax.bar(['Average Review Score'], result['average_review_score'].iloc[0], color='purple')",
+            "ax.set_ylabel('Score')",
+            "ax.set_title('Average Review Score')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "A singular average score is best represented in a bar plot, providing clarity on customer satisfaction levels from reviews."
+        },
+        {
+          "id": "7.2",
+          "title": "Review Comment Volume",
+          "why": "Gauge the extent and frequency of detailed feedback provided by customers.",
+          "answers": [
+            "Proportion of orders with review comments"
+          ],
+          "tables_columns": [
+            "olist_order_reviews_dataset.review_comment_message"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate the proportion of reviews with comments",
+            "proportion_with_comments = olist_order_reviews_dataset['review_comment_message'].notnull().mean()",
+            "# Compile result in a DataFrame",
+            "result = pd.DataFrame({'proportion_with_comments': [proportion_with_comments]})"
+          ],
+          "visualization_code": [
+            "import matplotlib.pyplot as plt",
+            "# Bar plot for proportion of orders with comments",
+            "fig, ax = plt.subplots(figsize=(6, 4))",
+            "ax.bar(['Proportion with Comments'], result['proportion_with_comments'].iloc[0], color='teal')",
+            "ax.set_ylabel('Proportion')",
+            "ax.set_title('Proportion of Orders with Review Comments')",
+            "plt.tight_layout()",
+            "result_plot = fig"
+          ],
+          "visualization_type": "bar",
+          "justification": "The use of a bar plot effectively highlights the proportion of orders with comments, summarizing how frequently detailed feedback is provided."
+        }
+      ]
+    }
+  ]
+}

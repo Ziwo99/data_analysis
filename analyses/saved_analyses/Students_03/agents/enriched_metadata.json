@@ -1,0 +1,114 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "students_performance": {
+      "row_count": 1000,
+      "columns": {
+        "gender": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The gender of the student, used to analyze differences in performance."
+        },
+        "race/ethnicity": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The race or ethnicity classification of the student, used for demographic analysis of performance."
+        },
+        "parental level of education": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The highest level of education attained by the student's parents, which may correlate with academic performance."
+        },
+        "lunch": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Indicates whether the student receives free or reduced lunch, a socioeconomic indicator."
+        },
+        "test preparation course": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Indicates whether the student completed a test preparation course, which can influence test scores."
+        },
+        "math score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 81,
+          "min": 0.0,
+          "max": 100.0,
+          "mean": 66.089,
+          "std": 15.163080096009468,
+          "semantic_description": "The student's score in mathematics, reflecting their performance in this subject."
+        },
+        "reading score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 72,
+          "min": 17.0,
+          "max": 100.0,
+          "mean": 69.169,
+          "std": 14.60019193725222,
+          "semantic_description": "The student's score in reading, reflecting their performance in this subject."
+        },
+        "writing score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 77,
+          "min": 10.0,
+          "max": 100.0,
+          "mean": 68.054,
+          "std": 15.195657010869642,
+          "semantic_description": "The student's score in writing, reflecting their performance in this subject."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Student Performance Records",
+      "description": "Contains data on student performance metrics, demographics, and other factors affecting educational outcomes."
+    }
+  },
+  "relationships": [],
+  "database_domain": "education",
+  "database_description": "The database provides insights into student performance across different subjects and demographic factors. It is used in the education domain for analyzing the impact of various attributes such as parental education level, test preparation, and lunch benefits on student achievement."
+}

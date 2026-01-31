@@ -1,0 +1,9 @@
+{
+  "name": "Students_02",
+  "folder_name": "Students_02",
+  "date": "2026-01-03T18:45:05.297353",
+  "dataset": "1-students",
+  "source": "existing",
+  "pipeline_mode": "multi",
+  "openai_model": "gpt-4o"
+}

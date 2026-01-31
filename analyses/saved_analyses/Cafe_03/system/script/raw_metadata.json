@@ -1,0 +1,102 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "dirty_cafe_sales": {
+      "row_count": 10000,
+      "columns": {
+        "Transaction ID": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 10000,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Item": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 333,
+          "unique_count": 10,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Quantity": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 138,
+          "unique_count": 7,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Price Per Unit": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 179,
+          "unique_count": 8,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Total Spent": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 173,
+          "unique_count": 19,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Payment Method": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2579,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Location": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 3265,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Transaction Date": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 159,
+          "unique_count": 367,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        }
+      },
+      "primary_key": "Transaction ID",
+      "foreign_keys": []
+    }
+  },
+  "relationships": []
+}

@@ -1,0 +1,265 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Analysis",
+      "context": "Analyzing the demographic distribution of students.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Gender Distribution",
+          "why": "To understand the gender makeup of the student population.",
+          "answers": [
+            "Count and percentage of students by gender."
+          ],
+          "tables_columns": [
+            "students_performance.gender"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Calculate count and percentage of students by gender",
+            "result = students_performance['gender'].value_counts(normalize=True).reset_index()",
+            "result.columns = ['gender', 'percentage']",
+            "# Convert percentage to count",
+            "result['count'] = result['percentage'] * len(students_performance)",
+            "result['percentage'] = result['percentage'] * 100"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Race/Ethnicity Distribution",
+          "why": "To assess the diversity of the student population.",
+          "answers": [
+            "Count and percentage of students by race/ethnicity."
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Calculate count and percentage of students by race/ethnicity",
+            "result = students_performance['race/ethnicity'].value_counts(normalize=True).reset_index()",
+            "result.columns = ['race/ethnicity', 'percentage']",
+            "# Convert percentage to count",
+            "result['count'] = result['percentage'] * len(students_performance)",
+            "result['percentage'] = result['percentage'] * 100"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Parental Education Levels",
+          "why": "To study the educational background of students' families.",
+          "answers": [
+            "Count and percentage of students by parental level of education."
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Calculate count and percentage of students by parental level of education",
+            "result = students_performance['parental level of education'].value_counts(normalize=True).reset_index()",
+            "result.columns = ['parental level of education', 'percentage']",
+            "# Convert percentage to count",
+            "result['count'] = result['percentage'] * len(students_performance)",
+            "result['percentage'] = result['percentage'] * 100"
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Lunch Type Distribution",
+          "why": "To determine the socio-economic indicator through lunch benefit classification.",
+          "answers": [
+            "Count and percentage of students by lunch type."
+          ],
+          "tables_columns": [
+            "students_performance.lunch"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Calculate count and percentage of students by lunch type",
+            "result = students_performance['lunch'].value_counts(normalize=True).reset_index()",
+            "result.columns = ['lunch', 'percentage']",
+            "# Convert percentage to count",
+            "result['count'] = result['percentage'] * len(students_performance)",
+            "result['percentage'] = result['percentage'] * 100"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Performance Analysis",
+      "context": "Examining student performance across different subjects and demographics.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Math Score Distribution",
+          "why": "To gain insights into student proficiency in mathematics.",
+          "answers": [
+            "Minimum, maximum, mean, and standard deviation of math scores."
+          ],
+          "tables_columns": [
+            "students_performance.math score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate statistics for math scores",
+            "result = students_performance['math score'].agg(['min', 'max', 'mean', 'std']).reset_index()",
+            "result.columns = ['statistic', 'value']"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Reading Score Distribution",
+          "why": "To evaluate student performance in reading.",
+          "answers": [
+            "Minimum, maximum, mean, and standard deviation of reading scores."
+          ],
+          "tables_columns": [
+            "students_performance.reading score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate statistics for reading scores",
+            "result = students_performance['reading score'].agg(['min', 'max', 'mean', 'std']).reset_index()",
+            "result.columns = ['statistic', 'value']"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Writing Score Distribution",
+          "why": "To assess writing skills of students.",
+          "answers": [
+            "Minimum, maximum, mean, and standard deviation of writing scores."
+          ],
+          "tables_columns": [
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate statistics for writing scores",
+            "result = students_performance['writing score'].agg(['min', 'max', 'mean', 'std']).reset_index()",
+            "result.columns = ['statistic', 'value']"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Correlation Analysis",
+      "context": "Identifying correlations between demographic factors and performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Gender vs. Performance",
+          "why": "To look for gender-based performance differences.",
+          "answers": [
+            "Average score in math, reading, and writing by gender."
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate average scores by gender",
+            "result = students_performance.groupby('gender')[['math score', 'reading score', 'writing score']].mean().reset_index()",
+            "result.columns = ['gender', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Race/Ethnicity vs. Performance",
+          "why": "To explore the relationship between race/ethnicity and student achievement.",
+          "answers": [
+            "Average score in math, reading, and writing by race/ethnicity."
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate average scores by race/ethnicity",
+            "result = students_performance.groupby('race/ethnicity')[['math score', 'reading score', 'writing score']].mean().reset_index()",
+            "result.columns = ['race/ethnicity', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Parental Education vs. Performance",
+          "why": "To investigate the impact of parental education on student performance.",
+          "answers": [
+            "Average score in math, reading, and writing by parental level of education."
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate average scores by parental level of education",
+            "result = students_performance.groupby('parental level of education')[['math score', 'reading score', 'writing score']].mean().reset_index()",
+            "result.columns = ['parental level of education', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ]
+        },
+        {
+          "id": "3.4",
+          "title": "Lunch Type vs. Performance",
+          "why": "To determine the role of lunch type as a socio-economic indicator on performance.",
+          "answers": [
+            "Average score in math, reading, and writing by lunch type."
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate average scores by lunch type",
+            "result = students_performance.groupby('lunch')[['math score', 'reading score', 'writing score']].mean().reset_index()",
+            "result.columns = ['lunch', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ]
+        },
+        {
+          "id": "3.5",
+          "title": "Test Preparation Impact",
+          "why": "To analyze the effectiveness of test preparation courses on student scores.",
+          "answers": [
+            "Average score in math, reading, and writing by test preparation course completion."
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Aggregate average scores by test preparation course completion",
+            "result = students_performance.groupby('test preparation course')[['math score', 'reading score', 'writing score']].mean().reset_index()",
+            "result.columns = ['test preparation course', 'avg_math_score', 'avg_reading_score', 'avg_writing_score']"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+# UI
+streamlit
+streamlit-autorefresh
+
+# Data & analysis
+pandas
+openpyxl
+
+# AI agents (CrewAI uses OpenAI by default when OPENAI_API_KEY is set)
+crewai
+openai
+
+# Validation & models
+pydantic
+
+# Plotting (used when executing visualization code)
+matplotlib
+seaborn

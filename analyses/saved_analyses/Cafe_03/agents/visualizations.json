@@ -1,0 +1,394 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Transaction and Sales Analysis",
+      "context": "Analyzing the sales data to understand overall transaction dynamics and sales patterns in the cafe.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Number of Transactions",
+          "why": "To understand the total volume of transactions occurring in the cafe.",
+          "answers": [
+            "Total transactions count."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction ID"
+          ],
+          "type": "count",
+          "code_lines": [
+            "# Counting the total number of unique transactions",
+            "result = pd.DataFrame({'TotalTransactions': [dirty_cafe_sales['Transaction ID'].nunique()]})"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a simple bar chart to represent the total number of transactions",
+            "plt.figure(figsize=(6, 4))",
+            "plt.bar(['Total Transactions'], result['TotalTransactions'], color='dodgerblue')",
+            "plt.title('Total Number of Transactions')",
+            "plt.ylabel('Count of Transactions')",
+            "plt.xlabel('Transactions')",
+            "plt.xticks(rotation=0)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively displays the total number as it is a singular item that needs straightforward representation."
+        },
+        {
+          "id": "1.2",
+          "title": "Total Revenue Generated",
+          "why": "To determine the total revenue generated from sales.",
+          "answers": [
+            "Total revenue from all transactions."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "sum",
+          "code_lines": [
+            "# Converting 'Total Spent' to numeric to avoid type errors and summing to get the total revenue generated",
+            "result = pd.DataFrame({'TotalRevenue': [pd.to_numeric(dirty_cafe_sales['Total Spent'], errors='coerce').sum()]})"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a simple bar chart to represent the total revenue generated",
+            "plt.figure(figsize=(6, 4))",
+            "plt.bar(['Total Revenue'], result['TotalRevenue'], color='green')",
+            "plt.title('Total Revenue Generated')",
+            "plt.ylabel('Total Revenue ($)')",
+            "plt.xlabel('Revenue')",
+            "plt.xticks(rotation=0)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is used to present the total revenue value cleanly and allows for quick visual assessment of total amounts."
+        },
+        {
+          "id": "1.3",
+          "title": "Average Revenue Per Transaction",
+          "why": "To gauge the average revenue earned from each transaction in the cafe.",
+          "answers": [
+            "Average revenue per transaction."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Total Spent",
+            "dirty_cafe_sales.Transaction ID"
+          ],
+          "type": "average",
+          "code_lines": [
+            "# Calculating average revenue per transaction with corrected types for division",
+            "total_revenue = pd.to_numeric(dirty_cafe_sales['Total Spent'], errors='coerce').sum()",
+            "total_transactions = dirty_cafe_sales['Transaction ID'].nunique()",
+            "average_revenue = total_revenue / total_transactions if total_transactions else 0",
+            "result = pd.DataFrame({'AverageRevenue': [average_revenue]})"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a simple bar chart to represent average revenue per transaction",
+            "plt.figure(figsize=(6, 4))",
+            "plt.bar(['Average Revenue'], result['AverageRevenue'], color='salmon')",
+            "plt.title('Average Revenue Per Transaction')",
+            "plt.ylabel('Average Revenue ($)')",
+            "plt.xlabel('Revenue')",
+            "plt.xticks(rotation=0)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "The average amount is best represented as a single bar in a chart, emphasizing its singularity and importance."
+        },
+        {
+          "id": "1.4",
+          "title": "Transaction Frequency and Trends",
+          "why": "To examine transaction frequencies over time and identify any seasonal or temporal trends.",
+          "answers": [
+            "Transaction count per day or period."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date"
+          ],
+          "type": "frequency by date",
+          "code_lines": [
+            "# Converting 'Transaction Date' to datetime and counting transactions per date",
+            "dirty_cafe_sales['Transaction Date'] = pd.to_datetime(dirty_cafe_sales['Transaction Date'], errors='coerce')",
+            "result = dirty_cafe_sales.groupby(dirty_cafe_sales['Transaction Date'].dt.to_period('D')).size().reset_index(name='Transaction Count')"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a line plot to show transaction frequency over time",
+            "plt.figure(figsize=(12, 6))",
+            "plt.plot(result['Transaction Date'].astype(str), result['Transaction Count'], marker='o', linestyle='-', color='darkblue')",
+            "plt.title('Transaction Frequency Over Time')",
+            "plt.ylabel('Number of Transactions')",
+            "plt.xlabel('Date')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "line",
+          "justification": "A line plot effectively represents data trends over time, visualizing transaction counts to identify temporal patterns."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item-Specific Sales Analysis",
+      "context": "Investigating sales data at an item level to identify popular products and revenue contributions.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Top Selling Items",
+          "why": "To identify which items are sold the most in the cafe.",
+          "answers": [
+            "List of items with highest sales volumes."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Quantity"
+          ],
+          "type": "top items",
+          "code_lines": [
+            "# Grouping by 'Item' to sum quantities and determining top-selling ones",
+            "result = dirty_cafe_sales.groupby('Item')['Quantity'].sum().reset_index(name='Total Quantity Sold').sort_values(by='Total Quantity Sold', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a bar chart for top selling items by quantity",
+            "plt.figure(figsize=(10, 6))",
+            "plt.bar(result['Item'], result['Total Quantity Sold'], color='skyblue')",
+            "plt.title('Top Selling Items')",
+            "plt.ylabel('Total Quantity Sold')",
+            "plt.xlabel('Item')",
+            "plt.xticks(rotation=30, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart provides clear visibility of the quantities sold per item, making it easy to identify top sellers."
+        },
+        {
+          "id": "2.2",
+          "title": "Revenue Contribution by Item",
+          "why": "To understand which items contribute most to the overall revenue.",
+          "answers": [
+            "Revenue contribution per item."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "item revenue",
+          "code_lines": [
+            "# Grouping by 'Item' to sum the total spent, indicating revenue per item",
+            "result = dirty_cafe_sales.groupby('Item')['Total Spent'].sum().reset_index(name='Total Revenue').sort_values(by='Total Revenue', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a bar chart to display revenue contribution per item",
+            "plt.figure(figsize=(10, 6))",
+            "plt.bar(result['Item'], result['Total Revenue'], color='lightgreen')",
+            "plt.title('Revenue Contribution by Item')",
+            "plt.ylabel('Total Revenue ($)')",
+            "plt.xlabel('Item')",
+            "plt.xticks(rotation=30, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart clearly shows revenue distribution across items and highlights the key contributors to total revenue."
+        },
+        {
+          "id": "2.3",
+          "title": "Average Price Per Item Sold",
+          "why": "To determine the average selling price of items in the cafe.",
+          "answers": [
+            "Average price per item sold."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Price Per Unit"
+          ],
+          "type": "average price",
+          "code_lines": [
+            "# Calculating the average price per item sold using appropriate type conversion",
+            "result = dirty_cafe_sales.groupby('Item')['Price Per Unit'].apply(lambda x: pd.to_numeric(x, errors='coerce').mean()).reset_index(name='Average Price')"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a bar chart for average selling price per item",
+            "plt.figure(figsize=(10, 6))",
+            "plt.bar(result['Item'], result['Average Price'], color='salmon')",
+            "plt.title('Average Price Per Item Sold')",
+            "plt.ylabel('Average Price ($)')",
+            "plt.xlabel('Item')",
+            "plt.xticks(rotation=30, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively presents average prices per item, facilitating comparisons across different products."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Analysis",
+      "context": "Analyzing the use of different payment methods across transactions.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Preferred Payment Methods",
+          "why": "To determine the most frequently used payment methods in the cafe.",
+          "answers": [
+            "Distribution of different payment methods used."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Payment Method"
+          ],
+          "type": "payment distribution",
+          "code_lines": [
+            "# Counting occurrences of each payment method",
+            "result = dirty_cafe_sales['Payment Method'].value_counts().reset_index(name='Usage Count').rename(columns={'index': 'Payment Method'})"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a pie chart for payment method usage distribution",
+            "plt.figure(figsize=(8, 8))",
+            "plt.pie(result['Usage Count'], labels=result['Payment Method'], autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors, wedgeprops={'edgecolor': 'black'})",
+            "plt.title('Preferred Payment Methods')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "pie",
+          "justification": "A pie chart visually shows the proportion each payment method contributes to the total, highlighting preferences effectively."
+        },
+        {
+          "id": "3.2",
+          "title": "Payment Method Impact on Sales",
+          "why": "To understand how different payment methods affect total sales.",
+          "answers": [
+            "Sales total by payment method."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Payment Method",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "sales by payment method",
+          "code_lines": [
+            "# Summing Total Spent for each Payment Method to assess their impact on sales",
+            "result = dirty_cafe_sales.groupby('Payment Method')['Total Spent'].sum().reset_index(name='Total Sales')"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Adjusting the figure size for accurate display",
+            "plt.figure(figsize=(8, 5.2))",
+            "# Creating a bar chart for sales impact per payment method",
+            "plt.bar(result['Payment Method'], result['Total Sales'], color='orchid')",
+            "plt.title('Sales Impact by Payment Method')",
+            "plt.ylabel('Total Sales ($)')",
+            "plt.xlabel('Payment Method')",
+            "plt.xticks(rotation=30, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is used to represent how each payment method contributes to total sales in a distinct and visually accessible way."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Location-Based Sales Analysis",
+      "context": "Evaluating sales performance across different cafe locations.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Sales by Location",
+          "why": "To identify which locations generate the most sales.",
+          "answers": [
+            "Total sales per location."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Location",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "location sales",
+          "code_lines": [
+            "# Summing Total Spent per Location to find total sales by location",
+            "result = dirty_cafe_sales.groupby('Location')['Total Spent'].sum().reset_index(name='Total Sales').sort_values(by='Total Sales', ascending=False)"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a bar chart for sales by location",
+            "plt.figure(figsize=(8, 6))",
+            "plt.bar(result['Location'], result['Total Sales'], color='gold')",
+            "plt.title('Sales by Location')",
+            "plt.ylabel('Total Sales ($)')",
+            "plt.xlabel('Location')",
+            "plt.xticks(rotation=30, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart efficiently presents the sales data by location, making it easy to compare and identify leading locations for sales."
+        },
+        {
+          "id": "4.2",
+          "title": "Average Spending per Location",
+          "why": "To compare customer spending habits at different locations.",
+          "answers": [
+            "Average amount spent per transaction by location."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Location",
+            "dirty_cafe_sales.Total Spent"
+          ],
+          "type": "average spending",
+          "code_lines": [
+            "# Calculating average spending per transaction for each location using appropriate type conversion",
+            "result = dirty_cafe_sales.groupby('Location')['Total Spent'].apply(lambda x: pd.to_numeric(x, errors='coerce').mean()).reset_index(name='Average Spending')"
+          ],
+          "visualization_code": [
+            "# Importing required libraries",
+            "import matplotlib.pyplot as plt",
+            "# Creating a bar chart for average spending per transaction by location",
+            "plt.figure(figsize=(8, 6))",
+            "plt.bar(result['Location'], result['Average Spending'], color='lightcoral')",
+            "plt.title('Average Spending per Location')",
+            "plt.ylabel('Average Spending ($)')",
+            "plt.xlabel('Location')",
+            "plt.xticks(rotation=30, ha='right')",
+            "plt.tight_layout()",
+            "result_plot = plt"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart offers a visual comparison of average spending per location, highlighting variations in consumer behavior across sites."
+        }
+      ]
+    }
+  ]
+}

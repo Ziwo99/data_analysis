@@ -1,0 +1,44 @@
+{
+  "raw_schema": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:23:36.049881",
+    "end_time": "2026-01-28T18:23:36.081453"
+  },
+  "schema_interpreter": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:23:36.145261",
+    "end_time": "2026-01-28T18:23:51.931697"
+  },
+  "business_analyst": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:23:51.932020",
+    "end_time": "2026-01-28T18:24:03.883320"
+  },
+  "query_builder": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:24:03.883845",
+    "end_time": "2026-01-28T18:24:48.412119"
+  },
+  "query_analysis": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:24:48.413312",
+    "end_time": "2026-01-28T18:24:48.425300"
+  },
+  "visualization_designer": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:24:48.425804",
+    "end_time": "2026-01-28T18:26:36.370432"
+  },
+  "confidentiality_tester": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-28T18:26:36.370986",
+    "end_time": "2026-01-28T18:26:47.259761"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Credit_01",
+  "folder_name": "Credit_01",
+  "date": "2026-01-06T15:44:26.792526",
+  "dataset": "5-credit",
+  "source": "existing",
+  "pipeline_mode": "multi",
+  "openai_model": "gpt-4o"
+}

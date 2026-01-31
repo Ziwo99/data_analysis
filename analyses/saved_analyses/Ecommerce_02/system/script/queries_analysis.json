@@ -1,0 +1,499 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Geographic Distribution Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Customer Distribution by State",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 27,
+            "column_count": 2,
+            "columns": {
+              "customer_state": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "avg_length": 2.0,
+                "max_length": 2
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "min": 46.0,
+                "max": 41746.0,
+                "mean": 3683.0,
+                "std": 8270.437663984063
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Distribution by City",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4119,
+            "column_count": 2,
+            "columns": {
+              "customer_city": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4119,
+                "avg_length": 11.302257829570284,
+                "max_length": 32
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 210,
+                "min": 1.0,
+                "max": 15540.0,
+                "mean": 24.14202476329206,
+                "std": 279.272381586392
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Distribution of Customers based on Zip Code",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 14994,
+            "column_count": 2,
+            "columns": {
+              "customer_zip_code_prefix": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 14994,
+                "min": 1003.0,
+                "max": 99990.0,
+                "mean": 40443.8147925837,
+                "std": 31360.066705886882
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 90,
+                "min": 1.0,
+                "max": 142.0,
+                "mean": 6.632052821128451,
+                "std": 8.38190443621678
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 2,
+            "columns": {
+              "order_status": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 8.5,
+                "max_length": 11
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 2.0112428475176234e-05,
+                "max": 0.9702034372140264,
+                "mean": 0.125,
+                "std": 0.3415332615481139
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Order Volume Over Time",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 25,
+            "column_count": 2,
+            "columns": {
+              "month_year": {
+                "type": "period[M]",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 25
+              },
+              "order_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 24,
+                "min": 1.0,
+                "max": 7544.0,
+                "mean": 3977.64,
+                "std": 2699.9385159666135
+              }
+            }
+          }
+        },
+        {
+          "id": "2.3",
+          "title": "Order Approval Timeliness",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_approval_time": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 10.41909430191969,
+                "max": 10.41909430191969,
+                "mean": 10.41909430191969,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product Analysis",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Product Category Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 73,
+            "column_count": 2,
+            "columns": {
+              "product_category_name": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 73,
+                "avg_length": 17.232876712328768,
+                "max_length": 46
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 65,
+                "min": 3.092050338579512e-05,
+                "max": 0.09365820475557342,
+                "mean": 0.0136986301369863,
+                "std": 0.022754550060744526
+              }
+            }
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Average Product Dimensions",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 3,
+            "column_count": 2,
+            "columns": {
+              "dimension": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "avg_length": 16.666666666666668,
+                "max_length": 17
+              },
+              "average_value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 16.937661234028347,
+                "max": 30.81507784758263,
+                "mean": 23.649822452881725,
+                "std": 6.949794508881418
+              }
+            }
+          }
+        },
+        {
+          "id": "3.3",
+          "title": "Product Weight Analysis",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 9,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 9,
+                "avg_length": 4.555555555555555,
+                "max_length": 14
+              },
+              "product_weight_g": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 0.0,
+                "max": 40425.0,
+                "mean": 9456.553745171772,
+                "std": 15603.966070565877
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Seller Distribution Analysis",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Seller Distribution by State",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 23,
+            "column_count": 2,
+            "columns": {
+              "seller_state": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 23,
+                "avg_length": 2.0,
+                "max_length": 2
+              },
+              "seller_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 17,
+                "min": 1.0,
+                "max": 1849.0,
+                "mean": 134.56521739130434,
+                "std": 385.49824030808804
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Seller Distribution by City",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 611,
+            "column_count": 2,
+            "columns": {
+              "seller_city": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 611,
+                "avg_length": 10.851063829787234,
+                "max_length": 40
+              },
+              "seller_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 36,
+                "min": 1.0,
+                "max": 694.0,
+                "mean": 5.0654664484451715,
+                "std": 29.383874839114963
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Order Item Financial Analysis",
+      "queries": [
+        {
+          "id": "5.1",
+          "title": "Average Price of Order Items",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_price": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 120.65373901464716,
+                "max": 120.65373901464716,
+                "mean": 120.65373901464716,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "5.2",
+          "title": "Shipping Cost Analysis",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_freight_value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 19.990319928983578,
+                "max": 19.990319928983578,
+                "mean": 19.990319928983578,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Payment Method Analysis",
+      "queries": [
+        {
+          "id": "6.1",
+          "title": "Payment Type Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "payment_type": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 9.0,
+                "max_length": 11
+              },
+              "proportion": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 2.8877808366863676e-05,
+                "max": 0.7392237645110987,
+                "mean": 0.2,
+                "std": 0.3106548851490998
+              }
+            }
+          }
+        },
+        {
+          "id": "6.2",
+          "title": "Average Payment Value by Type",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "payment_type": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 9.0,
+                "max_length": 11
+              },
+              "average_payment_value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 0.0,
+                "max": 163.31902063936454,
+                "mean": 103.32539604000912,
+                "std": 68.8668765617357
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Order Review Analysis",
+      "queries": [
+        {
+          "id": "7.1",
+          "title": "Average Review Score",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "average_review_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 4.08642062404257,
+                "max": 4.08642062404257,
+                "mean": 4.08642062404257,
+                "std": null
+              }
+            }
+          }
+        },
+        {
+          "id": "7.2",
+          "title": "Review Comment Volume",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "proportion_with_comments": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 0.4129746835443038,
+                "max": 0.4129746835443038,
+                "mean": 0.4129746835443038,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

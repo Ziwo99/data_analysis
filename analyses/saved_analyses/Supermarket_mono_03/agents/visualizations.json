@@ -1,0 +1,132 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "City-wise Sales Analysis",
+      "context": "Understand sales distribution across different cities to strategize regional marketing.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by City",
+          "why": "Determine which city generates the highest revenue.",
+          "answers": [
+            "Helps in focusing marketing efforts on high revenue cities."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.City",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales per city",
+            "result = supermarket_analysis.groupby('City')['Sales'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "# Plot total sales by city",
+            "result_plot = plt.figure()",
+            "plt.bar(result['City'], result['Sales'], color='blue')",
+            "plt.title('Total Sales by City')",
+            "plt.xlabel('City')",
+            "plt.ylabel('Total Sales')"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart is effective for comparing total sales across different categories such as cities."
+        },
+        {
+          "id": "1.2",
+          "title": "Average Sales per Transaction by City",
+          "why": "Identify cities with the highest average sale per transaction.",
+          "answers": [
+            "Indicates cities with higher spending customers on average."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.City",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average sales per transaction by city",
+            "result = supermarket_analysis.groupby('City')['Sales'].mean().reset_index()"
+          ],
+          "visualization_code": [
+            "# Plot average sales per transaction by city",
+            "result_plot = plt.figure()",
+            "plt.bar(result['City'], result['Sales'], color='green')",
+            "plt.title('Average Sales per Transaction by City')",
+            "plt.xlabel('City')",
+            "plt.ylabel('Average Sales')"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart allows easy comparison of average transaction values across cities."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Product Line Sales Performance",
+      "context": "Evaluate each product line's contribution to total sales.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Sales by Product Line",
+          "why": "Identify top-performing product lines.",
+          "answers": [
+            "Allows for targeted promotions and inventory management."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales for each product line",
+            "result = supermarket_analysis.groupby('Product line')['Sales'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "# Plot sales by product line",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Product line'], result['Sales'], color='orange')",
+            "plt.title('Sales by Product Line')",
+            "plt.xlabel('Product Line')",
+            "plt.ylabel('Total Sales')"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar charts are useful for comparing sales between different product categories."
+        },
+        {
+          "id": "2.2",
+          "title": "Average Rating by Product Line",
+          "why": "Assess customer satisfaction across product lines.",
+          "answers": [
+            "Ensures product quality meets customer expectations across all lines."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Rating"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average rating for each product line",
+            "result = supermarket_analysis.groupby('Product line')['Rating'].mean().reset_index()"
+          ],
+          "visualization_code": [
+            "# Plot average rating by product line",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Product line'], result['Rating'], color='purple')",
+            "plt.title('Average Rating by Product Line')",
+            "plt.xlabel('Product Line')",
+            "plt.ylabel('Average Rating')"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart provides a clear comparison of average ratings among product lines."
+        }
+      ]
+    }
+  ]
+}

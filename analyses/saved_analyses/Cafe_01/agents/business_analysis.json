@@ -1,0 +1,146 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Transaction Volume Analysis",
+      "context": "Understanding transaction volumes helps to identify peak sales periods and operational workload trends.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Daily Transaction Volume",
+          "why": "To identify daily transaction trends and assess peak operational periods.",
+          "answers": [
+            "Number of transactions per day."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Monthly Transaction Volume",
+          "why": "To evaluate monthly sales cycles and assess performance relative to historical data.",
+          "answers": [
+            "Number of transactions per month."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Item Sales Analysis",
+      "context": "This analysis seeks to determine which items are most sold, aiding in inventory and marketing strategies.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Top Selling Items",
+          "why": "To identify which items are driving sales volume.",
+          "answers": [
+            "List of items sorted by quantity sold, in descending order."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Quantity"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Average Quantity per Item",
+          "why": "To assess average purchase quantity per item category.",
+          "answers": [
+            "Average quantity sold per item type."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Item",
+            "dirty_cafe_sales.Quantity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Revenue Analysis",
+      "context": "Understanding revenue streams through transaction values and item pricing.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Total Revenue by Day",
+          "why": "To evaluate daily revenue performance and identify high revenue days.",
+          "answers": [
+            "Total revenue generated per day."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Transaction Date",
+            "dirty_cafe_sales.Total Spent"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Average Spend per Transaction",
+          "why": "To understand customer spend behavior per transaction.",
+          "answers": [
+            "Average spend per transaction."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Total Spent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Payment Method Analysis",
+      "context": "This assists in understanding customer payment preferences and streamlining payment processing methods.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Distribution of Payment Methods",
+          "why": "To identify which payment methods are most preferred by customers.",
+          "answers": [
+            "Proportion of transactions per payment method."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Payment Method"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Location Based Sales Analysis",
+      "context": "Analyzing transactions by location to inform geographic sales strategies.",
+      "tables": [
+        "dirty_cafe_sales"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Sales Distribution by Location",
+          "why": "To determine sales distribution across different locations.",
+          "answers": [
+            "Total sales volume per location."
+          ],
+          "tables_columns": [
+            "dirty_cafe_sales.Location",
+            "dirty_cafe_sales.Quantity"
+          ]
+        }
+      ]
+    }
+  ]
+}

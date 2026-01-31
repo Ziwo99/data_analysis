@@ -1,0 +1,114 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "students_performance": {
+      "row_count": 1000,
+      "columns": {
+        "gender": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The gender of the student, indicating whether the student is male or female."
+        },
+        "race/ethnicity": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The race or ethnicity classification of the student, coded as group labels."
+        },
+        "parental level of education": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The highest level of education attained by the student's parents, such as high school, college, etc."
+        },
+        "lunch": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Type of lunch the student receives, indicating whether it's a standard lunch or a free/reduced-price lunch."
+        },
+        "test preparation course": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Indicates whether the student completed a course aimed at preparing them for standardized tests."
+        },
+        "math score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 81,
+          "min": 0.0,
+          "max": 100.0,
+          "mean": 66.089,
+          "std": 15.163080096009468,
+          "semantic_description": "The score achieved by the student in the mathematics section of the standardized test."
+        },
+        "reading score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 72,
+          "min": 17.0,
+          "max": 100.0,
+          "mean": 69.169,
+          "std": 14.60019193725222,
+          "semantic_description": "The score achieved by the student in the reading section of the standardized test."
+        },
+        "writing score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 77,
+          "min": 10.0,
+          "max": 100.0,
+          "mean": 68.054,
+          "std": 15.195657010869642,
+          "semantic_description": "The score achieved by the student in the writing section of the standardized test."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Student Performance Data",
+      "description": "This table contains detailed performance metrics of students in a standardized testing environment, including demographic information and academic scores across several subjects."
+    }
+  },
+  "relationships": [],
+  "database_domain": "education",
+  "database_description": "This database is focused on capturing and analyzing student performance metrics. It includes demographic data and standardized test scores, which can be used for educational assessments, performance tracking, and determining correlations between various socio-economic factors and academic achievements."
+}

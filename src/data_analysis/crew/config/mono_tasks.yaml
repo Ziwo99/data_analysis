@@ -1,0 +1,71 @@
+mono_analysis_task:
+  description: >
+    Perform a complete data analysis in a single pass: interpret the schema, plan business analyses, 
+    generate Pandas queries, and create visualization code.
+
+    STEP 1 - SCHEMA INTERPRETATION:
+    - Use the `MetadataExtractor` tool to retrieve the raw JSON metadata of the dataset
+    - Identify the business domain (e-commerce, healthcare, finance, etc.)
+    - Understand each table's purpose and each column's business meaning
+
+    STEP 2 - BUSINESS ANALYSIS PLANNING:
+    - Propose 2-4 main analyses based on available tables and relationships
+    - Each analysis should have 2-4 sub-analyses
+    - Each sub-analysis must answer ONE specific analytical question
+    - Use hierarchical IDs: "1", "2", "3" for analyses; "1.1", "1.2", "2.1" for sub-analyses
+
+    STEP 3 - QUERY BUILDING:
+    - For each sub-analysis, write executable Pandas code
+    - CRITICAL: DataFrames are pre-loaded with names matching table names from the schema
+      Example: if schema shows table "customers", the DataFrame is named `customers` (NOT `df`)
+      Example: if schema shows table "orders", the DataFrame is named `orders`
+    - NEVER use generic names like `df` - always use the exact table name from the schema
+    - Code must produce a single DataFrame named `result`
+    - Use only columns that exist in the schema
+    - Include comments explaining key operations
+    - Store code as array of strings in `code_lines`
+
+    STEP 4 - VISUALIZATION DESIGN:
+    - For each sub-analysis, write matplotlib visualization code
+    - Code must produce a plot object named `result_plot`
+    - Choose appropriate chart types (bar, line, scatter, pie, etc.)
+    - Include titles, labels, and clear formatting
+    - Store code as array of strings in `visualization_code`
+
+    OUTPUT STRUCTURE (VisualizationsModel):
+    {
+      "analyses": [
+        {
+          "id": "1",
+          "title": "Analysis title",
+          "context": "Why this analysis matters",
+          "tables": ["table1", "table2"],
+          "sub_analyses": [
+            {
+              "id": "1.1",
+              "title": "Sub-analysis title",
+              "why": "Purpose of this sub-analysis",
+              "answers": ["What insights it provides"],
+              "tables_columns": ["table.column1", "table.column2"],
+              "type": "aggregation|segmentation|trend|distribution",
+              "code_lines": ["# Use table name from schema as DataFrame name", "result = customers.groupby('city').size().reset_index(name='count')"],
+              "visualization_code": ["# Matplotlib code", "result_plot = plt.figure()"],
+              "visualization_type": "bar|line|pie|scatter|histogram",
+              "justification": "Why this chart type was chosen"
+            }
+          ]
+        }
+      ]
+    }
+
+    Requirements:
+    - Output MUST be valid JSON matching VisualizationsModel exactly
+    - Return ONLY the JSON response with no commentary, explanations, code blocks, or markdown
+    - Never invent columns or tables that don't exist in the schema
+    - Keep analyses realistic and achievable with the provided metadata
+
+  expected_output: >
+    Valid JSON matching VisualizationsModel with complete analyses including code_lines and visualization_code for each sub-analysis.
+
+  agent: mono_agent
+

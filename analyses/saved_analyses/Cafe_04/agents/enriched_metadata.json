@@ -1,0 +1,114 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "dirty_cafe_sales": {
+      "row_count": 10000,
+      "columns": {
+        "Transaction ID": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 10000,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "A unique identifier for each transaction, representing a single purchase event made by a customer."
+        },
+        "Item": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 333,
+          "unique_count": 10,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The name of the item purchased in the transaction, which could include various food and drink options provided by the café."
+        },
+        "Quantity": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 138,
+          "unique_count": 7,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The amount of the specific item purchased in the transaction, indicating how many units were sold."
+        },
+        "Price Per Unit": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 179,
+          "unique_count": 8,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The cost of one unit of the item at the time of the transaction."
+        },
+        "Total Spent": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 173,
+          "unique_count": 19,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The total monetary amount paid for the transaction, calculated as Price Per Unit multiplied by Quantity."
+        },
+        "Payment Method": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2579,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The method of payment used in the transaction, such as cash, credit card, or mobile payment."
+        },
+        "Location": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 3265,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The physical or delivery location where the transaction took place or was fulfilled."
+        },
+        "Transaction Date": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 159,
+          "unique_count": 367,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The date when the transaction was completed, providing a temporal context to the sales data."
+        }
+      },
+      "primary_key": "Transaction ID",
+      "foreign_keys": [],
+      "role": "Sales Transaction Entry",
+      "description": "This table captures detailed information about sales transactions at a café, providing insights into items sold, transaction amounts, and purchasing trends over time."
+    }
+  },
+  "relationships": [],
+  "database_domain": "Retail",
+  "database_description": "The database collects and organizes transactional data from a café setting, focusing on sales details like items sold, quantities, payment methods, and locations. This data helps in analyzing sales patterns, customer preferences, and operational efficiency."
+}

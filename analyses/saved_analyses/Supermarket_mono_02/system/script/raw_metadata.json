@@ -1,0 +1,201 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "supermarket_analysis": {
+      "row_count": 1000,
+      "columns": {
+        "Invoice ID": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 1000,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Branch": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "City": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Customer type": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Gender": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Product line": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Unit price": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 943,
+          "min": 10.08,
+          "max": 99.96,
+          "mean": 55.67213,
+          "std": 26.494628347919768
+        },
+        "Quantity": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 10,
+          "min": 1.0,
+          "max": 10.0,
+          "mean": 5.51,
+          "std": 2.923430595455697
+        },
+        "Tax 5%": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 0.5085,
+          "max": 49.65,
+          "mean": 15.379368999999999,
+          "std": 11.708825480998659
+        },
+        "Sales": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 10.6785,
+          "max": 1042.65,
+          "mean": 322.966749,
+          "std": 245.88533510097204
+        },
+        "Date": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 89,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Time": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 506,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "Payment": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 3,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "cogs": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 10.17,
+          "max": 993.0,
+          "mean": 307.58738,
+          "std": 234.17650961997307
+        },
+        "gross margin percentage": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 1,
+          "min": 4.761904762,
+          "max": 4.761904762,
+          "mean": 4.761904762,
+          "std": 6.131497611557303e-14
+        },
+        "gross income": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 990,
+          "min": 0.5085,
+          "max": 49.65,
+          "mean": 15.379368999999999,
+          "std": 11.708825480998659
+        },
+        "Rating": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 61,
+          "min": 4.0,
+          "max": 10.0,
+          "mean": 6.9727,
+          "std": 1.718580294379123
+        }
+      },
+      "primary_key": "Invoice ID",
+      "foreign_keys": []
+    }
+  },
+  "relationships": []
+}

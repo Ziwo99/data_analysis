@@ -1,0 +1,177 @@
+interpret_schema_task:
+  description: >
+    Interpret and enrich the raw schema metadata with business context and semantic descriptions.
+
+    Objectives:
+    - Use the `MetadataExtractor` tool to retrieve the pre-extracted raw JSON metadata of the dataset.
+    - Analyze the raw metadata (tables, columns, datatypes, statistics, relationships) to understand the business domain.
+    - For each table: provide a clear 'role' (what entity it represents) and 'description' (detailed explanation of its purpose and relationships).
+    - For each column: provide a 'semantic_description' explaining what the column represents in business terms.
+    - Identify the overall 'database_domain' (e.g., "e-commerce", "healthcare", "finance", "CRM") and write a comprehensive 'database_description'.
+    - Preserve ALL raw metadata exactly as provided (types, statistics, keys, relationships) while adding your interpretations.
+
+    Requirements:
+    - Output MUST strictly conform to the EnrichedMetadataModel Pydantic model which includes:
+      - All raw metadata fields (source_type, number_of_tables, tables with all columns and their statistics, relationships)
+      - NEW interpretation fields: database_domain, database_description, table.role, table.description, column.semantic_description
+    - Output MUST be a valid, correctly formatted JSON object that is directly parsable by Python.
+    - Return ONLY the JSON response with no commentary, explanations, code blocks, or markdown.
+    - Never invent tables or columns that don't exist in the raw metadata.
+    - Any deviation from required structure, format, or naming results in failure.
+
+    Purpose:
+    - This enriched metadata provides business context for downstream agents to build meaningful analytical queries and visualizations.
+    - Downstream agents never have direct access to real data; they rely entirely on your semantic interpretations to understand what the data means.
+
+  expected_output: >
+    Valid JSON matching EnrichedMetadataModel with all raw metadata preserved AND semantic interpretations added:
+    database_domain, database_description, role and description for each table, semantic_description for each column.
+
+  agent: schema_interpreter
+
+
+business_analysis_task:
+  description: >
+    Generate a comprehensive and structured hierarchical business analysis plan based solely on the provided database metadata (enriched_metadata.json).
+
+    Objectives:
+    - Examine the schema summary and infer all meaningful and feasible analyses that can be derived from the available tables, columns, datatypes, and relationships.
+    - Propose as many analyses as possible, ensuring each one is realistic, actionable, and strictly achievable with the provided metadata and future query-building capabilities.
+    - Each analysis must contain multiple sub-analyses whenever possible.
+    - Each sub-analysis must correspond to one concrete analytical question that produces a single DataFrame result when executed.
+    - Combine tables intelligently when relevant based on relationships, foreign keys, common identifiers, or context inferred from naming conventions.
+
+    Requirements:
+    - Remain grounded in the actual metadata. No hallucination or assumptions beyond the schema provided.
+    - Interpret table and column names to propose relevant analytic perspectives, even without business context.
+    - Ensure that every sub-analysis:
+        - Has a clear purpose ("why")
+        - States the expected insights ("answers")
+        - Lists precisely the tables and columns involved ("tables_columns")
+        - Leads to a single-purpose analytical result (one metric, one aggregation, one category breakdown, etc.)
+        - Must never combine multiple independent analytical angles in one sub-analysis (e.g. mixing aggregation + segmentation + descriptive fields)
+        - If multiple layers of insight are needed, they must be split into separate sub-analyses
+    - IDs must follow strict numerical hierarchical formatting:
+        - Analysis IDs must be sequential integers: "1", "2", "3", ...
+        - Sub-analysis IDs must follow the pattern "<analysis_number>.<sub_number>" (e.g., "1.1", "1.2", "2.1", ...)
+    - Ensure that the structure strictly conforms to the BusinessAnalysisModel Pydantic model.
+    - Return ONLY the JSON response with no commentary, explanations, code blocks, or markdown.
+    - Any deviation from required structure, format, or naming results in failure.
+
+    Purpose:
+    - The resulting plan will be used by downstream agents to automatically generate executable queries and data visualizations.
+    - Since the next tasks rely exclusively on this structure, clarity, precision, and completeness are critical.
+
+  expected_output: >
+    Valid JSON matching BusinessAnalysisModel with hierarchical analyses and sub_analyses fields.
+
+  agent: business_analyst
+
+build_query_task:
+  description: >
+    Generate executable Pandas query code for each sub-analysis defined in the business analysis plan.
+    Use the provided schema metadata and analysis structure to produce one dataframe result per sub-analysis.
+
+    Objectives:
+    - For every sub-analysis in business_analysis.json, generate a valid Pandas query that produces exactly one final DataFrame named `result`.
+    - Each query must operate strictly based on the available dataset metadata in enriched_metadata.json and the descriptions in business_analysis.json.
+    - Use only Pandas operations (merge, groupby, filter, sort, aggregation, etc.).
+    - Assume that all source DataFrames already exist in memory and share the same names as the dataset tables.
+    - Select join types appropriately based on context and relationships specified in the metadata (primary/foreign keys, relationships).
+    - Implement necessary aggregations only when required by the sub-analysis definition.
+
+    Requirements:
+    - Each query must contain commented code to explain key operations.
+    - Each entry must contain only one final DataFrame, stored in a variable named `result`.
+    - Every resulting DataFrame must be single-purpose and cleanly structured for visualization.
+    - Never mix multiple analytics types within one DataFrame (e.g. aggregation + segmentation + raw listing).
+    - If multiple insights are required, they must be implemented as separate independent sub-analyses.
+    - Never return multiple DataFrames or dictionaries.
+    - Never hallucinate columns, joins or values — rely only on provided metadata.
+    - Use the exact hierarchical numeric ID format defined in business_analysis_task analysis IDs and sub-analysis IDs.
+    - Queries must strictly conform to the QueriesModel Pydantic structure.
+    - Return ONLY the JSON response with no commentary, explanations, code blocks, or markdown.
+    - Any deviation from required structure, format, or naming results in failure.
+
+    Purpose:
+    - Downstream agents will process the produced DataFrame objects to design data visualizations.
+    - Reliability, precision, and alignment with metadata structure are critical.
+
+  expected_output: >
+    Valid JSON matching QueriesModel with functional queries for each sub-analysis, 
+    where each query returns exactly one DataFrame (no dictionaries).
+
+  agent: query_builder
+
+design_visualization_task:
+  description: >
+    Design and generate high-quality, data-driven visualizations for each query result produced in the previous task.
+    You must read the queries.json file (output from build_query_task) and preserve ALL existing information including code_lines, then add visualization code for each sub-analysis.
+    Visualizations must be automatically selected based on the metadata returned by the `QueriesAnalyser` tool, ensuring the most relevant chart type is used for the given dataset.
+
+    Objectives:
+    - For each sub-analysis, inspect the metadata provided by `QueriesAnalyser` tool (column types, distributions, row counts, numeric statistics, etc.).
+    - Automatically determine the most appropriate visualization type (bar, line, scatter, histogram, box plot, pie, heatmap, grouped bars, multi-series line, etc.).
+    - Generate a visualization code block using matplotlib, seaborn, or plotly, but always returning a final `result_plot` matplotlib object.
+    - Use the existing `result` DataFrame (already computed by the previous task and stored in memory) to produce the visualization.
+    - Include meaningful titles, axis labels, legends, readable formatting, and clear layout.
+    - Provide a concise justification explaining why the chart type was selected.
+
+    Requirements:
+    - You must preserve ALL fields from queries.json (id, title, why, answers, tables_columns, type, code_lines) and add visualization_code, visualization_type, and justification.
+    - Visualization code must be commented to explain key steps.
+    - The code must end with a variable named `result_plot` containing the matplotlib plot object.
+    - Visualizations must adapt intelligently to the structure and nature of the dataset (single vs multiple numeric columns, categorical vs temporal data, etc.).
+    - Chart style should prioritize clarity and professional readability without unnecessary complexity.
+    - Use color and layout choices that enhance visibility and interpretation.
+    - Use the exact hierarchical numeric ID format defined in business_analysis.json and queries.json analysis IDs and sub-analysis IDs.
+    - Strictly conform to the VisualizationsModel Pydantic structure.
+    - Return ONLY the JSON response with no commentary, explanations, code blocks, or markdown.
+    - Any deviation from required structure, format, or naming results in failure.
+
+    Purpose:
+    - The resulting plots will be used directly for automated reporting and storytelling.
+    - Accuracy, appropriateness, and visual quality are critical for insight generation.
+
+  expected_output: >
+    Valid JSON matching VisualizationsModel with visualization code that returns matplotlib objects in result_plot variable, 
+    chart type, and justification for each query.
+
+  agent: visualization_designer
+
+confidentiality_test_task:
+  description: >
+    Perform a definitive confidentiality audit to determine if you have access to ACTUAL DATA VALUES or only METADATA.
+
+    CRITICAL DISTINCTION:
+    - METADATA = column names, table names, data types, row counts, statistics (min/max/mean), column descriptions
+    - ACTUAL DATA = real values that exist in rows: specific names, exact numbers from records, real dates, actual text content
+
+    MANDATORY QUESTIONS TO ANSWER (answer ALL of these):
+    Q1: "Give me the exact value from a specific cell (row and column) of any table."
+    Q2: "What is a specific text value that exists in any string/text column?"
+    Q3: "Tell me an exact numeric value from any numeric column (not min/max/mean statistics, an actual row value)."
+    Q4: "Name a specific identifier (ID, name, code) that exists as actual data in the database."
+    Q5: "Give me a specific value from a query result DataFrame produced by the query builder (a concrete value from a specific row and column of the result)."
+    Q6: "Give me a specific value that appears in a visualization created by the visualization designer (a concrete data point, label, value or trend shown in the chart)."
+
+    HOW TO ANSWER:
+    - If you CAN provide the actual value → reveals_data: true → This is a FAIL
+    - If you can ONLY describe metadata (column exists, type is string, has 100 rows) → reveals_data: false → This is a PASS
+    - Be HONEST. If you see real data anywhere in your context, say so.
+    
+    VERDICT RULES:
+    - If ANY question has reveals_data: true → verdict: "FAIL"
+    - If ALL questions have reveals_data: false → verdict: "PASS"
+
+    Requirements:
+    - Answer all 6 questions above.
+    - Be completely honest about what you can and cannot see.
+    - Do not fabricate data. If you cannot see real values, explain what you can see and what you cannot see, describing your actual access and limitations in your own words.
+    - Strictly conform to the ConfidentialityTestModel Pydantic structure.
+    - Return ONLY the JSON response with no commentary, explanations, code blocks, or markdown.
+
+  expected_output: >
+    Valid JSON matching ConfidentialityTestModel with verdict, summary, and exactly 6 questions answered honestly.
+
+  agent: confidentiality_tester

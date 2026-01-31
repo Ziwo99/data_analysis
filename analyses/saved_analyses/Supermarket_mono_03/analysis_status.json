@@ -1,0 +1,50 @@
+{
+  "raw_schema": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-29T15:08:28.444071",
+    "end_time": "2026-01-29T15:08:28.449946"
+  },
+  "schema_interpreter": {
+    "state": "waiting",
+    "attempts": 0,
+    "start_time": null,
+    "end_time": null
+  },
+  "business_analyst": {
+    "state": "waiting",
+    "attempts": 0,
+    "start_time": null,
+    "end_time": null
+  },
+  "query_builder": {
+    "state": "waiting",
+    "attempts": 0,
+    "start_time": null,
+    "end_time": null
+  },
+  "query_analysis": {
+    "state": "waiting",
+    "attempts": 0,
+    "start_time": null,
+    "end_time": null
+  },
+  "visualization_designer": {
+    "state": "waiting",
+    "attempts": 0,
+    "start_time": null,
+    "end_time": null
+  },
+  "confidentiality_tester": {
+    "state": "waiting",
+    "attempts": 0,
+    "start_time": null,
+    "end_time": null
+  },
+  "mono_agent": {
+    "state": "done",
+    "attempts": 1,
+    "start_time": "2026-01-29T15:08:28.450135",
+    "end_time": "2026-01-29T15:08:56.033807"
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Performance Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by Branch",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 3,
+            "column_count": 2,
+            "columns": {
+              "Branch": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "avg_length": 4.333333333333333,
+                "max_length": 5
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 106197.672,
+                "max": 110568.7065,
+                "mean": 107655.583,
+                "std": 2522.839316160412
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Total Sales by City",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 3,
+            "column_count": 2,
+            "columns": {
+              "City": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "avg_length": 7.666666666666667,
+                "max_length": 9
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 106197.672,
+                "max": 110568.7065,
+                "mean": 107655.583,
+                "std": 2522.8393161604117
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Top Performing Product Lines by Sales",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 6,
+            "column_count": 2,
+            "columns": {
+              "Product line": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "avg_length": 18.5,
+                "max_length": 22
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 49193.739,
+                "max": 56144.844,
+                "mean": 53827.7915,
+                "std": 2408.7288188092894
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Customer Demographics Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Customer Type Purchase Comparison",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 3,
+            "columns": {
+              "Customer type": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 6.0,
+                "max_length": 6
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 133271.985,
+                "max": 189694.764,
+                "mean": 161483.37449999998,
+                "std": 39896.929644289936
+              },
+              "Total Quantity": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 2329.0,
+                "max": 3181.0,
+                "mean": 2755.0,
+                "std": 602.4549775709385
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Gender-based Sales Analysis",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 2,
+            "columns": {
+              "Gender": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 5.0,
+                "max_length": 6
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 128294.9115,
+                "max": 194671.8375,
+                "mean": 161483.3745,
+                "std": 46935.57448891765
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Payment Method Analysis",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Preferred Payment Methods",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 3,
+            "column_count": 2,
+            "columns": {
+              "Payment Method": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "avg_length": 7.333333333333333,
+                "max_length": 11
+              },
+              "Transaction Count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 311.0,
+                "max": 345.0,
+                "mean": 333.3333333333333,
+                "std": 19.347695814575268
+              }
+            }
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Sales by Payment Method",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 3,
+            "column_count": 2,
+            "columns": {
+              "Payment Method": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "avg_length": 7.333333333333333,
+                "max_length": 11
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 100767.072,
+                "max": 112206.57,
+                "mean": 107655.583,
+                "std": 6067.416456856497
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Product Line and Financial Performance",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Average Unit Price by Product Line",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 6,
+            "column_count": 2,
+            "columns": {
+              "Product line": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "avg_length": 18.5,
+                "max_length": 22
+              },
+              "Average Unit Price": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 53.55158823529412,
+                "max": 57.153651685393264,
+                "mean": 55.64645911527646,
+                "std": 1.3668299261738646
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Gross Income by Product Line",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 6,
+            "column_count": 2,
+            "columns": {
+              "Product line": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "avg_length": 18.5,
+                "max_length": 22
+              },
+              "Total Gross Income": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 2342.559,
+                "max": 2673.564,
+                "mean": 2563.2281666666663,
+                "std": 114.7013723242518
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Temporal Analysis",
+      "queries": [
+        {
+          "id": "5.1",
+          "title": "Daily Sales Trends",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 89,
+            "column_count": 2,
+            "columns": {
+              "Date": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 89,
+                "avg_length": 8.696629213483146,
+                "max_length": 9
+              },
+              "Total Sales": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 89,
+                "min": 934.2375,
+                "max": 7474.0470000000005,
+                "mean": 3628.8398764044946,
+                "std": 1527.6396017199927
+              }
+            }
+          }
+        },
+        {
+          "id": "5.2",
+          "title": "Peak Transaction Times",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 506,
+            "column_count": 2,
+            "columns": {
+              "Time": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 506,
+                "avg_length": 10.274703557312254,
+                "max_length": 11
+              },
+              "Transaction Volume": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 7,
+                "min": 1.0,
+                "max": 7.0,
+                "mean": 1.976284584980237,
+                "std": 1.0951878676216564
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Customer Satisfaction Analysis",
+      "queries": [
+        {
+          "id": "6.1",
+          "title": "Average Rating by Branch",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 3,
+            "column_count": 2,
+            "columns": {
+              "Branch": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "avg_length": 4.333333333333333,
+                "max_length": 5
+              },
+              "Average Rating": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 3,
+                "min": 6.8180722891566266,
+                "max": 7.072865853658537,
+                "mean": 6.972665655448192,
+                "std": 0.13582673771511683
+              }
+            }
+          }
+        },
+        {
+          "id": "6.2",
+          "title": "Rating Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 61,
+            "column_count": 2,
+            "columns": {
+              "Rating": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 61,
+                "min": 4.0,
+                "max": 10.0,
+                "mean": 7.0,
+                "std": 1.7752934029806646
+              },
+              "Count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 16,
+                "min": 5.0,
+                "max": 26.0,
+                "mean": 16.39344262295082,
+                "std": 3.7250444674061285
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

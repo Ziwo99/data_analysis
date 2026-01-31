@@ -1,0 +1,360 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Analysis of Student Performance",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Gender-based Performance Comparison",
+          "type": "Aggregation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 4,
+            "columns": {
+              "gender": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 5.0,
+                "max_length": 6
+              },
+              "avg_math_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 63.633204633204635,
+                "max": 68.72821576763485,
+                "mean": 66.18071020041974,
+                "std": 3.60271692337657
+              },
+              "avg_reading_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 65.47302904564316,
+                "max": 72.60810810810811,
+                "mean": 69.04056857687564,
+                "std": 5.045262789371122
+              },
+              "avg_writing_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 63.31120331950208,
+                "max": 72.46718146718146,
+                "mean": 67.88919239334177,
+                "std": 6.474254236619937
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Race/Ethnicity-based Performance Analysis",
+          "type": "Aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 4,
+            "columns": {
+              "race_ethnicity": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 7.0,
+                "max_length": 7
+              },
+              "avg_math_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 61.62921348314607,
+                "max": 73.82142857142857,
+                "mean": 66.1459637793259,
+                "std": 4.766476549409461
+              },
+              "avg_reading_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 64.67415730337079,
+                "max": 73.02857142857142,
+                "mean": 68.83786858757934,
+                "std": 3.1063400943057125
+              },
+              "avg_writing_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 62.674157303370784,
+                "max": 71.40714285714286,
+                "mean": 67.53078490706983,
+                "std": 3.509391831892606
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Impact of Socioeconomic Factors on Performance",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Lunch Benefits and Performance",
+          "type": "Aggregation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 4,
+            "columns": {
+              "lunch": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 10.0,
+                "max_length": 12
+              },
+              "avg_math_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 58.92112676056338,
+                "max": 70.03410852713178,
+                "mean": 64.47761764384758,
+                "std": 7.858064766342971
+              },
+              "avg_reading_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 64.65352112676057,
+                "max": 71.65426356589147,
+                "mean": 68.15389234632602,
+                "std": 4.950272452049912
+              },
+              "avg_writing_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 63.02253521126761,
+                "max": 70.8232558139535,
+                "mean": 66.92289551261055,
+                "std": 5.515942436300802
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Parental Education Level and Student Performance",
+          "type": "Aggregation",
+          "analysis": {
+            "row_count": 6,
+            "column_count": 4,
+            "columns": {
+              "parental_education": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "avg_length": 14.833333333333334,
+                "max_length": 18
+              },
+              "avg_math_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 62.13775510204081,
+                "max": 69.7457627118644,
+                "mean": 66.63029274887401,
+                "std": 3.134879142380274
+              },
+              "avg_reading_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 64.70408163265306,
+                "max": 75.37288135593221,
+                "mean": 70.06726923228285,
+                "std": 3.909281395255112
+              },
+              "avg_writing_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 6,
+                "min": 62.44897959183673,
+                "max": 75.67796610169492,
+                "mean": 69.18894569052631,
+                "std": 4.98454442872941
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Effect of Test Preparation on Performance",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Test Preparation Course Completion and Scores",
+          "type": "Aggregation",
+          "analysis": {
+            "row_count": 2,
+            "column_count": 4,
+            "columns": {
+              "test_prep_course": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "avg_length": 6.5,
+                "max_length": 9
+              },
+              "avg_math_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 64.0778816199377,
+                "max": 69.69553072625699,
+                "mean": 66.88670617309734,
+                "std": 3.972277777404919
+              },
+              "avg_reading_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 66.53426791277259,
+                "max": 73.89385474860335,
+                "mean": 70.21406133068797,
+                "std": 5.204013758347172
+              },
+              "avg_writing_score": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 2,
+                "min": 64.50467289719626,
+                "max": 74.41899441340782,
+                "mean": 69.46183365530203,
+                "std": 7.010483974976886
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Overall Performance Metrics",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Overall Math Performance Statistics",
+          "type": "DescriptiveStatistics",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "metric": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 3.25,
+                "max_length": 4
+              },
+              "value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 0.0,
+                "max": 100.0,
+                "mean": 45.31302002400237,
+                "std": 46.1324028719346
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Overall Reading Performance Statistics",
+          "type": "DescriptiveStatistics",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "metric": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 3.25,
+                "max_length": 4
+              },
+              "value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 14.60019193725222,
+                "max": 100.0,
+                "mean": 50.19229798431305,
+                "std": 41.67112932563063
+              }
+            }
+          }
+        },
+        {
+          "id": "4.3",
+          "title": "Overall Writing Performance Statistics",
+          "type": "DescriptiveStatistics",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "metric": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 3.25,
+                "max_length": 4
+              },
+              "value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 10.0,
+                "max": 100.0,
+                "mean": 48.31241425271741,
+                "std": 43.30472423915318
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

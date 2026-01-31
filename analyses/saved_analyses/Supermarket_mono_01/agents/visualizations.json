@@ -1,0 +1,139 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Performance Analysis",
+      "context": "Understanding sales performance helps in identifying key areas of revenue and optimizing strategies.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by City",
+          "why": "Determine which city generates the most revenue.",
+          "answers": [
+            "Provides insight into geographical sales performance."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.City",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales by city",
+            "result = supermarket_analysis.groupby('City')['Sales'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "# Bar plot of total sales by city",
+            "import matplotlib.pyplot as plt",
+            "result_plot = plt.figure()",
+            "plt.bar(result['City'], result['Sales'])",
+            "plt.title('Total Sales by City')",
+            "plt.xlabel('City')",
+            "plt.ylabel('Total Sales')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart effectively compares total sales across different cities."
+        },
+        {
+          "id": "1.2",
+          "title": "Average Unit Price by Product Line",
+          "why": "Evaluate the pricing strategy across different product lines.",
+          "answers": [
+            "Highlights how pricing differs across product lines."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Unit price"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate average unit price by product line",
+            "result = supermarket_analysis.groupby('Product line')['Unit price'].mean().reset_index()"
+          ],
+          "visualization_code": [
+            "# Bar plot of average unit price by product line",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Product line'], result['Unit price'])",
+            "plt.title('Average Unit Price by Product Line')",
+            "plt.xlabel('Product Line')",
+            "plt.ylabel('Average Unit Price')",
+            "plt.xticks(rotation=45)",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart provides a clear comparison of average unit prices across product lines."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Customer Demographic Analysis",
+      "context": "Analyzing customer demographics helps tailor marketing strategies to target specific groups.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Customer Count by Gender",
+          "why": "Understand the gender distribution of customers.",
+          "answers": [
+            "Reveals if there is a gender imbalance among customers."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Gender"
+          ],
+          "type": "segmentation",
+          "code_lines": [
+            "# Count of customers by gender",
+            "result = supermarket_analysis['Gender'].value_counts().reset_index()",
+            "result.columns = ['Gender', 'Count']"
+          ],
+          "visualization_code": [
+            "# Bar plot for customer count by gender",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Gender'], result['Count'])",
+            "plt.title('Customer Count by Gender')",
+            "plt.xlabel('Gender')",
+            "plt.ylabel('Count')",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "Bar chart is suitable for comparing discrete categories like gender."
+        },
+        {
+          "id": "2.2",
+          "title": "Sales by Customer Type",
+          "why": "Determine if sales strategies should differ between types of customers.",
+          "answers": [
+            "Provides insight into revenue contribution from different customer types."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Customer type",
+            "supermarket_analysis.Sales"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Calculate total sales by customer type",
+            "result = supermarket_analysis.groupby('Customer type')['Sales'].sum().reset_index()"
+          ],
+          "visualization_code": [
+            "# Bar plot of sales by customer type",
+            "result_plot = plt.figure()",
+            "plt.bar(result['Customer type'], result['Sales'])",
+            "plt.title('Sales by Customer Type')",
+            "plt.xlabel('Customer Type')",
+            "plt.ylabel('Total Sales')",
+            "plt.tight_layout()"
+          ],
+          "visualization_type": "bar",
+          "justification": "A bar chart enables easy comparison of sales between customer types."
+        }
+      ]
+    }
+  ]
+}

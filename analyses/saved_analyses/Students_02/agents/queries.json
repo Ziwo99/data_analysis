@@ -1,0 +1,216 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Influence on Performance",
+      "context": "Analyze how demographic factors such as gender and race/ethnicity influence students' academic performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Gender Performance Comparison",
+          "why": "To determine if there is a performance gap between male and female students across different subjects.",
+          "answers": [
+            "Average math score by gender",
+            "Average reading score by gender",
+            "Average writing score by gender"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by gender and calculate the mean scores for each subject",
+            "result = students_performance.groupby('gender')[['math score', 'reading score', 'writing score']].mean().reset_index()"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Ethnicity Performance Analysis",
+          "why": "To explore performance differences among racial/ethnic groups.",
+          "answers": [
+            "Average math score by race/ethnicity",
+            "Average reading score by race/ethnicity",
+            "Average writing score by race/ethnicity"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by race/ethnicity and calculate the mean scores for each subject",
+            "result = students_performance.groupby('race/ethnicity')[['math score', 'reading score', 'writing score']].mean().reset_index()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Parental Education Impact",
+      "context": "Investigate how the level of parental education relates to student performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Performance by Parental Education Level",
+          "why": "To understand if higher parental education correlates with better student scores.",
+          "answers": [
+            "Average math score by parental education",
+            "Average reading score by parental education",
+            "Average writing score by parental education"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by parental level of education and calculate the mean scores for each subject",
+            "result = students_performance.groupby('parental level of education')[['math score', 'reading score', 'writing score']].mean().reset_index()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Socio-economic Factors",
+      "context": "Assess the influence of socio-economic indicators, such as lunch type, on academic outcomes.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Lunch Type and Performance",
+          "why": "To investigate whether the type of lunch, as an indicator of socio-economic status, affects student performance.",
+          "answers": [
+            "Average math score by lunch type",
+            "Average reading score by lunch type",
+            "Average writing score by lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by lunch type and calculate the mean scores for each subject",
+            "result = students_performance.groupby('lunch')[['math score', 'reading score', 'writing score']].mean().reset_index()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Test Preparation Role",
+      "context": "Evaluate the impact of a test preparation course on students' scores.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Effect of Test Preparation Course",
+          "why": "To analyze the effect of test preparation courses on students' academic performance.",
+          "answers": [
+            "Average math score by test preparation course",
+            "Average reading score by test preparation course",
+            "Average writing score by test preparation course"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.math score",
+            "students_performance.reading score",
+            "students_performance.writing score"
+          ],
+          "type": "aggregation",
+          "code_lines": [
+            "# Group by test preparation course and calculate the mean scores for each subject",
+            "result = students_performance.groupby('test preparation course')[['math score', 'reading score', 'writing score']].mean().reset_index()"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "General Performance Insights",
+      "context": "Provide an overview of overall students' performance across subjects.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Overall Math Score Distribution",
+          "why": "To understand the distribution and central tendency of students' math scores.",
+          "answers": [
+            "Math score mean",
+            "Math score distribution"
+          ],
+          "tables_columns": [
+            "students_performance.math score"
+          ],
+          "type": "distribution",
+          "code_lines": [
+            "# Calculate the mean and distribution of math scores",
+            "math_mean = students_performance['math score'].mean()",
+            "math_distribution = students_performance['math score'].value_counts().sort_index()",
+            "result = pd.DataFrame({'Math Score Mean': [math_mean], 'Math Score Distribution': [math_distribution]})"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Overall Reading Score Distribution",
+          "why": "To understand the distribution and central tendency of students' reading scores.",
+          "answers": [
+            "Reading score mean",
+            "Reading score distribution"
+          ],
+          "tables_columns": [
+            "students_performance.reading score"
+          ],
+          "type": "distribution",
+          "code_lines": [
+            "# Calculate the mean and distribution of reading scores",
+            "reading_mean = students_performance['reading score'].mean()",
+            "reading_distribution = students_performance['reading score'].value_counts().sort_index()",
+            "result = pd.DataFrame({'Reading Score Mean': [reading_mean], 'Reading Score Distribution': [reading_distribution]})"
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Overall Writing Score Distribution",
+          "why": "To understand the distribution and central tendency of students' writing scores.",
+          "answers": [
+            "Writing score mean",
+            "Writing score distribution"
+          ],
+          "tables_columns": [
+            "students_performance.writing score"
+          ],
+          "type": "distribution",
+          "code_lines": [
+            "# Calculate the mean and distribution of writing scores",
+            "writing_mean = students_performance['writing score'].mean()",
+            "writing_distribution = students_performance['writing score'].value_counts().sort_index()",
+            "result = pd.DataFrame({'Writing Score Mean': [writing_mean], 'Writing Score Distribution': [writing_distribution]})"
+          ]
+        }
+      ]
+    }
+  ]
+}

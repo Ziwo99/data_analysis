@@ -1,0 +1,91 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "insurance": {
+      "row_count": 1338,
+      "columns": {
+        "age": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 47,
+          "min": 18.0,
+          "max": 64.0,
+          "mean": 39.20702541106129,
+          "std": 14.049960379216172
+        },
+        "sex": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "bmi": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 548,
+          "min": 15.96,
+          "max": 53.13,
+          "mean": 30.66339686098655,
+          "std": 6.098186911679017
+        },
+        "children": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": 0.0,
+          "max": 5.0,
+          "mean": 1.0949177877429,
+          "std": 1.2054927397819095
+        },
+        "smoker": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "usa_region": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null
+        },
+        "charges": {
+          "type": "float64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 1337,
+          "min": 1121.8739,
+          "max": 63770.42801,
+          "mean": 13270.422265141257,
+          "std": 12110.011236693996
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": []
+    }
+  },
+  "relationships": []
+}

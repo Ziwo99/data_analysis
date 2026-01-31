@@ -1,0 +1,312 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Customer Demographics Analysis",
+      "queries": [
+        {
+          "id": "1.1",
+          "title": "Customer Distribution by State",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 27,
+            "column_count": 2,
+            "columns": {
+              "customer_state": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "avg_length": 2.0,
+                "max_length": 2
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 27,
+                "min": 46.0,
+                "max": 41746.0,
+                "mean": 3683.0,
+                "std": 8270.437663984063
+              }
+            }
+          }
+        },
+        {
+          "id": "1.2",
+          "title": "Customer Distribution by City",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4119,
+            "column_count": 2,
+            "columns": {
+              "customer_city": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4119,
+                "avg_length": 11.302257829570284,
+                "max_length": 32
+              },
+              "customer_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 210,
+                "min": 1.0,
+                "max": 15540.0,
+                "mean": 24.14202476329206,
+                "std": 279.27238158638164
+              }
+            }
+          }
+        },
+        {
+          "id": "1.3",
+          "title": "Unique Customers Count",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 1,
+            "column_count": 1,
+            "columns": {
+              "unique_customers_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 1,
+                "min": 96096.0,
+                "max": 96096.0,
+                "mean": 96096.0,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Order and Payment Analysis",
+      "queries": [
+        {
+          "id": "2.1",
+          "title": "Order Status Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 8,
+            "column_count": 2,
+            "columns": {
+              "order_status": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "avg_length": 8.5,
+                "max_length": 11
+              },
+              "order_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 8,
+                "min": 2.0,
+                "max": 96478.0,
+                "mean": 12430.125,
+                "std": 33962.409061606
+              }
+            }
+          }
+        },
+        {
+          "id": "2.2",
+          "title": "Payment Type Breakdown",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 5,
+            "column_count": 2,
+            "columns": {
+              "payment_type": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "avg_length": 9.0,
+                "max_length": 11
+              },
+              "payment_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 5,
+                "min": 3.0,
+                "max": 76795.0,
+                "mean": 20777.2,
+                "std": 32272.693398599382
+              }
+            }
+          }
+        },
+        {
+          "id": "2.3",
+          "title": "Payment Value Analysis",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 3.25,
+                "max_length": 4
+              },
+              "payment_value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 0.0,
+                "max": 16008872.12,
+                "mean": 4005672.575095104,
+                "std": 8002135.593491408
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product and Category Insights",
+      "queries": [
+        {
+          "id": "3.1",
+          "title": "Product Availability by Category",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 73,
+            "column_count": 2,
+            "columns": {
+              "product_category_name": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 73,
+                "avg_length": 17.232876712328768,
+                "max_length": 46
+              },
+              "product_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 65,
+                "min": 1.0,
+                "max": 3029.0,
+                "mean": 443.027397260274,
+                "std": 735.9049035145388
+              }
+            }
+          }
+        },
+        {
+          "id": "3.2",
+          "title": "Category Translation Map",
+          "type": "raw_listing",
+          "analysis": {
+            "row_count": 71,
+            "column_count": 2,
+            "columns": {
+              "product_category_name": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 71,
+                "avg_length": 16.971830985915492,
+                "max_length": 46
+              },
+              "product_category_name_english": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 71,
+                "avg_length": 16.070422535211268,
+                "max_length": 39
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Logistics and Shipment Analysis",
+      "queries": [
+        {
+          "id": "4.1",
+          "title": "Freight Cost Distribution",
+          "type": "aggregation",
+          "analysis": {
+            "row_count": 4,
+            "column_count": 2,
+            "columns": {
+              "index": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "avg_length": 3.25,
+                "max_length": 4
+              },
+              "freight_value": {
+                "type": "float64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 4,
+                "min": 0.0,
+                "max": 2251909.54,
+                "mean": 563084.8025799822,
+                "std": 1125883.1740747907
+              }
+            }
+          }
+        },
+        {
+          "id": "4.2",
+          "title": "Geolocation Distribution",
+          "type": "join_aggregation",
+          "analysis": {
+            "row_count": 0,
+            "column_count": 3,
+            "columns": {
+              "geolocation_city": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 0
+              },
+              "geolocation_state": {
+                "type": "object",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 0
+              },
+              "shipment_count": {
+                "type": "int64",
+                "nullable": false,
+                "null_count": 0,
+                "unique_count": 0,
+                "min": null,
+                "max": null,
+                "mean": null,
+                "std": null
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

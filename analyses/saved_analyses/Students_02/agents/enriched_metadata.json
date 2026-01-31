@@ -1,0 +1,114 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "students_performance": {
+      "row_count": 1000,
+      "columns": {
+        "gender": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Denotes the gender of the student, useful for demographic analysis."
+        },
+        "race/ethnicity": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Indicates the racial or ethnic group of the student, allowing analysis of performance across different groups."
+        },
+        "parental level of education": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 6,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Represents the highest level of education attained by the student's parents, which can be correlated with student performance."
+        },
+        "lunch": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Describes the type of lunch received by the student, indicating socio-economic factors that may affect performance."
+        },
+        "test preparation course": {
+          "type": "object",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 2,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "Indicates whether the student completed a test preparation course, providing insight into preparation's impact on scores."
+        },
+        "math score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 81,
+          "min": 0.0,
+          "max": 100.0,
+          "mean": 66.089,
+          "std": 15.163080096009468,
+          "semantic_description": "The student's score in the math section, indicative of mathematical proficiency."
+        },
+        "reading score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 72,
+          "min": 17.0,
+          "max": 100.0,
+          "mean": 69.169,
+          "std": 14.60019193725222,
+          "semantic_description": "The student's score in the reading section, indicative of reading comprehension skills."
+        },
+        "writing score": {
+          "type": "int64",
+          "nullable": false,
+          "unique": false,
+          "null_count": 0,
+          "unique_count": 77,
+          "min": 10.0,
+          "max": 100.0,
+          "mean": 68.054,
+          "std": 15.195657010869642,
+          "semantic_description": "The student's score in the writing section, indicative of proficiency in writing."
+        }
+      },
+      "primary_key": null,
+      "foreign_keys": [],
+      "role": "Students' Educational Performance Data",
+      "description": "This table contains the performance metrics for a cohort of students, including sociodemographic details and scores in various subjects. It serves to analyze and understand how different factors influence educational outcomes."
+    }
+  },
+  "relationships": [],
+  "database_domain": "education",
+  "database_description": "This database is designed to capture and analyze student performance metrics across various demographics, parental education levels, and preparation influences. It primarily serves educational analysts to evaluate trends and determinants of academic success in standardized testing environments."
+}

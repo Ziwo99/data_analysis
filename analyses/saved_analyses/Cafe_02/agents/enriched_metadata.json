@@ -1,0 +1,114 @@
+{
+  "source_type": "csv",
+  "number_of_tables": 1,
+  "tables": {
+    "dirty_cafe_sales": {
+      "row_count": 10000,
+      "columns": {
+        "Transaction ID": {
+          "type": "object",
+          "nullable": false,
+          "unique": true,
+          "null_count": 0,
+          "unique_count": 10000,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "A unique identifier for each transaction carried out at the cafe. This allows tracking and referencing specific sales events."
+        },
+        "Item": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 333,
+          "unique_count": 10,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The product item purchased in the transaction. Represents the type of goods sold."
+        },
+        "Quantity": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 138,
+          "unique_count": 7,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The number of units of the item purchased in the transaction. Indicates the volume of the purchase."
+        },
+        "Price Per Unit": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 179,
+          "unique_count": 8,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The cost of one unit of the item purchased. Used to calculate the total cost based on quantity."
+        },
+        "Total Spent": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 173,
+          "unique_count": 19,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The total monetary amount spent on this transaction. Calculated by multiplying the price per unit by the quantity."
+        },
+        "Payment Method": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 2579,
+          "unique_count": 5,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The method of payment used in the transaction (e.g., cash, credit card). Provides information about customer preference in payment options."
+        },
+        "Location": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 3265,
+          "unique_count": 4,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The branch location or venue where the transaction took place. Helps in analyzing sales performance across different locations."
+        },
+        "Transaction Date": {
+          "type": "object",
+          "nullable": true,
+          "unique": false,
+          "null_count": 159,
+          "unique_count": 367,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "std": null,
+          "semantic_description": "The date on which the transaction occurred. Useful for temporal analysis of sales data."
+        }
+      },
+      "primary_key": "Transaction ID",
+      "foreign_keys": [],
+      "role": "Sales Record",
+      "description": "This table contains data about each transaction that occurred at the cafe. It records transaction-specific details including items sold, quantities, financial details, and location. It serves as the fundamental dataset for analyzing sales trends, customer behavior, and financial performance at the cafe."
+    }
+  },
+  "relationships": [],
+  "database_domain": "Retail",
+  "database_description": "This database is designed for a retail cafe environment, capturing and organizing transaction data. It enables the analysis of sales, customer purchasing patterns, and location-based performance metrics, offering insights into operational efficiency and financial outcomes."
+}

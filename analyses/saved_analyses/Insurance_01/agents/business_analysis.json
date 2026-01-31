@@ -1,0 +1,195 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Demographic Analysis of Policyholders",
+      "context": "Understand the demographic profile of insurance policyholders.",
+      "tables": [
+        "insurance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Age Distribution",
+          "why": "Analyze the age distribution to understand the predominant age groups among policyholders.",
+          "answers": [
+            "Age distribution histograms or summary statistics"
+          ],
+          "tables_columns": [
+            "insurance.age"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Sex Ratio",
+          "why": "Determine the distribution of policyholders by gender.",
+          "answers": [
+            "Proportion or count by sex"
+          ],
+          "tables_columns": [
+            "insurance.sex"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Children Count Distribution",
+          "why": "Understand family size trends among policyholders by analyzing the number of dependents.",
+          "answers": [
+            "Histogram or summary statistics of children"
+          ],
+          "tables_columns": [
+            "insurance.children"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Lifestyle and Health Profile",
+      "context": "Analyze the lifestyle choices and health profiles of policyholders.",
+      "tables": [
+        "insurance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "BMI Distribution",
+          "why": "Assess the BMI range and its distribution to evaluate general health and obesity trends.",
+          "answers": [
+            "BMI distribution histograms or statistics"
+          ],
+          "tables_columns": [
+            "insurance.bmi"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Smoking Status Distribution",
+          "why": "Determine the proportion of smokers and non-smokers among policyholders.",
+          "answers": [
+            "Proportion or count by smoking status"
+          ],
+          "tables_columns": [
+            "insurance.smoker"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Geographical Analysis",
+      "context": "Evaluate the regional distribution of policyholders to support regional market strategies.",
+      "tables": [
+        "insurance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Region Distribution",
+          "why": "Analyze the number of policyholders in each geographical region.",
+          "answers": [
+            "Proportion or count by region"
+          ],
+          "tables_columns": [
+            "insurance.usa_region"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Insurance Charges Analysis",
+      "context": "Analyze the variance and factors influencing insurance charges.",
+      "tables": [
+        "insurance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Charges Distribution",
+          "why": "Understand the distribution of charges to identify outliers or trends.",
+          "answers": [
+            "Charges distribution histograms or statistics"
+          ],
+          "tables_columns": [
+            "insurance.charges"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Charges by Age Group",
+          "why": "Investigate how insurance charges differ across age groups.",
+          "answers": [
+            "Average charges by age group"
+          ],
+          "tables_columns": [
+            "insurance.age",
+            "insurance.charges"
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Charges by Smoking Status",
+          "why": "Compare the insurance charges between smokers and non-smokers.",
+          "answers": [
+            "Average charges by smoking status"
+          ],
+          "tables_columns": [
+            "insurance.smoker",
+            "insurance.charges"
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "Charges by Region",
+          "why": "Analyze regional variations in insurance charges.",
+          "answers": [
+            "Average charges by region"
+          ],
+          "tables_columns": [
+            "insurance.usa_region",
+            "insurance.charges"
+          ]
+        },
+        {
+          "id": "4.5",
+          "title": "Charges by BMI",
+          "why": "Determine the influence of BMI on insurance charges.",
+          "answers": [
+            "Scatter plot or correlation between BMI and charges"
+          ],
+          "tables_columns": [
+            "insurance.bmi",
+            "insurance.charges"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Integrated Insights Analysis",
+      "context": "Combine multiple factors to potentially derive deeper insights into insurance charges.",
+      "tables": [
+        "insurance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Multi-Factor Charges Analysis",
+          "why": "Evaluate how multiple demographic and lifestyle factors affect insurance charges.",
+          "answers": [
+            "Multivariate analysis of charges, age, BMI, sex, smoker, and region"
+          ],
+          "tables_columns": [
+            "insurance.age",
+            "insurance.sex",
+            "insurance.bmi",
+            "insurance.smoker",
+            "insurance.usa_region",
+            "insurance.charges"
+          ]
+        }
+      ]
+    }
+  ]
+}

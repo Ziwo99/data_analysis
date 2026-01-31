@@ -1,0 +1,237 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Gender-Based Performance Analysis",
+      "context": "Understand performance differences across genders.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Average Math Score by Gender",
+          "why": "Identify if there are performance disparities in math based on gender.",
+          "answers": [
+            "Average math score for males",
+            "Average math score for females"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.math score"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Average Reading Score by Gender",
+          "why": "Determine if gender affects reading scores.",
+          "answers": [
+            "Average reading score for males",
+            "Average reading score for females"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.reading score"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Average Writing Score by Gender",
+          "why": "Investigate writing score differences between genders.",
+          "answers": [
+            "Average writing score for males",
+            "Average writing score for females"
+          ],
+          "tables_columns": [
+            "students_performance.gender",
+            "students_performance.writing score"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Ethnicity-Based Performance Analysis",
+      "context": "Evaluate performance across different ethnic groups.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Average Math Score by Ethnicity",
+          "why": "Understand how ethnicity impacts math performance.",
+          "answers": [
+            "Average math score for each ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.math score"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Average Reading Score by Ethnicity",
+          "why": "Identify reading score trends across ethnic groups.",
+          "answers": [
+            "Average reading score for each ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.reading score"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Average Writing Score by Ethnicity",
+          "why": "Assess writing performance differences based on ethnicity.",
+          "answers": [
+            "Average writing score for each ethnicity group"
+          ],
+          "tables_columns": [
+            "students_performance.race/ethnicity",
+            "students_performance.writing score"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Parental Education Impact Analysis",
+      "context": "Analyze how parental education levels affect student performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Math Score by Parental Education Level",
+          "why": "Determine the correlation between parents' education level and students' math scores.",
+          "answers": [
+            "Math scores by each parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.math score"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Reading Score by Parental Education Level",
+          "why": "Examine if reading scores vary with parental education level.",
+          "answers": [
+            "Reading scores by each parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.reading score"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Writing Score by Parental Education Level",
+          "why": "Assess how parental education impacts writing scores.",
+          "answers": [
+            "Writing scores by each parental education level"
+          ],
+          "tables_columns": [
+            "students_performance.parental level of education",
+            "students_performance.writing score"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Lunch Program Performance Analysis",
+      "context": "Observe the impact of lunch program types on student performance.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Math Score by Lunch Type",
+          "why": "Analyze if lunch type correlates with math performance.",
+          "answers": [
+            "Average math score for each lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.math score"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Reading Score by Lunch Type",
+          "why": "Examine the effect of lunch type on reading scores.",
+          "answers": [
+            "Average reading score for each lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.reading score"
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Writing Score by Lunch Type",
+          "why": "Explore the writing score differences by lunch provision type.",
+          "answers": [
+            "Average writing score for each lunch type"
+          ],
+          "tables_columns": [
+            "students_performance.lunch",
+            "students_performance.writing score"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Test Preparation Course Effectiveness",
+      "context": "Evaluate the impact of test preparation courses on test scores.",
+      "tables": [
+        "students_performance"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Math Score Improvement with Test Preparation",
+          "why": "Assess whether students who took preparation courses scored better in math.",
+          "answers": [
+            "Difference in math scores with/without test preparation"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.math score"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Reading Score Improvement with Test Preparation",
+          "why": "Determine if reading scores improve with test preparation courses.",
+          "answers": [
+            "Difference in reading scores with/without test preparation"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.reading score"
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Writing Score Improvement with Test Preparation",
+          "why": "Explore the effect of test preparation courses on writing scores.",
+          "answers": [
+            "Difference in writing scores with/without test preparation"
+          ],
+          "tables_columns": [
+            "students_performance.test preparation course",
+            "students_performance.writing score"
+          ]
+        }
+      ]
+    }
+  ]
+}
