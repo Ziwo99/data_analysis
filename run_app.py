@@ -25,7 +25,10 @@ if not app_file.exists():
     sys.exit(1)
 
 # Launch streamlit with PYTHONPATH set
+# Disable CrewAI telemetry to avoid "signal only works in main thread" when CrewAI
+# is imported inside Streamlit (which runs in worker threads)
 print(f"🚀 Launching application from: {app_dir}")
 env = dict(os.environ)
 env["PYTHONPATH"] = str(src_dir) + (os.pathsep + env.get("PYTHONPATH", ""))
+env["OTEL_SDK_DISABLED"] = "true"
 subprocess.run([sys.executable, "-m", "streamlit", "run", "app.py"], cwd=app_dir, env=env)
