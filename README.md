@@ -11,7 +11,27 @@ A Streamlit app that runs automated data analysis using AI agents. Data stays on
 
 ---
 
-## Installation
+## Quick start (une seule commande)
+
+Clone du repo, création de l’environnement virtuel, installation des dépendances et lancement de l’app en une commande.
+
+**Linux / macOS :**
+
+```bash
+git clone git@github.com:Ziwo99/data_analysis.git && cd data_analysis && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python run_app.py
+```
+
+**Windows (CMD ou PowerShell) :**
+
+```bash
+git clone git@github.com:Ziwo99/data_analysis.git && cd data_analysis && python -m venv .venv && .venv\Scripts\activate.bat && pip install -r requirements.txt && python run_app.py
+```
+
+L’app s’ouvre dans le navigateur (http://localhost:8501).
+
+---
+
+## Installation (étape par étape)
 
 1. Clone or download this repository.
 2. Create and activate a virtual environment (recommended):
