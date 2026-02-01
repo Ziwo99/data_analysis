@@ -24,6 +24,7 @@ from data_analysis.system.utils import (
     validate_python_syntax,
 )
 from data_analysis.system.utils.paths import (
+    PROJECT_ROOT,
     VISUALIZATION_RESULTS_PICKLE_FILE,
     VISUALIZATIONS_FILE,
     VISUALIZATION_IMAGES_DIR,
@@ -273,10 +274,10 @@ def mono_agent_guardrail(result: TaskOutput) -> Tuple[bool, Any]:
                 # Save figure as PNG
                 result_plot.savefig(image_path, dpi=150, bbox_inches='tight', facecolor='white')
                 
-                # Store relative path instead of the figure object
+                # Store path relative to project root so it works after git clone
                 sub_analysis_result["visualization_success"] = True
                 sub_analysis_result["result_plot"] = None  # Remove figure object
-                sub_analysis_result["visualization_image_path"] = str(image_path)
+                sub_analysis_result["visualization_image_path"] = str(image_path.relative_to(PROJECT_ROOT))
                 results_dict["summary"]["successful_visualizations"] += 1
             except Exception as e:
                 error_msg = f"Error saving visualization image: {e}"

@@ -102,6 +102,27 @@ VISUALIZATION_RESULTS_PICKLE_FILE = OUTPUT_EXECUTE_CODE_DIR / "visualization_res
 VISUALIZATION_IMAGES_DIR = OUTPUT_EXECUTE_CODE_DIR / "visualizations"
 """Directory for saved visualization images (PNG files)."""
 
+
+def resolve_visualization_image_path(path_str: str) -> Path | None:
+    """Resolve a stored visualization image path (relative or absolute) to an existing file.
+    Supports paths saved as relative to PROJECT_ROOT (portable after clone) and legacy absolute paths.
+    """
+    if not path_str:
+        return None
+    p = Path(path_str)
+    if p.is_absolute() and p.exists():
+        return p
+    # Relative path: resolve from project root (portable after git clone)
+    resolved = PROJECT_ROOT / p
+    if resolved.exists():
+        return resolved
+    # Legacy: absolute path from another machine — try same filename in current viz dir
+    if p.is_absolute() and VISUALIZATION_IMAGES_DIR.exists():
+        fallback = VISUALIZATION_IMAGES_DIR / p.name
+        if fallback.exists():
+            return fallback
+    return None
+
 # ============================================================================
 # Script Output Files
 # ============================================================================

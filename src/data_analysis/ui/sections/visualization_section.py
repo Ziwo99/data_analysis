@@ -3,6 +3,7 @@
 
 import streamlit as st
 import pandas as pd
+from data_analysis.system.utils.paths import resolve_visualization_image_path
 
 
 def display_visualizations_analysis(data: dict):
@@ -102,13 +103,12 @@ def display_visualizations_analysis(data: dict):
                                         col_chart, col_space = st.columns([0.7, 1.3])
                                         with col_chart:
                                             if visualization_image_path:
-                                                # New format: display PNG image
-                                                from pathlib import Path
-                                                image_path = Path(visualization_image_path)
-                                                if image_path.exists():
+                                                # New format: display PNG image (path resolved for portability after clone)
+                                                image_path = resolve_visualization_image_path(visualization_image_path)
+                                                if image_path is not None:
                                                     st.image(str(image_path), use_container_width=True)
                                                 else:
-                                                    st.error(f"Visualization image not found: {image_path}")
+                                                    st.error(f"Visualization image not found: {visualization_image_path}")
                                             elif result_plot is not None:
                                                 # Legacy format: display matplotlib figure
                                                 st.pyplot(result_plot, use_container_width=True)

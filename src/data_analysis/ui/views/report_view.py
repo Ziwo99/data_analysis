@@ -7,6 +7,7 @@ import streamlit as st
 from data_analysis.system.utils.paths import (
     VISUALIZATION_RESULTS_PICKLE_FILE,
     BUSINESS_ANALYSIS_FILE,
+    resolve_visualization_image_path,
 )
 
 
@@ -117,13 +118,12 @@ def render_report_view():
                                 col_chart, col_space = st.columns([1, 2])
                                 with col_chart:
                                     if visualization_image_path:
-                                        # New format: display PNG image
-                                        from pathlib import Path
-                                        image_path = Path(visualization_image_path)
-                                        if image_path.exists():
+                                        # New format: display PNG image (path resolved for portability after clone)
+                                        image_path = resolve_visualization_image_path(visualization_image_path)
+                                        if image_path is not None:
                                             st.image(str(image_path), use_container_width=True)
                                         else:
-                                            st.error(f"Visualization image not found: {image_path}")
+                                            st.error(f"Visualization image not found: {visualization_image_path}")
                                     elif result_plot is not None:
                                         # Legacy format: display matplotlib figure
                                         st.pyplot(result_plot, use_container_width=True)

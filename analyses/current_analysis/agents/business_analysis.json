@@ -1,0 +1,242 @@
+{
+  "analyses": [
+    {
+      "id": "1",
+      "title": "Sales Performance Analysis",
+      "context": "Assessing the sales performance across different branches, cities, and product lines.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "1.1",
+          "title": "Total Sales by Branch",
+          "why": "To identify which branches generate the most revenue.",
+          "answers": [
+            "Comparison of total sales among branches."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Branch",
+            "supermarket_analysis.Sales"
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Total Sales by City",
+          "why": "To determine the revenue distribution across cities where branches are located.",
+          "answers": [
+            "Aggregate sales figures for each city."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.City",
+            "supermarket_analysis.Sales"
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Sales by Product Line",
+          "why": "To analyze which product lines contribute most to revenue.",
+          "answers": [
+            "Revenue breakdown by product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Sales"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Customer Analysis",
+      "context": "Understanding customer profiles and behaviors.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "2.1",
+          "title": "Sales by Customer Type",
+          "why": "To assess revenue contribution from different customer types.",
+          "answers": [
+            "Comparison of sales between 'Member' and 'Walk-in' customers."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Customer type",
+            "supermarket_analysis.Sales"
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Average Quantity by Gender",
+          "why": "To explore purchasing patterns by gender.",
+          "answers": [
+            "Average product quantity purchased by each gender."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Gender",
+            "supermarket_analysis.Quantity"
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Customer Ratings by Gender",
+          "why": "To understand customer satisfaction levels across genders.",
+          "answers": [
+            "Average rating score given by each gender."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Gender",
+            "supermarket_analysis.Rating"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Product and Pricing Insights",
+      "context": "Gaining insights into product pricing and sales volume.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "3.1",
+          "title": "Average Unit Price by Product Line",
+          "why": "To explore pricing strategies across product categories.",
+          "answers": [
+            "Mean unit price for each product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Unit price"
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Volume of Sales by Product Line",
+          "why": "To measure product demand across categories.",
+          "answers": [
+            "Total quantity sold for each product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.Quantity"
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Total COGS by Product Line",
+          "why": "To analyze the cost associated with each product line.",
+          "answers": [
+            "Total cost of goods sold for each product line."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Product line",
+            "supermarket_analysis.cogs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Financial Metrics Analysis",
+      "context": "Examining key financial performance indicators.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "4.1",
+          "title": "Gross Income Analysis",
+          "why": "To evaluate overall profitability from sales.",
+          "answers": [
+            "Summary of gross income figures."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.gross income"
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Correlation between Sales and Gross Income",
+          "why": "To understand the relationship between these financial metrics.",
+          "answers": [
+            "Correlation coefficient between sales and gross income."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Sales",
+            "supermarket_analysis.gross income"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Temporal Analysis",
+      "context": "Analyzing sales patterns over time.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "5.1",
+          "title": "Sales Trend Over Time",
+          "why": "To identify seasonal trends or patterns in sales.",
+          "answers": [
+            "Sales figures plotted against time."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Date",
+            "supermarket_analysis.Sales"
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Peak Sales Hours",
+          "why": "To determine the time of day most transactions occur.",
+          "answers": [
+            "Histogram of sales volume by time of day."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Time",
+            "supermarket_analysis.Sales"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Payment Method Analysis",
+      "context": "Examining the popularity and distribution of payment methods.",
+      "tables": [
+        "supermarket_analysis"
+      ],
+      "sub_analyses": [
+        {
+          "id": "6.1",
+          "title": "Sales by Payment Method",
+          "why": "To understand customer payment preferences.",
+          "answers": [
+            "Revenue breakdown by payment method."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Payment",
+            "supermarket_analysis.Sales"
+          ]
+        },
+        {
+          "id": "6.2",
+          "title": "Distribution of Payment Methods",
+          "why": "To analyze the distribution of payment types used.",
+          "answers": [
+            "Frequency count of different payment methods."
+          ],
+          "tables_columns": [
+            "supermarket_analysis.Payment"
+          ]
+        }
+      ]
+    }
+  ]
+}
