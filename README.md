@@ -7,38 +7,57 @@ A Streamlit app that runs automated data analysis using AI agents. Data stays on
 ## Prerequisites
 
 - **Python 3.10+**
-- **OpenAI API key** (used by the agents)
+- **OpenAI API key** — required only for **new analyses**. You can run the app and consult saved analyses without a key.
 
 ---
 
-## Quick start (une seule commande)
+## Quick start (single command)
 
-Clone du repo, création de l’environnement virtuel, installation des dépendances et lancement de l’app en une commande.
+Clone the repo, create the virtual environment, install dependencies and launch the app in one command.
 
-**Linux / macOS :**
+**Via SSH — Linux / macOS:**
 
 ```bash
 git clone git@github.com:Ziwo99/data_analysis.git && cd data_analysis && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python run_app.py
 ```
 
-**Windows (CMD ou PowerShell) :**
+**Via SSH — Windows (CMD or PowerShell):**
 
 ```bash
 git clone git@github.com:Ziwo99/data_analysis.git && cd data_analysis && python -m venv .venv && .venv\Scripts\activate.bat && pip install -r requirements.txt && python run_app.py
 ```
 
-L’app s’ouvre dans le navigateur (http://localhost:8501).
+**Via HTTPS — Linux / macOS:**
+
+```bash
+git clone https://github.com/Ziwo99/data_analysis.git && cd data_analysis && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python run_app.py
+```
+
+**Via HTTPS — Windows (CMD or PowerShell):**
+
+```bash
+git clone https://github.com/Ziwo99/data_analysis.git && cd data_analysis && python -m venv .venv && .venv\Scripts\activate.bat && pip install -r requirements.txt && python run_app.py
+```
+
+The app opens in your browser (http://localhost:8501).
 
 ---
 
-## Installation (étape par étape)
+## Installation (step by step)
 
 1. Clone or download this repository.
 2. Create and activate a virtual environment (recommended):
+
+   **Linux / macOS:**
    ```bash
    python -m venv .venv
-   source .venv/bin/activate   # Linux/macOS
-   # or:  .venv\Scripts\activate   # Windows
+   source .venv/bin/activate
+   ```
+
+   **Windows (CMD or PowerShell):**
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate
    ```
 3. Install dependencies:
    ```bash
